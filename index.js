@@ -4,7 +4,6 @@ import envPaths from 'env-paths';
 import commandLineArgs from 'command-line-args';
 import commandLineUsage from 'command-line-usage';
 import { mkdirp } from 'mkdirp';
-// import hash from 'stable-hash';
 import { hash } from 'hash-it';
 
 async function slurp(filename, opts = {}) {
