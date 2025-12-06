@@ -5,6 +5,11 @@ import commandLineArgs from 'command-line-args';
 import commandLineUsage from 'command-line-usage';
 import { mkdirp } from 'mkdirp';
 import { hash } from 'hash-it';
+import { execa } from 'execa';
+import _ from 'lodash';
+import { SlippiGame } from '@slippi/slippi-js';
+
+const GAME_FIRST_FRAME = (0 - 123);
 
 async function slurp(filename, opts = {}) {
     try {
@@ -26,6 +31,13 @@ async function slurpJson(...args) {
 const paths = envPaths('slp-rec', { suffix: '' });
 const configPath = path.join(paths.config, 'config.json');
 
+const launcherSettingsPath = (
+    path.join(paths.config, '..', 'Slippi Launcher', 'Settings')
+);
+const launcherSettings = (
+    await slurpJson(launcherSettingsPath)
+) || { settings: {} };
+
 const optionDefinitions = [
     {
         name: 'help',
@@ -37,7 +49,7 @@ const optionDefinitions = [
         name: 'start-frame',
         alias: 's',
         type: Number,
-        description: 'First frame to begin recording',
+        description: 'First frame to begin recording (default GAME_FRAME_START)',
         typeLabel: '<frame>',
         defaultValue: 0,
     },
@@ -64,8 +76,15 @@ const optionDefinitions = [
         defaultValue: 'output.mp4',
     },
     {
-        name: 'input',
+        name: 'iso',
         alias: 'i',
+        type: String,
+        description: 'The melee iso to use while recording',
+        typeLabel: '<iso>',
+    },
+    {
+        name: 'file',
+        alias: 'f',
         type: String,
         description: 'The slp file to record',
         typeLabel: '<slp>',
@@ -100,25 +119,10 @@ function failOptions(message) {
 }
 
 const options = commandLineArgs(optionDefinitions, { camelCase: true });
-if (options.help) {
-    const usage = commandLineUsage([
-        {
-            header: 'Usage:',
-            content: 'slp-rec [OPT]* <slp>'
-        },
-        {
-            header: 'Options',
-            optionList: optionDefinitions
-        },
-        {
-            content: 'Project home: {underline https://github.com/mitchdzugan/slp-rec}'
-        }
-    ]);
-    console.log(usage);
-    process.exit(0);
-}
+if (options.help) { informUsageAndExit(); }
 
 const defaultConfig = {
+    ssbmIsoPath: launcherSettings.settings.isoPath,
     slippiPlaybackBin: 'slippi-playback',
     ffmpegBin: 'ffmpeg',
 };
@@ -137,12 +141,17 @@ function getConfigJson() {
     return _configPromise;
 }
 
-export async function slippiPlaybackBin() {
-    const config = await getConfigJson();
-    return config.slippiPlaybackBin;
+function mkConfigGetter(g) {
+    return async function() {
+        const config = await getConfigJson();
+        return _.get(config, g);
+    };
 }
 
-if (!options.input) {
+const cfg_slippiPlaybackBin = mkConfigGetter('slippiPlaybackBin');
+const cfg_ssbmIsoPath = mkConfigGetter('ssbmIsoPath');
+
+if (!options.file) {
     failOptions('input .slp file must be provided');
 }
 
@@ -200,6 +209,37 @@ function getRawDataPosition(buffer) {
     return 15;
 }
 
+const RECORD_JSON_BASE = {
+    mode: "normal",
+    isRealTimeMode: false,
+};
+
+function mkRecordJson(replay) {
+    const recordJson = { ...RECORD_JSON_BASE, replay };
+    recordJson.commandId = path.basename(path.dirname(replay));
+    let startFrame = GAME_FIRST_FRAME;
+    if (options.startFrame !== undefined) {
+        startFrame = options.startFrame;
+        recordJson.startFrame = startFrame;
+    }
+    if (options.totalFrames !== undefined) {
+        recordJson.endFrame = startFrame + options.totalFrames;
+    }
+    return recordJson;
+}
+
+function getRecordJsonPath(workDir) {
+    return path.join(workDir, 'record.json');
+}
+
+async function writeRecordJson(workDir) {
+    const slpFilename = path.join(workDir, 'input.slp');
+    const jsonFilename = getRecordJsonPath(workDir);
+    const jsonContent = mkRecordJson(slpFilename);
+    const content = JSON.stringify(jsonContent) + "\n";
+    await fs.writeFile(jsonFilename, content, 'utf8');
+}
+
 async function recordSlp(filename) {
     const ts = timestamp();
     const fileHash = hash(path.normalize(filename));
@@ -212,20 +252,43 @@ async function recordSlp(filename) {
     const messageSizes = getMessageSizes(buffer, rawPosition);
 
     let pos = rawPosition;
-    let updated = false;
-    while (!updated) {
+    while (pos < buffer.length) {
         const cmd = buffer[pos];
         if (cmd === Command.GAME_START) {
-            const start = pos;
-            const offset = myPortId * 0x24;
-            buffer[0x68 + offset + start] = 0;
-            updated = true;
+            // const start = pos;
+            // const offset = myPortId * 0x24;
+            // buffer[0x68 + offset + start] = 0;
         }
         pos += 1 + messageSizes[buffer[pos]];
     }
-    // await fs.writeFile(__dirname + "\\ready.slp", buffer);
+    const slpFile = path.join(workDir, 'input.slp');
+    await fs.writeFile(slpFile, buffer);
+    await writeRecordJson(workDir);
+    const slippiPlaybackBin = await cfg_slippiPlaybackBin();
+    const ssbmIsoPath = await cfg_ssbmIsoPath();
+    const playbackArgs = ([
+        '--cout', '--batch',
+        ...['--slippi-input', getRecordJsonPath(workDir)],
+        ...['--exec', ssbmIsoPath],
+    ]);
+    const game = new SlippiGame(slpFile);
+    const stats = game.getStats();
+    const lastFrame = stats.lastFrame;
+    const recordedFrames = new Set();
+    let latestFrame;
+    for await (const line of execa(slippiPlaybackBin, playbackArgs)) {
+        if (line.startsWith('[CURRENT_FRAME]')) {
+            const currentFrame = parseInt(line.substring(15).trim());
+            recordedFrames.add(currentFrame);
+            if (latestFrame === undefined || currentFrame > latestFrame) {
+                latestFrame = currentFrame;
+            }
+            console.log({ recentFr: latestFrame, totFrs: recordedFrames.size, lastFr: lastFrame });
+            if (latestFrame >= lastFrame) { break; }
+        }
+    }
+    console.log({ slippiPlaybackBin, ssbmIsoPath });
     await fs.rm(workDir, { recursive: true, force: true });
 }
 
-// console.log({ workRoot });
-await recordSlp(options.input);
+await recordSlp(options.file);
