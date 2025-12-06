@@ -9,6 +9,25 @@ import { execa } from 'execa';
 import _ from 'lodash';
 import { SlippiGame } from '@slippi/slippi-js';
 
+const BASE_INI = {
+    Dolphin: {
+        Movie: {
+            DumpFrames: 'True',
+        },
+        DSP: {
+            DumpAudio: 'True',
+            Backend: 'No audio output',
+            Volume: 100,
+        },
+    },
+    GFX: {
+        Settings: {
+            AspectRatio: '6',
+            InternalResolutionFrameDumps: 'True',
+        },
+    },
+};
+
 const GAME_FIRST_FRAME = (0 - 123);
 
 async function slurp(filename, opts = {}) {
@@ -51,7 +70,6 @@ const optionDefinitions = [
         type: Number,
         description: 'First frame to begin recording (default GAME_FRAME_START)',
         typeLabel: '<frame>',
-        defaultValue: 0,
     },
     {
         name: 'total-frames',
@@ -240,6 +258,45 @@ async function writeRecordJson(workDir) {
     await fs.writeFile(jsonFilename, content, 'utf8');
 }
 
+function limitExecutionTime(fn, timeout) {
+    return new Promise((resolve, reject) => {
+        function throwTimeoutError() {
+            reject(`Execution did not complete within ${timeout}ms`);
+        }
+        const timeoutId = setTimeout(throwTimeoutError, timeout);
+        const res = fn();
+        clearTimeout(timeoutId);
+        resolve(res);
+    });
+}
+
+async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame) {
+    const recordedFrames = new Set();
+    let latestFrame;
+    const slippiProcess = execa(slippiPlaybackBin, playbackArgs);
+    for await (const stdoutLine of slippiProcess) {
+        if (stdoutLine.startsWith('[CURRENT_FRAME]')) {
+            const currentFrame = parseInt(stdoutLine.substring(15).trim());
+            recordedFrames.add(currentFrame);
+            if (latestFrame === undefined || currentFrame > latestFrame) {
+                latestFrame = currentFrame;
+            }
+            console.log({
+                totalActualFrames: lastFrame - GAME_FIRST_FRAME,
+                lastActualFrame: lastFrame,
+                lastRecordedFrame: latestFrame,
+                totalRecordedFrames: recordedFrames.size,
+            });
+            // console.log('is greater?', latestFrame >= lastFrame);
+            if (latestFrame >= lastFrame) {
+                slippiProcess.kill();
+                break;
+            }
+        }
+    }
+    return;
+}
+
 async function recordSlp(filename) {
     const ts = timestamp();
     const fileHash = hash(path.normalize(filename));
@@ -274,21 +331,10 @@ async function recordSlp(filename) {
     const game = new SlippiGame(slpFile);
     const stats = game.getStats();
     const lastFrame = stats.lastFrame;
-    const recordedFrames = new Set();
-    let latestFrame;
-    for await (const line of execa(slippiPlaybackBin, playbackArgs)) {
-        if (line.startsWith('[CURRENT_FRAME]')) {
-            const currentFrame = parseInt(line.substring(15).trim());
-            recordedFrames.add(currentFrame);
-            if (latestFrame === undefined || currentFrame > latestFrame) {
-                latestFrame = currentFrame;
-            }
-            console.log({ recentFr: latestFrame, totFrs: recordedFrames.size, lastFr: lastFrame });
-            if (latestFrame >= lastFrame) { break; }
-        }
-    }
-    console.log({ slippiPlaybackBin, ssbmIsoPath });
+    await execSlippi(slippiPlaybackBin, playbackArgs, lastFrame);
+    console.log({ slippiPlaybackBin, ssbmIsoPath, workDir });
     await fs.rm(workDir, { recursive: true, force: true });
 }
 
+// console.log({ workRoot });
 await recordSlp(options.file);
