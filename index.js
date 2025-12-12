@@ -8,7 +8,10 @@ import { hash } from 'hash-it';
 import { execa } from 'execa';
 import _ from 'lodash';
 import { SlippiGame } from '@slippi/slippi-js';
+import * as ini from 'ini';
+import userBaseInis from './userBaseInis.json' with { type: 'json' };
 
+/*
 const BASE_INI = {
     Dolphin: {
         Movie: {
@@ -27,6 +30,7 @@ const BASE_INI = {
         },
     },
 };
+*/
 
 const GAME_FIRST_FRAME = (0 - 123);
 
@@ -140,7 +144,7 @@ const options = commandLineArgs(optionDefinitions, { camelCase: true });
 if (options.help) { informUsageAndExit(); }
 
 const defaultConfig = {
-    ssbmIsoPath: launcherSettings.settings.isoPath,
+    ssbmIsoPath: launcherSettings.settings && launcherSettings.settings.isoPath,
     slippiPlaybackBin: 'slippi-playback',
     ffmpegBin: 'ffmpeg',
 };
@@ -168,6 +172,7 @@ function mkConfigGetter(g) {
 
 const cfg_slippiPlaybackBin = mkConfigGetter('slippiPlaybackBin');
 const cfg_ssbmIsoPath = mkConfigGetter('ssbmIsoPath');
+const cfg_ffmpegBin = mkConfigGetter('ffmpegBin');
 
 if (!options.file) {
     failOptions('input .slp file must be provided');
@@ -258,7 +263,7 @@ async function writeRecordJson(workDir) {
     await fs.writeFile(jsonFilename, content, 'utf8');
 }
 
-function limitExecutionTime(fn, timeout) {
+function limitExecutionTime(timeout, fn) {
     return new Promise((resolve, reject) => {
         function throwTimeoutError() {
             reject(`Execution did not complete within ${timeout}ms`);
@@ -272,6 +277,7 @@ function limitExecutionTime(fn, timeout) {
 
 async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame) {
     const recordedFrames = new Set();
+    console.log(([slippiPlaybackBin, ...playbackArgs]).join(' '));
     let latestFrame;
     const slippiProcess = execa(slippiPlaybackBin, playbackArgs);
     for await (const stdoutLine of slippiProcess) {
@@ -281,12 +287,12 @@ async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame) {
             if (latestFrame === undefined || currentFrame > latestFrame) {
                 latestFrame = currentFrame;
             }
-            console.log({
-                totalActualFrames: lastFrame - GAME_FIRST_FRAME,
-                lastActualFrame: lastFrame,
-                lastRecordedFrame: latestFrame,
-                totalRecordedFrames: recordedFrames.size,
-            });
+            console.log(JSON.stringify({
+                tf: lastFrame - GAME_FIRST_FRAME,
+                lf: lastFrame,
+                lr: latestFrame,
+                tr: recordedFrames.size,
+            }));
             // console.log('is greater?', latestFrame >= lastFrame);
             if (latestFrame >= lastFrame) {
                 slippiProcess.kill();
@@ -303,7 +309,17 @@ async function recordSlp(filename) {
     const pid = process.pid;
     const workId = `wd-${ts}-${fileHash}-${pid}`;
     const workDir = path.join(workRoot, workId);
-    await mkdirp(workDir);
+    const userDir = path.join(workDir, 'User');
+    console.log({ userDir });
+    await mkdirp(userDir);
+
+    for (const { path: relPath, ini: iniJson } of userBaseInis) {
+        const fullPath = path.join(userDir, relPath);
+        const iniDir = path.dirname(fullPath);
+        await mkdirp(iniDir);
+        await fs.writeFile(fullPath, ini.stringify(iniJson));
+    }
+
     const buffer = await fs.readFile(filename);
     const rawPosition = getRawDataPosition(buffer);
     const messageSizes = getMessageSizes(buffer, rawPosition);
@@ -323,16 +339,32 @@ async function recordSlp(filename) {
     await writeRecordJson(workDir);
     const slippiPlaybackBin = await cfg_slippiPlaybackBin();
     const ssbmIsoPath = await cfg_ssbmIsoPath();
+    const ffmpegBin = await cfg_ffmpegBin();
     const playbackArgs = ([
         '--cout', '--batch',
+        ...['--user', userDir],
         ...['--slippi-input', getRecordJsonPath(workDir)],
         ...['--exec', ssbmIsoPath],
     ]);
     const game = new SlippiGame(slpFile);
     const stats = game.getStats();
     const lastFrame = stats.lastFrame;
-    await execSlippi(slippiPlaybackBin, playbackArgs, lastFrame);
-    console.log({ slippiPlaybackBin, ssbmIsoPath, workDir });
+    await limitExecutionTime(1000 * 60 * 1000, () => (
+        execSlippi(slippiPlaybackBin, playbackArgs, lastFrame)
+    ));
+    const aviFile = path.join(userDir, 'Dump', 'Frames', 'framedump0.avi');
+    const mp4File = path.join(workDir, 'output.mp4');
+
+    const execaArgs = [ffmpegBin, [
+        '-i', aviFile, '-an', '-s', 'hd720', '-pix_fmt', 'yuv420p',
+        '-preset', 'slow', '-profile:v', 'baseline', '-movflags', 'faststart',
+        '-vcodec', 'libx264', '-b:v', '1200K', '-filter:v', 'fps=30', mp4File
+    ]];
+    console.log('RUNNING FFMPEG COMMAND');
+    console.log(([execaArgs[0], ...execaArgs[1]]).join(' '));
+    await execa(execaArgs[0], execaArgs[1]);
+    console.log('Copying recorded avi to ' + options.output);
+    await fs.copyFile(mp4File, options.output);
     await fs.rm(workDir, { recursive: true, force: true });
 }
 
