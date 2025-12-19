@@ -279,28 +279,43 @@ async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame) {
     const recordedFrames = new Set();
     console.log(([slippiPlaybackBin, ...playbackArgs]).join(' '));
     let latestFrame;
-    const slippiProcess = execa(slippiPlaybackBin, playbackArgs);
-    for await (const stdoutLine of slippiProcess) {
-        if (stdoutLine.startsWith('[CURRENT_FRAME]')) {
-            const currentFrame = parseInt(stdoutLine.substring(15).trim());
-            recordedFrames.add(currentFrame);
-            if (latestFrame === undefined || currentFrame > latestFrame) {
-                latestFrame = currentFrame;
-            }
-            console.log(JSON.stringify({
-                tf: lastFrame - GAME_FIRST_FRAME,
-                lf: lastFrame,
-                lr: latestFrame,
-                tr: recordedFrames.size,
-            }));
-            // console.log('is greater?', latestFrame >= lastFrame);
-            if (latestFrame >= lastFrame) {
-                slippiProcess.kill();
-                break;
+    let didFinish = false;
+    try {
+        const slippiProcess = execa(slippiPlaybackBin, playbackArgs);
+        console.log(' -------- PID --------');
+        console.log(slippiProcess.pid);
+        for await (const stdoutLine of slippiProcess) {
+            if (stdoutLine.startsWith('[CURRENT_FRAME]')) {
+                const currentFrame = parseInt(stdoutLine.substring(15).trim());
+                recordedFrames.add(currentFrame);
+                if (latestFrame === undefined || currentFrame > latestFrame) {
+                    latestFrame = currentFrame;
+                }
+                console.log(JSON.stringify({
+                    tf: lastFrame - GAME_FIRST_FRAME,
+                    lf: lastFrame,
+                    lr: latestFrame,
+                    tr: recordedFrames.size,
+                }));
+                // console.log('is greater?', latestFrame >= lastFrame);
+                if (latestFrame >= lastFrame) {
+                    didFinish = true;
+                    // slippiProcess.kill();
+                    await execa('taskkill.exe', ['/IM', 'Slippi Dolphin.exe', '/F', '/T']);
+                    break;
+                }
             }
         }
+    } catch(e) {
+        if (!didFinish) { throw e }
     }
     return;
+}
+
+async function wconv(...fileParts) {
+    const fullPath = path.join(...fileParts);
+    const { stdout } = await execa('wslpath', ['-w', fullPath]);
+    return stdout.trim();
 }
 
 async function recordSlp(filename) {
@@ -342,9 +357,9 @@ async function recordSlp(filename) {
     const ffmpegBin = await cfg_ffmpegBin();
     const playbackArgs = ([
         '--cout', '--batch',
-        ...['--user', userDir],
-        ...['--slippi-input', getRecordJsonPath(workDir)],
-        ...['--exec', ssbmIsoPath],
+        ...['--user', await wconv(userDir)],
+        ...['--slippi-input', await wconv(getRecordJsonPath(workDir))],
+        ...['--exec', await wconv(ssbmIsoPath)],
     ]);
     const game = new SlippiGame(slpFile);
     const stats = game.getStats();
@@ -352,8 +367,8 @@ async function recordSlp(filename) {
     await limitExecutionTime(1000 * 60 * 1000, () => (
         execSlippi(slippiPlaybackBin, playbackArgs, lastFrame)
     ));
-    const aviFile = path.join(userDir, 'Dump', 'Frames', 'framedump0.avi');
-    const mp4File = path.join(workDir, 'output.mp4');
+    const aviFile = await wconv(userDir, 'Dump', 'Frames', 'framedump0.avi');
+    const mp4File = await wconv(workDir, 'output.mp4');
 
     const execaArgs = [ffmpegBin, [
         '-i', aviFile, '-an', '-s', 'hd720', '-pix_fmt', 'yuv420p',
@@ -364,7 +379,7 @@ async function recordSlp(filename) {
     console.log(([execaArgs[0], ...execaArgs[1]]).join(' '));
     await execa(execaArgs[0], execaArgs[1]);
     console.log('Copying recorded avi to ' + options.output);
-    await fs.copyFile(mp4File, options.output);
+    await fs.copyFile(path.join(workDir, 'output.mp4'), options.output);
     await fs.rm(workDir, { recursive: true, force: true });
 }
 
