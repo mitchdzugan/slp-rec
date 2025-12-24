@@ -70,7 +70,7 @@ async function slurp(filename, opts = {}) {
 async function slurpJson(...args) {
     try {
         const contents = await slurp(...args);
-        return JSON.parse(contents);
+        return JSON.parse(contents.trim());
     } catch (e) {
         return undefined;
     }
@@ -78,6 +78,7 @@ async function slurpJson(...args) {
 
 const paths = envPaths('slp-rec', { suffix: '' });
 const configPath = path.join(paths.config, 'config.json');
+console.log({ configPath });
 
 const launcherSettingsPath = (
     path.join(paths.config, '..', 'Slippi Launcher', 'Settings')
@@ -179,6 +180,7 @@ function getConfigJson() {
     if (!_configPromise) {
         _configPromise = ((async function() {
             const userConfig = await slurpJson(configPath);
+            console.log({ userConfig, configPath })
             return {
                 ...defaultConfig,
                 ...(userConfig || {})
@@ -392,7 +394,7 @@ async function symLinkFilesRec(src, dst) {
             await symLinkFilesRec(srcPath, dstPath);
         } else {
             // console.log('creating symlink at', dstPath);
-            await fs.symlink(srcPath, dstPath, 'file');
+            await fs.symlink(srcPath, dstPath, 'junction');
         }
     }));
 }
@@ -423,8 +425,9 @@ async function recordSlp(filename) {
     const texDir = path.join(userDir, 'Load', 'Textures');
     await mkdirp(texDir);
     const texLink = path.join(texDir, 'GALE01');
-    const texSrc = '/mnt/c/Users/mitch/AppData/Roaming/Slippi Launcher/playback/User/Load/Textures/GALE01';
-    await symLinkFilesRec(texSrc, texLink);
+    const texSrc = 'C:\\Users\\mitch\\AppData\\Roaming\\Slippi Launcher\\playback\\User\\Load\\Textures\\GALE01';
+    // await symLinkFilesRec(texSrc, texLink);
+    await fs.symlink(texSrc, texLink, 'junction');
 
 
     const buffer = await fs.readFile(filename);
@@ -450,8 +453,8 @@ async function recordSlp(filename) {
     const playbackArgs = ([
         '--cout', '--batch',
         ...['--user', UPATH(userDir)],
-        // ...['--slippi-input', UPATH(getRecordJsonPath(workDir))],
-        // ...['--exec', UPATH(ssbmIsoPath)],
+        ...['--slippi-input', UPATH(getRecordJsonPath(workDir))],
+        ...['--exec', UPATH(ssbmIsoPath)],
     ]);
     const game = new SlippiGame(slpFile);
     const stats = game.getStats();
