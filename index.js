@@ -10,6 +10,9 @@ import _ from 'lodash';
 import { SlippiGame } from '@slippi/slippi-js';
 import * as ini from 'ini';
 import userBaseInis from './userBaseInis.json' with { type: 'json' };
+import os from 'os';
+
+const isWindows = os.platform() === 'win32';
 
 /*
 const BASE_INI = {
@@ -31,6 +34,28 @@ const BASE_INI = {
     },
 };
 */
+
+function mkGeckoLn(g) { return `$Optional: ${g}`; }
+function mkGeckoLns(gs) { return gs.map(mkGeckoLn).join('\n'); }
+function mkGameSettings(enabled, disabled) {
+    return `
+        [Gecko]
+        [Gecko_Enabled]
+	${mkGeckoLns(enabled)}
+        [Gecko_Disabled]
+	${mkGeckoLns(disabled)}
+    `.split('\n').map(s => s.trim()).join('\n');
+}
+
+const defaultEnabled = [
+    'Game Music OFF',
+    'Hide Waiting For Game',
+    'Prevent Character Crowd Chants',
+    'Prevent Crowd Noises',
+];
+const defaultDisabled = [
+    'Show Player Names',
+];
 
 const GAME_FIRST_FRAME = (0 - 123);
 
@@ -275,13 +300,45 @@ function limitExecutionTime(timeout, fn) {
     });
 }
 
+class UPATH_CLASS {
+    constructor(fileParts) {
+        this.rawPath = path.join(...fileParts);
+    }
+
+    async resolve(shouldConPaths) {
+        if (!shouldConPaths) { return this.rawPath; }
+        const { stdout } = await execa('wslpath', ['-w', this.rawPath]);
+        return stdout.trim();
+    }
+}
+function isUPATH(any) { return any instanceof UPATH_CLASS }
+function UPATH(...fileParts) { return new UPATH_CLASS(fileParts); }
+async function mkExe(bin, rawArgs) {
+    const args = [];
+    const isWinExe = bin.endsWith('.exe');
+    const isWslExecutingWindows = isWinExe && !isWindows;
+    for (const rawArg of rawArgs) {
+        if (isUPATH(rawArg)) {
+            args.push(await rawArg.resolve(isWslExecutingWindows));
+        } else {
+            args.push(rawArg);
+        }
+    }
+    console.log(([bin, ...args]).join(' '));
+    return () => execa(bin, args);
+}
+async function doExe(...args) {
+    return await (await mkExe(...args))();
+}
+
 async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame) {
     const recordedFrames = new Set();
-    console.log(([slippiPlaybackBin, ...playbackArgs]).join(' '));
+    const isWinExe = slippiPlaybackBin.endsWith('.exe');
     let latestFrame;
     let didFinish = false;
     try {
-        const slippiProcess = execa(slippiPlaybackBin, playbackArgs);
+        const slippiProcessExe = await mkExe(slippiPlaybackBin, playbackArgs);
+        const slippiProcess = slippiProcessExe();
         console.log(' -------- PID --------');
         console.log(slippiProcess.pid);
         for await (const stdoutLine of slippiProcess) {
@@ -292,16 +349,17 @@ async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame) {
                     latestFrame = currentFrame;
                 }
                 console.log(JSON.stringify({
-                    tf: lastFrame - GAME_FIRST_FRAME,
-                    lf: lastFrame,
-                    lr: latestFrame,
-                    tr: recordedFrames.size,
+                    tot: lastFrame - GAME_FIRST_FRAME,
+                    rec: recordedFrames.size,
                 }));
-                // console.log('is greater?', latestFrame >= lastFrame);
                 if (latestFrame >= lastFrame) {
                     didFinish = true;
-                    // slippiProcess.kill();
-                    await execa('taskkill.exe', ['/IM', 'Slippi Dolphin.exe', '/F', '/T']);
+                    if (isWinExe) {
+                        await execa('taskkill.exe', ['/IM', 'Slippi Dolphin.exe', '/F', '/T']);
+                    }
+                    else {
+                        slippiProcess.kill();
+                    }
                     break;
                 }
             }
@@ -312,10 +370,31 @@ async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame) {
     return;
 }
 
-async function wconv(...fileParts) {
-    const fullPath = path.join(...fileParts);
-    const { stdout } = await execa('wslpath', ['-w', fullPath]);
-    return stdout.trim();
+async function isDirectory(path) {
+    try {
+        const stats = await fs.stat(path);
+        return stats.isDirectory();
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            return false; 
+        }
+        throw error;
+    }
+}
+
+async function symLinkFilesRec(src, dst) {
+    await mkdirp(dst);
+    const files = await fs.readdir(src);
+    await Promise.all(files.map(async function(file) {
+        const srcPath = path.join(src, file);
+        const dstPath = path.join(dst, file);
+        if (await isDirectory(path.join(src, file))) {
+            await symLinkFilesRec(srcPath, dstPath);
+        } else {
+            // console.log('creating symlink at', dstPath);
+            await fs.symlink(srcPath, dstPath, 'file');
+        }
+    }));
 }
 
 async function recordSlp(filename) {
@@ -325,8 +404,8 @@ async function recordSlp(filename) {
     const workId = `wd-${ts}-${fileHash}-${pid}`;
     const workDir = path.join(workRoot, workId);
     const userDir = path.join(workDir, 'User');
-    console.log({ userDir });
     await mkdirp(userDir);
+
 
     for (const { path: relPath, ini: iniJson } of userBaseInis) {
         const fullPath = path.join(userDir, relPath);
@@ -334,6 +413,19 @@ async function recordSlp(filename) {
         await mkdirp(iniDir);
         await fs.writeFile(fullPath, ini.stringify(iniJson));
     }
+
+    const gsDir = path.join(userDir, 'GameSettings');
+    const gsFile = path.join(gsDir, 'GALE01.ini');
+    const gsContent = mkGameSettings(defaultEnabled, defaultDisabled);
+    await mkdirp(gsDir);
+    await fs.writeFile(gsFile, gsContent);
+
+    const texDir = path.join(userDir, 'Load', 'Textures');
+    await mkdirp(texDir);
+    const texLink = path.join(texDir, 'GALE01');
+    const texSrc = '/mnt/c/Users/mitch/AppData/Roaming/Slippi Launcher/playback/User/Load/Textures/GALE01';
+    await symLinkFilesRec(texSrc, texLink);
+
 
     const buffer = await fs.readFile(filename);
     const rawPosition = getRawDataPosition(buffer);
@@ -357,9 +449,9 @@ async function recordSlp(filename) {
     const ffmpegBin = await cfg_ffmpegBin();
     const playbackArgs = ([
         '--cout', '--batch',
-        ...['--user', await wconv(userDir)],
-        ...['--slippi-input', await wconv(getRecordJsonPath(workDir))],
-        ...['--exec', await wconv(ssbmIsoPath)],
+        ...['--user', UPATH(userDir)],
+        // ...['--slippi-input', UPATH(getRecordJsonPath(workDir))],
+        // ...['--exec', UPATH(ssbmIsoPath)],
     ]);
     const game = new SlippiGame(slpFile);
     const stats = game.getStats();
@@ -367,19 +459,29 @@ async function recordSlp(filename) {
     await limitExecutionTime(1000 * 60 * 1000, () => (
         execSlippi(slippiPlaybackBin, playbackArgs, lastFrame)
     ));
-    const aviFile = await wconv(userDir, 'Dump', 'Frames', 'framedump0.avi');
-    const mp4File = await wconv(workDir, 'output.mp4');
+    const aviFile = UPATH(userDir, 'Dump', 'Frames', 'framedump0.avi');
+    const wavFile = UPATH(userDir, 'Dump', 'Audio', 'dspdump.wav');
+    /*
+    const mp4File = UPATH(workDir, 'output.mp4');
 
     const execaArgs = [ffmpegBin, [
         '-i', aviFile, '-an', '-s', 'hd720', '-pix_fmt', 'yuv420p',
         '-preset', 'slow', '-profile:v', 'baseline', '-movflags', 'faststart',
         '-vcodec', 'libx264', '-b:v', '1200K', '-filter:v', 'fps=30', mp4File
     ]];
+    */
+    const mp4File = UPATH(workDir, 'output.avi');
+
+    const execaArgs = [ffmpegBin, [
+        '-i', aviFile, '-i', wavFile, '-c:v', 'copy', '-c:a', 'copy', mp4File
+    ]];
+
+
     console.log('RUNNING FFMPEG COMMAND');
     console.log(([execaArgs[0], ...execaArgs[1]]).join(' '));
-    await execa(execaArgs[0], execaArgs[1]);
+    await doExe(execaArgs[0], execaArgs[1]);
     console.log('Copying recorded avi to ' + options.output);
-    await fs.copyFile(path.join(workDir, 'output.mp4'), options.output);
+    await fs.copyFile(mp4File.rawPath, options.output);
     await fs.rm(workDir, { recursive: true, force: true });
 }
 
