@@ -479,9 +479,14 @@ async function recordSlp(filename) {
     while (pos < buffer.length) {
         const cmd = buffer[pos];
         if (cmd === Command.GAME_START) {
-            // const start = pos;
-            // const offset = myPortId * 0x24;
-            // buffer[0x68 + offset + start] = 0;
+            const start = pos;
+            for (let myPortId = 0; myPortId < 4; myPortId++) {
+                const offset = myPortId * 0x24;
+                const charId = buffer[0x68 + offset + start - 3]
+                if (charId === 17) {
+                    buffer[0x68 + offset + start] = 0;
+                }
+	    }
         }
         pos += 1 + messageSizes[buffer[pos]];
     }
