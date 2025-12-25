@@ -385,7 +385,7 @@ async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame, isAviBlack
                 if (latestFrame >= lastFrame) {
                     do {
                         console.log('waiting for black screen... sleep 1s');
-                        await (new Promise((r) => setTimeout(r, 1000)));
+                        await (new Promise((r) => setTimeout(r, 5000)));
                     } while (!(await isAviBlackScreen()))
                     didFinish = true;
                     console.log({ didFinish });
@@ -501,10 +501,15 @@ async function recordSlp(filename) {
     const wavFile = UPATH(userDir, 'Dump', 'Audio', 'dspdump.wav');
     await limitExecutionTime(1000 * 60 * 1000, () => (
         execSlippi(slippiPlaybackBin, playbackArgs, lastFrame, async function() {
+            const prgAvi = UPATH(workDir, 'prg.avi');
             const tmpPng = UPATH(workDir, 'lastFrame.png');
-            try { await fs.rm(tmpPng); } catch (_e) {}
+            try { await fs.rm(prgAvi.rawPath); } catch (_e) {}
+            try { await fs.rm(tmpPng.rawPath); } catch (_e) {}
+            console.log('start copy avi')
+            await fs.copyFile(aviFile.rawPath, prgAvi.rawPath);
+            console.log('done copy avi')
             const execaArgs = [ffmpegBin, [
-                '-sseof', '-3', '-i', aviFile, '-update', '1', '-q:v', '1', tmpPng
+                '-sseof', '-3', '-i', prgAvi, '-update', '1', '-q:v', '1', tmpPng
             ]];
             await doExe(execaArgs[0], execaArgs[1]);
             return await isPngMostlyBlack(tmpPng.rawPath);
