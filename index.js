@@ -11,6 +11,33 @@ import { SlippiGame } from '@slippi/slippi-js';
 import * as ini from 'ini';
 import userBaseInis from './userBaseInis.json' with { type: 'json' };
 import os from 'os';
+import PNG from 'png-js';
+
+function isPngMostlyBlack(pngPath) {
+    console.log('entering png parse', pngPath);
+    return new Promise((resolve) => PNG.decode(pngPath, (px) => {
+        let numColors = 0;
+        let totColor = 0;
+        function addColor(c) {
+            totColor += c;
+            numColors += 1;
+        }
+
+        const totPix = Math.floor(px.length / 4);
+        for (let pixInd = 0; pixInd < totPix; pixInd++) {
+            const r = px[(pixInd * 4) + 0];
+            const g = px[(pixInd * 4) + 1];
+            const b = px[(pixInd * 4) + 2];
+            addColor(r);
+            addColor(g);
+            addColor(b);
+        }
+
+        const avgColor = totColor / numColors;
+        console.log({ avgColor, totPix })
+        resolve(avgColor < 10)
+    }));
+}
 
 const isWindows = os.platform() === 'win32';
 
@@ -200,6 +227,7 @@ function mkConfigGetter(g) {
 const cfg_slippiPlaybackBin = mkConfigGetter('slippiPlaybackBin');
 const cfg_ssbmIsoPath = mkConfigGetter('ssbmIsoPath');
 const cfg_ffmpegBin = mkConfigGetter('ffmpegBin');
+const cfg_texturePath = mkConfigGetter('texturePath');
 
 if (!options.file) {
     failOptions('input .slp file must be provided');
@@ -333,7 +361,7 @@ async function doExe(...args) {
     return await (await mkExe(...args))();
 }
 
-async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame) {
+async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame, isAviBlackScreen) {
     const recordedFrames = new Set();
     const isWinExe = slippiPlaybackBin.endsWith('.exe');
     let latestFrame;
@@ -355,13 +383,21 @@ async function execSlippi(slippiPlaybackBin, playbackArgs, lastFrame) {
                     rec: recordedFrames.size,
                 }));
                 if (latestFrame >= lastFrame) {
+                    do {
+                        console.log('waiting for black screen... sleep 1s');
+                        await (new Promise((r) => setTimeout(r, 1000)));
+                    } while (!(await isAviBlackScreen()))
                     didFinish = true;
+                    console.log({ didFinish });
                     if (isWinExe) {
+                        console.log('task killing....')
                         await execa('taskkill.exe', ['/IM', 'Slippi Dolphin.exe', '/F', '/T']);
+                        console.log('task killing done!....')
                     }
                     else {
                         slippiProcess.kill();
                     }
+                    console.log('breaking... :0')
                     break;
                 }
             }
@@ -400,6 +436,11 @@ async function symLinkFilesRec(src, dst) {
 }
 
 async function recordSlp(filename) {
+    const slippiPlaybackBin = await cfg_slippiPlaybackBin();
+    const ssbmIsoPath = await cfg_ssbmIsoPath();
+    const ffmpegBin = await cfg_ffmpegBin();
+    const texturePath = await cfg_texturePath();
+
     const ts = timestamp();
     const fileHash = hash(path.normalize(filename));
     const pid = process.pid;
@@ -422,12 +463,12 @@ async function recordSlp(filename) {
     await mkdirp(gsDir);
     await fs.writeFile(gsFile, gsContent);
 
-    const texDir = path.join(userDir, 'Load', 'Textures');
-    await mkdirp(texDir);
-    const texLink = path.join(texDir, 'GALE01');
-    const texSrc = 'C:\\Users\\mitch\\AppData\\Roaming\\Slippi Launcher\\playback\\User\\Load\\Textures\\GALE01';
-    // await symLinkFilesRec(texSrc, texLink);
-    await fs.symlink(texSrc, texLink, 'junction');
+    if (texturePath && (await isDirectory(texturePath))) {
+        const texDir = path.join(userDir, 'Load', 'Textures');
+        await mkdirp(texDir);
+        const texLink = path.join(texDir, 'GALE01');
+        await fs.symlink(texturePath, texLink, 'junction');
+    }
 
 
     const buffer = await fs.readFile(filename);
@@ -447,9 +488,6 @@ async function recordSlp(filename) {
     const slpFile = path.join(workDir, 'input.slp');
     await fs.writeFile(slpFile, buffer);
     await writeRecordJson(workDir);
-    const slippiPlaybackBin = await cfg_slippiPlaybackBin();
-    const ssbmIsoPath = await cfg_ssbmIsoPath();
-    const ffmpegBin = await cfg_ffmpegBin();
     const playbackArgs = ([
         '--cout', '--batch',
         ...['--user', UPATH(userDir)],
@@ -459,11 +497,19 @@ async function recordSlp(filename) {
     const game = new SlippiGame(slpFile);
     const stats = game.getStats();
     const lastFrame = stats.lastFrame;
-    await limitExecutionTime(1000 * 60 * 1000, () => (
-        execSlippi(slippiPlaybackBin, playbackArgs, lastFrame)
-    ));
     const aviFile = UPATH(userDir, 'Dump', 'Frames', 'framedump0.avi');
     const wavFile = UPATH(userDir, 'Dump', 'Audio', 'dspdump.wav');
+    await limitExecutionTime(1000 * 60 * 1000, () => (
+        execSlippi(slippiPlaybackBin, playbackArgs, lastFrame, async function() {
+            const tmpPng = UPATH(workDir, 'lastFrame.png');
+            try { await fs.rm(tmpPng); } catch (_e) {}
+            const execaArgs = [ffmpegBin, [
+                '-sseof', '-3', '-i', aviFile, '-update', '1', '-q:v', '1', tmpPng
+            ]];
+            await doExe(execaArgs[0], execaArgs[1]);
+            return await isPngMostlyBlack(tmpPng.rawPath);
+        })
+    ));
     /*
     const mp4File = UPATH(workDir, 'output.mp4');
 
