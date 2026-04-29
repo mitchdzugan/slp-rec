@@ -1,3 +1,5 @@
+#!/usr/bin/env -S node --import=extensionless/register
+
 import path from "node:path";
 import * as fs from "node:fs/promises";
 import TailFile from "@logdna/tail-file";
