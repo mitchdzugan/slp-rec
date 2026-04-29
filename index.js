@@ -1,4 +1,4 @@
-#!/usr/bin/env -S node --import=extensionless/register
+#!/usr/bin/env node
 
 import path from "node:path";
 import * as fs from "node:fs/promises";
@@ -11,8 +11,9 @@ import { hash } from "hash-it";
 import { execa } from "execa";
 import * as SLP_PKG from "@slippi/slippi-js/node";
 import * as ini from "ini";
-import userBaseInis from "./userBaseInis.json" with { type: "json" };
 import os from "os";
+import userBaseInisStr from "./userBaseInis.json";
+const userBaseInis = JSON.parse(userBaseInisStr);
 const { SlippiGame } = SLP_PKG;
 
 const isWindows = os.platform() === "win32";
@@ -89,10 +90,6 @@ const launcherSettingsPath = path.join(
   "Slippi Launcher",
   "Settings",
 );
-const launcherSettings = (await slurpJson(launcherSettingsPath)) || {
-  settings: {},
-};
-
 const optionDefinitions = [
   {
     name: "help",
@@ -186,17 +183,21 @@ if (options.help) {
   informUsageAndExit();
 }
 
-const defaultConfig = {
-  ssbmIsoPath: launcherSettings.settings && launcherSettings.settings.isoPath,
-  slippiPlaybackBin: "slippi-playback",
-  ffmpegBin: "ffmpeg",
-};
-
 let _configPromise = null;
 function getConfigJson() {
   if (!_configPromise) {
     _configPromise = (async function () {
+      const launcherSettings = (await slurpJson(launcherSettingsPath)) || {
+        settings: {},
+      };
       const userConfig = await slurpJson(configPath);
+      const defaultConfig = {
+        ssbmIsoPath:
+          launcherSettings.settings && launcherSettings.settings.isoPath,
+        slippiPlaybackBin: "slippi-playback",
+        ffmpegBin: "ffmpeg",
+      };
+
       return {
         ...defaultConfig,
         ...(userConfig || {}),
@@ -571,4 +572,9 @@ async function recordSlp(filename) {
   await fs.rm(workDir, { recursive: true, force: true });
 }
 
-await recordSlp(options.file);
+recordSlp(options.file)
+  .then(() => process.exit())
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
