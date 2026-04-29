@@ -21,9 +21,10 @@ function mkGeckoLn(g) {
 function mkGeckoLns(gs) {
   return gs.map(mkGeckoLn).join("\n");
 }
-function mkGameSettings(enabled, disabled) {
+function mkGameSettings(plusCodes, enabled, disabled) {
   return `
         [Gecko]
+  ${plusCodes.join("\n")}
         [Gecko_Enabled]
 	${mkGeckoLns(enabled)}
         [Gecko_Disabled]
@@ -34,6 +35,22 @@ function mkGameSettings(enabled, disabled) {
     .join("\n");
 }
 
+function geckoCode(...lines) {
+  return `${lines.join("\n")}\n`;
+}
+
+const plusCodes = [
+  geckoCode(
+    "$Optional: Prevent Character Crowd Chants [Fizzi]",
+    "*Disables crowd chanting for characters",
+    "04321D70 38600000",
+  ),
+  geckoCode(
+    "$Optional: Prevent Crowd Noises [Fizzi]",
+    "*Disables all other crowd oohs, ahs and whoahs",
+    "04024170 3860FFFF",
+  ),
+];
 const defaultEnabled = [
   "Game Music OFF",
   "Hide Waiting For Game",
@@ -167,7 +184,6 @@ if (options.help) {
   informUsageAndExit();
 }
 
-console.log(options);
 const defaultConfig = {
   ssbmIsoPath: launcherSettings.settings && launcherSettings.settings.isoPath,
   slippiPlaybackBin: "slippi-playback",
@@ -179,7 +195,6 @@ function getConfigJson() {
   if (!_configPromise) {
     _configPromise = (async function () {
       const userConfig = await slurpJson(configPath);
-      console.log({ userConfig, configPath });
       return {
         ...defaultConfig,
         ...(userConfig || {}),
@@ -333,7 +348,6 @@ async function mkExe(bin, rawArgs, ...rest) {
       args.push(rawArg);
     }
   }
-  console.log([bin, ...args].join(" "));
   return () => execa(bin, args, ...rest);
 }
 async function doExe(...args) {
@@ -362,29 +376,20 @@ async function execSlippi(
         if (latestFrame === undefined || currentFrame > latestFrame) {
           latestFrame = currentFrame;
         }
-        console.log(
-          JSON.stringify({
-            tot: lastFrame - GAME_FIRST_FRAME,
-            rec: recordedFrames.size,
-          }),
-        );
+        console.error("recordedFrame", latestFrame, "of", startFrame);
         if (latestFrame >= lastFrame) {
           await isAviBlackScreen();
           didFinish = true;
-          console.log({ didFinish });
           if (isWinExe) {
-            console.log("task killing....");
             await execa("taskkill.exe", [
               "/IM",
               "Slippi Dolphin.exe",
               "/F",
               "/T",
             ]);
-            console.log("task killing done!....");
           } else {
             slippiProcess.kill();
           }
-          console.log("breaking... :0");
           break;
         }
       }
@@ -453,13 +458,12 @@ async function recordSlp(filename) {
     }
 
     await mkdirp(iniDir);
-    console.log(iniJson);
     await fs.writeFile(fullPath, ini.stringify(iniJson));
   }
 
   const gsDir = path.join(userDir, "GameSettings");
   const gsFile = path.join(gsDir, "GALE01.ini");
-  const gsContent = mkGameSettings(defaultEnabled, defaultDisabled);
+  const gsContent = mkGameSettings(plusCodes, defaultEnabled, defaultDisabled);
   await mkdirp(gsDir);
   await fs.writeFile(gsFile, gsContent);
 
