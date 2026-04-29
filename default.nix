@@ -2,5 +2,5 @@
   pname = "slp-rec";
   version = "1.0.0";
   src = ./.;
-  npmDepsHash = "sha256-T+qxR8M+iy1+PFMRVk1SkQP3J8nI1CccNP5JgPOd8To=";
+  npmDepsHash = "sha256-mKYJsX2V0xr61cw6TioGXDaf2ItVVs+vY9fCCODX+mg=";
 }
