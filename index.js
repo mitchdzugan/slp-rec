@@ -376,7 +376,7 @@ async function execSlippi(
         if (latestFrame === undefined || currentFrame > latestFrame) {
           latestFrame = currentFrame;
         }
-        console.error("recordedFrame", latestFrame, "of", startFrame);
+        console.error("recordedFrame", latestFrame, "of", lastFrame);
         if (latestFrame >= lastFrame) {
           await isAviBlackScreen();
           didFinish = true;
@@ -541,7 +541,6 @@ async function recordSlp(filename) {
             );
             if (oframe > 1 && bratio > 0.99 && !isDone) {
               isDone = true;
-              console.log("breaking");
               tail.unpipe(detectPrc.stdin);
               await tail.quit();
               detectPrc.kill();
@@ -565,10 +564,7 @@ async function recordSlp(filename) {
     ["-i", aviFile, "-i", wavFile, "-c:v", "copy", "-c:a", "copy", outFile],
   ];
 
-  console.log("RUNNING FFMPEG COMMAND");
-  console.log([execaArgs[0], ...execaArgs[1]].join(" "));
   await doExe(execaArgs[0], execaArgs[1]);
-  console.log("Copying recorded avi to " + options.output);
   await fs.copyFile(outFile.rawPath, options.output);
   await fs.rm(workDir, { recursive: true, force: true });
 }
