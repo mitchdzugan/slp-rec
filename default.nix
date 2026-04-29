@@ -6,7 +6,7 @@
   nativeBuildInputs = [ pkgs.makeWrapper ];
   postInstall = ''
     wrapProgram $out/bin/slp-rec \
-      --set NODE_OPTIONS "--experimental-specifier-resolution=node"
+      --set NODE_OPTIONS "--import=extensionless/register"
   '';
 
 }
