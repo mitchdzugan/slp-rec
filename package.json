@@ -4,9 +4,8 @@
     "main": "index.js",
     "type": "module",
     "license": "MIT",
-    "scripts": {
-        "start": "node --import=extensionless/register index.js"
-    },
+    "scripts": { "build": "" },
+    "bin": "./index.js",
     "dependencies": {
         "@logdna/tail-file": "^4.0.2",
         "@slippi/slippi-js": "^9.0.0",
