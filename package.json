@@ -8,16 +8,19 @@
         "start": "node --import=extensionless/register index.js"
     },
     "dependencies": {
-        "@slippi/slippi-js": "^7.2.0",
+        "@logdna/tail-file": "^4.0.2",
+        "@slippi/slippi-js": "^9.0.0",
         "command-line-args": "^6.0.1",
         "command-line-usage": "^7.0.3",
+        "enet": "^0.2.9",
         "env-paths": "^3.0.0",
         "execa": "^9.6.1",
-        "extensionless": "^2.0.2",
+        "extensionless": "^2.0.6",
         "hash-it": "^7.0.1",
         "ini": "^6.0.0",
         "lodash": "^4.17.21",
         "mkdirp": "^3.0.1",
-        "png-js": "^1.0.0"
+        "png-js": "^1.0.0",
+        "tail-file-stream": "^0.2.0"
     }
 }
