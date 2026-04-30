@@ -139,7 +139,7 @@ const optionDefinitions = [
     lazyMultiple: true,
     type: String,
     description: "modifications to default INI configs",
-    typeLabel: "'[INI_FILE, ...KEYS, VALUE]'",
+    typeLabel: "<INI_FILENAME>.<PROPERTY>=<VALUE>",
   },
   {
     name: "file",
