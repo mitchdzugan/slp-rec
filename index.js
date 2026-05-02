@@ -161,6 +161,13 @@ const optionDefinitions = [
     description: "folder containing textures to inject",
     typeLabel: "<directory>",
   },
+  {
+    name: "temp-root",
+    alias: "T",
+    type: String,
+    description: "directory to place temporary work files",
+    typeLabel: "<directory>",
+  },
 ];
 
 function informUsageAndExit(opts = {}) {
@@ -253,7 +260,8 @@ if (!options.file) {
   failOptions("input .slp file must be provided");
 }
 
-const workRoot = path.join(paths.temp, "work");
+const tempRoot = options.tempRoot || paths.temp;
+const workRoot = path.join(tempRoot, "work");
 
 function timestamp() {
   return Math.floor(Date.now() / 1000);
@@ -399,6 +407,7 @@ async function execSlippi(
   const isWinExe = slippiPlaybackBin.endsWith(".exe");
   let latestFrame;
   let didFinish = false;
+  let res;
   try {
     const slippiProcessExe = await mkExe(slippiPlaybackBin, playbackArgs);
     const slippiProcess = slippiProcessExe();
@@ -411,7 +420,7 @@ async function execSlippi(
         }
         console.error("recordedFrame", latestFrame, "of", lastFrame);
         if (latestFrame >= lastFrame) {
-          await isAviBlackScreen();
+          res = await isAviBlackScreen();
           didFinish = true;
           if (isWinExe) {
             await execa("taskkill.exe", [
@@ -432,7 +441,7 @@ async function execSlippi(
       throw e;
     }
   }
-  return;
+  return res;
 }
 
 async function isDirectory(path) {
@@ -460,6 +469,7 @@ async function recordSlp(filename) {
   const workDir = path.join(workRoot, workId);
   const userDir = path.join(workDir, "User");
   await mkdirp(userDir);
+  console.error({ userDir });
 
   const iniOverridesByPath = {};
   for (const overrideStr of options.ini || []) {
@@ -547,7 +557,7 @@ async function recordSlp(filename) {
   const lastFrame = stats.lastFrame;
   const aviFile = UPATH(userDir, "Dump", "Frames", "framedump0.avi");
   const wavFile = UPATH(userDir, "Dump", "Audio", "dspdump.wav");
-  await limitExecutionTime(1000 * 60 * 1000, () =>
+  const totalVideoFrames = await limitExecutionTime(1000 * 60 * 1000, () =>
     execSlippi(slippiPlaybackBin, playbackArgs, lastFrame, async function () {
       const execaArgs = [
         ffmpegBin,
@@ -569,17 +579,41 @@ async function recordSlp(filename) {
       const detectExe = await mkExe(...execaArgs, { stderr: "pipe" });
       const detectPrc = detectExe();
       tail.pipe(detectPrc.stdin);
-      let isDone = false;
+      let offFrame = false;
       detectPrc.stderr.on("data", async (rawStderrLine) => {
+        if (offFrame) {
+          return;
+        }
         const stderrLine = rawStderrLine.toString("utf8");
         try {
           if (stderrLine.startsWith("[Parsed_blackdetect_0")) {
-            const oframe = Number(stderrLine.split(" frame:")[1].split(" ")[0]);
-            const bratio = Number(
-              stderrLine.split(" picture_black_ratio:")[1].split(" ")[0],
-            );
-            if (oframe > 1 && bratio > 0.99 && !isDone) {
-              isDone = true;
+            function getFrameNumberIfBlackScreenImpl() {
+              const oframe = Number(
+                stderrLine.split(" frame:")[1].split(" ")[0],
+              );
+              const bratio = Number(
+                stderrLine.split(" picture_black_ratio:")[1].split(" ")[0],
+              );
+              console.log({ oframe, bratio });
+              console.log(stderrLine);
+              const isValid =
+                !Number.isNaN(oframe) &&
+                !Number.isNaN(bratio) &&
+                oframe > 20 &&
+                bratio > 0.99;
+              return isValid ? oframe : undefined;
+            }
+            function getFrameNumberIfBlackScreen() {
+              try {
+                return getFrameNumberIfBlackScreenImpl();
+              } catch (_e) {
+                console.log("EEEE", _e);
+                return undefined;
+              }
+            }
+            offFrame ||= getFrameNumberIfBlackScreen();
+            console.log({ offFrame });
+            if (offFrame) {
               tail.unpipe(detectPrc.stdin);
               await tail.quit();
               detectPrc.kill();
@@ -591,8 +625,10 @@ async function recordSlp(filename) {
       });
       try {
         await detectPrc;
-      } catch (____) {}
-      return true;
+      } catch (____e) {
+        // console.log("__________E", ____e);
+      }
+      return offFrame;
     }),
   );
 
@@ -600,12 +636,19 @@ async function recordSlp(filename) {
 
   const execaArgs = [
     ffmpegBin,
-    ["-i", aviFile, "-i", wavFile, "-c:v", "copy", "-c:a", "copy", outFile],
+    [
+      ...["-i", aviFile, "-i", wavFile],
+      ...(totalVideoFrames ? ["-t", `${totalVideoFrames / 60}`] : []),
+      ...["-c:v", "copy", "-c:a", "copy"],
+      outFile,
+    ],
   ];
+  console.log({ totalVideoFrames });
+  console.log(execaArgs);
 
   await doExe(execaArgs[0], execaArgs[1]);
   await fs.copyFile(outFile.rawPath, options.output);
-  await fs.rm(workDir, { recursive: true, force: true });
+  // await fs.rm(workDir, { recursive: true, force: true });
 }
 
 recordSlp(options.file)
