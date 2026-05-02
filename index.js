@@ -11,6 +11,7 @@ import { hash } from "hash-it";
 import { execa } from "execa";
 import * as SLP_PKG from "@slippi/slippi-js/node";
 import * as ini from "ini";
+import * as toml from "smol-toml";
 import os from "os";
 import userBaseInisStr from "./userBaseInis.json";
 const userBaseInis = JSON.parse(userBaseInisStr);
@@ -42,26 +43,6 @@ function geckoCode(...lines) {
   return `${lines.join("\n")}\n`;
 }
 
-const plusCodes = [
-  geckoCode(
-    "$Optional: Prevent Character Crowd Chants [Fizzi]",
-    "*Disables crowd chanting for characters",
-    "04321D70 38600000",
-  ),
-  geckoCode(
-    "$Optional: Prevent Crowd Noises [Fizzi]",
-    "*Disables all other crowd oohs, ahs and whoahs",
-    "04024170 3860FFFF",
-  ),
-];
-const defaultEnabled = [
-  "Game Music OFF",
-  "Hide Waiting For Game",
-  "Prevent Character Crowd Chants",
-  "Prevent Crowd Noises",
-];
-const defaultDisabled = ["Show Player Names"];
-
 const GAME_FIRST_FRAME = 0 - 123;
 
 async function slurp(filename, opts = {}) {
@@ -82,7 +63,7 @@ async function slurpJson(...args) {
 }
 
 const paths = envPaths("slp-rec", { suffix: "" });
-const configPath = path.join(paths.config, "config.json");
+const configPath = path.join(paths.config, "config.toml");
 
 const launcherSettingsPath = path.join(
   paths.config,
@@ -139,7 +120,7 @@ const optionDefinitions = [
     lazyMultiple: true,
     type: String,
     description: "modifications to default INI configs",
-    typeLabel: "<INI_FILENAME>.<PROPERTY>=<VALUE>",
+    typeLabel: "<ini_filename>.<property>=<value>",
   },
   {
     name: "file",
@@ -148,6 +129,37 @@ const optionDefinitions = [
     description: "The slp file to record",
     typeLabel: "<slp>",
     defaultOption: true,
+  },
+  {
+    name: "gecko-code",
+    alias: "c",
+    lazyMultiple: true,
+    type: String,
+    description: "gecko code to include",
+    typeLabel: "<gecko_filename>",
+  },
+  {
+    name: "gecko-enable",
+    alias: "g",
+    lazyMultiple: true,
+    type: String,
+    description: "non-default gecko codes to enable",
+    typeLabel: "<gecko_codename>",
+  },
+  {
+    name: "gecko-disable",
+    alias: "G",
+    lazyMultiple: true,
+    type: String,
+    description: "default gecko codes to disable",
+    typeLabel: "<gecko_codename>",
+  },
+  {
+    name: "texture-path",
+    alias: "x",
+    type: String,
+    description: "folder containing textures to inject",
+    typeLabel: "<directory>",
   },
 ];
 
@@ -179,6 +191,8 @@ function failOptions(message) {
 }
 
 const options = commandLineArgs(optionDefinitions, { camelCase: true });
+// console.log(options);
+// informUsageAndExit();
 if (options.help) {
   informUsageAndExit();
 }
@@ -190,7 +204,18 @@ function getConfigJson() {
       const launcherSettings = (await slurpJson(launcherSettingsPath)) || {
         settings: {},
       };
-      const userConfig = await slurpJson(configPath);
+      const userConfig = await fs
+        .readFile(configPath, "utf8")
+        .then((s) => toml.parse(s));
+
+      if (userConfig.geckoCode) {
+        userConfig.geckoCode = userConfig.geckoCode.map((code) =>
+          code.startsWith("/")
+            ? code
+            : path.join(path.dirname(configPath), code),
+        );
+      }
+
       const defaultConfig = {
         ssbmIsoPath:
           launcherSettings.settings && launcherSettings.settings.isoPath,
@@ -201,6 +226,8 @@ function getConfigJson() {
       return {
         ...defaultConfig,
         ...(userConfig || {}),
+        ...(options.iso ? { ssbmIsoPath: options.iso } : {}),
+        ...options,
       };
     })();
   }
@@ -218,6 +245,9 @@ const cfg_slippiPlaybackBin = mkConfigGetter("slippiPlaybackBin");
 const cfg_ssbmIsoPath = mkConfigGetter("ssbmIsoPath");
 const cfg_ffmpegBin = mkConfigGetter("ffmpegBin");
 const cfg_texturePath = mkConfigGetter("texturePath");
+const cfg_geckoCode = mkConfigGetter("geckoCode");
+const cfg_geckoEnabled = mkConfigGetter("geckoEnabled");
+const cfg_geckoDisabled = mkConfigGetter("geckoDisabled");
 
 if (!options.file) {
   failOptions("input .slp file must be provided");
@@ -466,7 +496,13 @@ async function recordSlp(filename) {
 
   const gsDir = path.join(userDir, "GameSettings");
   const gsFile = path.join(gsDir, "GALE01.ini");
-  const gsContent = mkGameSettings(plusCodes, defaultEnabled, defaultDisabled);
+  const cfgCode = await cfg_geckoCode();
+  const cfgEnabled = await cfg_geckoEnabled();
+  const cfgDisabled = await cfg_geckoDisabled();
+  const plusCodes_s = await Promise.all(
+    cfgCode.map((f) => fs.readFile(f, "utf8")),
+  );
+  const gsContent = mkGameSettings(plusCodes_s, cfgEnabled, cfgDisabled);
   await mkdirp(gsDir);
   await fs.writeFile(gsFile, gsContent);
 

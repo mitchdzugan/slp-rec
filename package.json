@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "babel index.js --out-file dist/slp-rec.cjs",
-    "start": "babel-node index.js"
+    "start": "babel-node -- index.js"
   },
   "bin": "./dist/slp-rec.cjs",
   "dependencies": {
@@ -26,6 +26,7 @@
     "hash-it": "^7.0.1",
     "ini": "^6.0.0",
     "mkdirp": "^3.0.1",
+    "smol-toml": "^1.6.1",
     "tail-file-stream": "^0.2.0"
   }
 }
