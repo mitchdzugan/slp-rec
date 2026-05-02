@@ -17,6 +17,7 @@
     "@slippi/slippi-js": "^9.1.1",
     "babel-plugin-inline-import": "^3.0.0",
     "chmod": "^0.2.1",
+    "cli-progress": "^3.12.0",
     "command-line-args": "^6.0.1",
     "command-line-usage": "^7.0.3",
     "enet": "^0.2.9",

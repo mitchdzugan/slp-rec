@@ -12,10 +12,20 @@ import { execa } from "execa";
 import * as SLP_PKG from "@slippi/slippi-js/node";
 import * as ini from "ini";
 import * as toml from "smol-toml";
+import cliProgress from "cli-progress";
 import os from "os";
 import userBaseInisStr from "./userBaseInis.json";
 const userBaseInis = JSON.parse(userBaseInisStr);
 const { SlippiGame } = SLP_PKG;
+
+async function doesFileExist(path) {
+  try {
+    await fs.access(path, fs.constants.F_OK);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 const isWindows = os.platform() === "win32";
 
@@ -198,8 +208,6 @@ function failOptions(message) {
 }
 
 const options = commandLineArgs(optionDefinitions, { camelCase: true });
-// console.log(options);
-// informUsageAndExit();
 if (options.help) {
   informUsageAndExit();
 }
@@ -399,45 +407,62 @@ async function doExe(...args) {
 
 async function execSlippi(
   slippiPlaybackBin,
+  aviFile,
   playbackArgs,
   lastFrame,
-  isAviBlackScreen,
+  waitForAviBlackScreen,
 ) {
   const recordedFrames = new Set();
   const isWinExe = slippiPlaybackBin.endsWith(".exe");
   let latestFrame;
   let didFinish = false;
+  let didStartWaitingEnd = false;
   let res;
+  const { SingleBar, Presets } = cliProgress;
+  const progressBar = new SingleBar({}, Presets.shades_classic);
+  progressBar.start(lastFrame - GAME_FIRST_FRAME, 0);
   try {
     const slippiProcessExe = await mkExe(slippiPlaybackBin, playbackArgs);
     const slippiProcess = slippiProcessExe();
     for await (const stdoutLine of slippiProcess) {
+      if (didFinish) {
+        break;
+      }
       if (stdoutLine.startsWith("[CURRENT_FRAME]")) {
         const currentFrame = parseInt(stdoutLine.substring(15).trim());
+        if (!didStartWaitingEnd) {
+          const isReady = await doesFileExist(aviFile);
+          if (isReady) {
+            didStartWaitingEnd = true;
+            waitForAviBlackScreen()
+              .then((waitingResult) => (res = waitingResult))
+              .catch(console.error)
+              .finally(async () => {
+                progressBar.stop();
+                didFinish = true;
+                if (isWinExe) {
+                  await execa("taskkill.exe", [
+                    "/IM",
+                    "Slippi Dolphin.exe",
+                    "/F",
+                    "/T",
+                  ]);
+                } else {
+                  slippiProcess.kill();
+                }
+              });
+          }
+        }
         recordedFrames.add(currentFrame);
         if (latestFrame === undefined || currentFrame > latestFrame) {
           latestFrame = currentFrame;
         }
-        console.error("recordedFrame", latestFrame, "of", lastFrame);
-        if (latestFrame >= lastFrame) {
-          res = await isAviBlackScreen();
-          didFinish = true;
-          if (isWinExe) {
-            await execa("taskkill.exe", [
-              "/IM",
-              "Slippi Dolphin.exe",
-              "/F",
-              "/T",
-            ]);
-          } else {
-            slippiProcess.kill();
-          }
-          break;
-        }
+        progressBar.update(recordedFrames.size);
       }
     }
   } catch (e) {
     if (!didFinish) {
+      progressBar.stop();
       throw e;
     }
   }
@@ -469,7 +494,6 @@ async function recordSlp(filename) {
   const workDir = path.join(workRoot, workId);
   const userDir = path.join(workDir, "User");
   await mkdirp(userDir);
-  console.error({ userDir });
 
   const iniOverridesByPath = {};
   for (const overrideStr of options.ini || []) {
@@ -558,78 +582,80 @@ async function recordSlp(filename) {
   const aviFile = UPATH(userDir, "Dump", "Frames", "framedump0.avi");
   const wavFile = UPATH(userDir, "Dump", "Audio", "dspdump.wav");
   const totalVideoFrames = await limitExecutionTime(1000 * 60 * 1000, () =>
-    execSlippi(slippiPlaybackBin, playbackArgs, lastFrame, async function () {
-      const execaArgs = [
-        ffmpegBin,
-        [
-          "-loglevel",
-          "debug",
-          "-i",
-          "pipe:0",
-          "-vf",
-          "blackdetect=d=2:pix_th=0.01",
-          "-an",
-          "-f",
-          "null",
-          "-",
-        ],
-      ];
-      const tail = new TailFile(aviFile.rawPath);
-      await tail.start();
-      const detectExe = await mkExe(...execaArgs, { stderr: "pipe" });
-      const detectPrc = detectExe();
-      tail.pipe(detectPrc.stdin);
-      let offFrame = false;
-      detectPrc.stderr.on("data", async (rawStderrLine) => {
-        if (offFrame) {
-          return;
-        }
-        const stderrLine = rawStderrLine.toString("utf8");
-        try {
-          if (stderrLine.startsWith("[Parsed_blackdetect_0")) {
-            function getFrameNumberIfBlackScreenImpl() {
-              const oframe = Number(
-                stderrLine.split(" frame:")[1].split(" ")[0],
-              );
-              const bratio = Number(
-                stderrLine.split(" picture_black_ratio:")[1].split(" ")[0],
-              );
-              console.log({ oframe, bratio });
-              console.log(stderrLine);
-              const isValid =
-                !Number.isNaN(oframe) &&
-                !Number.isNaN(bratio) &&
-                oframe > 20 &&
-                bratio > 0.99;
-              return isValid ? oframe : undefined;
-            }
-            function getFrameNumberIfBlackScreen() {
-              try {
-                return getFrameNumberIfBlackScreenImpl();
-              } catch (_e) {
-                console.log("EEEE", _e);
-                return undefined;
+    execSlippi(
+      slippiPlaybackBin,
+      aviFile.rawPath,
+      playbackArgs,
+      lastFrame,
+      async function () {
+        const execaArgs = [
+          ffmpegBin,
+          [
+            "-loglevel",
+            "debug",
+            "-i",
+            "pipe:0",
+            "-vf",
+            "blackdetect=d=2:pix_th=0.01",
+            "-an",
+            "-f",
+            "null",
+            "-",
+          ],
+        ];
+        const tail = new TailFile(aviFile.rawPath, {
+          startPos: 0,
+          pollFileIntervalMs: 10,
+        });
+        await tail.start();
+        const detectExe = await mkExe(...execaArgs, { stderr: "pipe" });
+        const detectPrc = detectExe();
+        tail.pipe(detectPrc.stdin);
+        let offFrame = false;
+        detectPrc.stderr.on("data", async (rawStderrLine) => {
+          if (offFrame) {
+            return;
+          }
+          const stderrLine = rawStderrLine.toString("utf8");
+          try {
+            if (stderrLine.startsWith("[Parsed_blackdetect_0")) {
+              function getFrameNumberIfBlackScreenImpl() {
+                const oframe = Number(
+                  stderrLine.split(" frame:")[1].split(" ")[0],
+                );
+                const bratio = Number(
+                  stderrLine.split(" picture_black_ratio:")[1].split(" ")[0],
+                );
+                const isValid =
+                  !Number.isNaN(oframe) &&
+                  !Number.isNaN(bratio) &&
+                  bratio > 0.99;
+                return isValid ? oframe : undefined;
+              }
+              function getFrameNumberIfBlackScreen() {
+                try {
+                  return getFrameNumberIfBlackScreenImpl();
+                } catch (_e) {
+                  return undefined;
+                }
+              }
+              offFrame ||= getFrameNumberIfBlackScreen();
+              if (offFrame) {
+                tail.unpipe(detectPrc.stdin);
+                await tail.quit();
+                detectPrc.kill();
               }
             }
-            offFrame ||= getFrameNumberIfBlackScreen();
-            console.log({ offFrame });
-            if (offFrame) {
-              tail.unpipe(detectPrc.stdin);
-              await tail.quit();
-              detectPrc.kill();
-            }
+          } catch (e) {
+            console.log(e);
           }
-        } catch (e) {
-          console.log(e);
-        }
-      });
-      try {
-        await detectPrc;
-      } catch (____e) {
-        // console.log("__________E", ____e);
-      }
-      return offFrame;
-    }),
+        });
+        try {
+          await detectPrc;
+        } catch (____e) {}
+        return offFrame;
+      },
+    ),
   );
 
   const outFile = UPATH(workDir, "output.avi");
@@ -643,8 +669,6 @@ async function recordSlp(filename) {
       outFile,
     ],
   ];
-  console.log({ totalVideoFrames });
-  console.log(execaArgs);
 
   await doExe(execaArgs[0], execaArgs[1]);
   await fs.copyFile(outFile.rawPath, options.output);
