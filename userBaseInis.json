@@ -226,7 +226,7 @@
         "FreeLook": "False",
         "InternalResolutionFrameDumps": "True",
         "CompileShaderOnStartup": "True",
-        "UseFFV1": "True",
+        "UseFFV1": "False",
         "DumpFormat": "avi",
         "DumpCodec": "",
         "DumpPath": "",

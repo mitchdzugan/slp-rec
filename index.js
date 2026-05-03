@@ -419,8 +419,8 @@ async function execSlippi(
   let didStartWaitingEnd = false;
   let res;
   const { SingleBar, Presets } = cliProgress;
-  const progressBar = new SingleBar({}, Presets.shades_classic);
-  progressBar.start(lastFrame - GAME_FIRST_FRAME, 0);
+  const progressBar = new SingleBar({}, Presets.rect);
+  progressBar.start(1 + lastFrame - GAME_FIRST_FRAME, 0);
   try {
     const slippiProcessExe = await mkExe(slippiPlaybackBin, playbackArgs);
     const slippiProcess = slippiProcessExe();
@@ -672,7 +672,7 @@ async function recordSlp(filename) {
 
   await doExe(execaArgs[0], execaArgs[1]);
   await fs.copyFile(outFile.rawPath, options.output);
-  // await fs.rm(workDir, { recursive: true, force: true });
+  await fs.rm(workDir, { recursive: true, force: true });
 }
 
 recordSlp(options.file)
