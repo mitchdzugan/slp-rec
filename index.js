@@ -419,7 +419,7 @@ async function execSlippi(
   let didStartWaitingEnd = false;
   let res;
   const { SingleBar, Presets } = cliProgress;
-  const progressBar = new SingleBar({}, Presets.rect);
+  const progressBar = new SingleBar({}, Presets.legacy);
   progressBar.start(1 + lastFrame - GAME_FIRST_FRAME, 0);
   try {
     const slippiProcessExe = await mkExe(slippiPlaybackBin, playbackArgs);
