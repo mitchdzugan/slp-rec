@@ -418,9 +418,10 @@ async function execSlippi(
   let didFinish = false;
   let didStartWaitingEnd = false;
   let res;
+  const totalFrames = options.totalFrames;
   const { SingleBar, Presets } = cliProgress;
   const progressBar = new SingleBar({}, Presets.legacy);
-  progressBar.start(1 + lastFrame - GAME_FIRST_FRAME, 0);
+  progressBar.start(totalFrames || 1 + lastFrame - GAME_FIRST_FRAME, 0);
   try {
     const slippiProcessExe = await mkExe(slippiPlaybackBin, playbackArgs);
     const slippiProcess = slippiProcessExe();
@@ -456,6 +457,20 @@ async function execSlippi(
         recordedFrames.add(currentFrame);
         if (latestFrame === undefined || currentFrame > latestFrame) {
           latestFrame = currentFrame;
+          if (totalFrames && totalFrames <= recordedFrames.size) {
+            progressBar.stop();
+            didFinish = true;
+            if (isWinExe) {
+              await execa("taskkill.exe", [
+                "/IM",
+                "Slippi Dolphin.exe",
+                "/F",
+                "/T",
+              ]);
+            } else {
+              slippiProcess.kill();
+            }
+          }
         }
         progressBar.update(recordedFrames.size);
       }
