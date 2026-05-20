@@ -547,11 +547,13 @@ async function recordSlp(filename) {
   const gsFile = path.join(gsDir, "GALE01.ini");
   const cfgCode = await cfg_geckoCode();
   const cfgEnabled = await cfg_geckoEnabled();
+  const allEnabled = [...(cfgEnabled || []), ...(options.geckoEnable || [])];
   const cfgDisabled = await cfg_geckoDisabled();
+  const allDisabled = [...(cfgDisabled || []), ...(options.geckoDisable || [])];
   const plusCodes_s = await Promise.all(
     cfgCode.map((f) => fs.readFile(f, "utf8")),
   );
-  const gsContent = mkGameSettings(plusCodes_s, cfgEnabled, cfgDisabled);
+  const gsContent = mkGameSettings(plusCodes_s, allEnabled, allDisabled);
   await mkdirp(gsDir);
   await fs.writeFile(gsFile, gsContent);
 
