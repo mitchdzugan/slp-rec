@@ -633,6 +633,7 @@ async function recordSlp(filename) {
           if (offFrame) {
             return;
           }
+          console.log(rawStderrLine.toString("utf8"));
           const stderrLine = rawStderrLine.toString("utf8");
           try {
             if (stderrLine.startsWith("[Parsed_blackdetect_0")) {
@@ -657,6 +658,7 @@ async function recordSlp(filename) {
                 }
               }
               offFrame ||= getFrameNumberIfBlackScreen();
+              console.log({ offFrame });
               if (offFrame) {
                 tail.unpipe(detectPrc.stdin);
                 await tail.quit();
@@ -670,7 +672,8 @@ async function recordSlp(filename) {
         try {
           await detectPrc;
         } catch (____e) {}
-        return offFrame;
+        console.log({ offFrame });
+        return offFrame + 1;
       },
     ),
   );
