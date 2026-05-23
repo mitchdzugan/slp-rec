@@ -3,7 +3,7 @@ import { fs } from "@dz/-/node";
 import path from "node:path";
 import TailFile from "@logdna/tail-file";
 import envPaths from "env-paths";
-import * as toml from "smol-toml";
+import * as yaml from "js-yaml";
 import { SlippiGame } from "@slippi/slippi-js/node";
 
 const paths = envPaths("slp-rec", { suffix: "" });
@@ -12,7 +12,7 @@ const paths = envPaths("slp-rec", { suffix: "" });
 type IniChange = [string, string, string];
 
 type Opts = {
-  ffmpegBin: $.Maybe<string>;
+  "ffmpeg-bin": $.Maybe<string>;
   slippiPlaybackBin: $.Maybe<string>;
   startFrame: $.Maybe<number>;
   totalFrames: $.Maybe<number>;
@@ -25,8 +25,6 @@ type Opts = {
   geckoDisables: string[];
   texturePaths: string[];
 };
-
-type ParialOpts = $.Maybe<Opts>;
 
 type Array<T> = T[];
 
