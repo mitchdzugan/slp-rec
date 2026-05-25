@@ -178,6 +178,14 @@ const optionDefinitions = [
     description: "directory to place temporary work files",
     typeLabel: "<directory>",
   },
+  {
+    name: "port-colors",
+    alias: "p",
+    type: String,
+    lazyMultiple: true,
+    description: "color override for port",
+    typeLabel: "<1|2|3|4>=<0|1|2|3|4|5>",
+  },
 ];
 
 function informUsageAndExit(opts = {}) {
@@ -210,6 +218,12 @@ function failOptions(message) {
 const options = commandLineArgs(optionDefinitions, { camelCase: true });
 if (options.help) {
   informUsageAndExit();
+}
+
+const portColors = {};
+for (const pc of options.portColors || []) {
+  const [p, c] = pc.split("=");
+  portColors[parseInt(p) - 1] = parseInt(c);
 }
 
 let _configPromise = null;
@@ -574,10 +588,10 @@ async function recordSlp(filename) {
     if (cmd === Command.GAME_START) {
       const start = pos;
       for (let myPortId = 0; myPortId < 4; myPortId++) {
+        const colorOverride = portColors[myPortId];
         const offset = myPortId * 0x24;
-        const charId = buffer[0x68 + offset + start - 3];
-        if (charId === 17) {
-          // buffer[0x68 + offset + start] = 0;
+        if (colorOverride !== undefined) {
+          buffer[0x68 + offset + start] = colorOverride;
         }
       }
     }
