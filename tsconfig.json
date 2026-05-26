@@ -12,8 +12,7 @@
       "esnext"
     ],
     "types": [
-      "node",
-      "vite/client"
+      "node"
     ],
     // Other Outputs
     "sourceMap": true,
@@ -39,7 +38,6 @@
     "skipLibCheck": true,
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "baseUrl": ".",
     "paths": { "#db": ["./lib/db/index.js"], "#lib/*": ["./lib/*"] }
   }
 }

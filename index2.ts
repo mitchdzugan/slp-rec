@@ -1,29 +1,49 @@
 import * as $ from "@dz/-";
 import { fs } from "@dz/-/node";
-import path from "node:path";
 import TailFile from "@logdna/tail-file";
 import envPaths from "env-paths";
-import * as yaml from "js-yaml";
 import { SlippiGame } from "@slippi/slippi-js/node";
 
-const paths = envPaths("slp-rec", { suffix: "" });
-// const configPath = path.join(paths.config, "config.toml");
+const paths = fs.AppPathBuilders("slp-rec", { asDataSubdir: $.Set("temp") });
+const configPath = paths.config("config");
 
 type IniChange = [string, string, string];
 
 type Opts = {
-  "ffmpeg-bin": $.Maybe<string>;
-  slippiPlaybackBin: $.Maybe<string>;
-  startFrame: $.Maybe<number>;
-  totalFrames: $.Maybe<number>;
+  "ffmpeg-bin": string;
+  "slippi-playback-bin": string;
+  output: string;
+  iso: string;
+  "ini-changes": IniChange[];
+  "gecko-codes": string[];
+  "gecko-enables": string[];
+  "gecko-disables": string[];
+  "texture-paths": string[];
   input: $.Maybe<string>;
-  output: $.Maybe<string>;
-  iso: $.Maybe<string>;
-  iniChanges: IniChange[];
-  geckoCodes: string[];
-  geckoEnables: string[];
-  geckoDisables: string[];
-  texturePaths: string[];
+  "start-frame": $.Maybe<number>;
+  "total-frames": $.Maybe<number>;
+};
+
+type OptDef<T, Argn extends number = 1> = $.Proxy.Of<{ t: T; argn: Argn }>;
+
+type OptDefs = {
+  "ffmpeg-bin": OptDef<string>;
+  "slippi-playback-bin": string;
+  output: string;
+  iso: string;
+  "ini-changes": IniChange[];
+  "gecko-codes": string[];
+  "gecko-enables": string[];
+  "gecko-disables": string[];
+  "texture-paths": string[];
+  input: $.Maybe<string>;
+  "start-frame": $.Maybe<number>;
+  "total-frames": $.Maybe<number>;
+};
+
+const OptShortnames: Record<string, keyof OptDefs> = {
+  X: "texture-paths",
+  I: "ini-changes",
 };
 
 type Array<T> = T[];
@@ -33,12 +53,12 @@ type OptVal<K extends keyof Opts> =
     ? MT
     : Opts[K] extends Array<infer AT>
       ? $.Maybe<AT>
-      : never;
+      : Opts[K];
 
 type _OptUpsert<K extends keyof Opts> = [K, OptVal<K>];
 type OptUpsert = _OptUpsert<keyof Opts>;
 
-type OptErr =
+type OptE =
   | { type: "unknown opt"; opt: string }
   | { type: "unsupplied arg"; opt: string; nth: number; args: string[] };
 
@@ -63,7 +83,7 @@ const takeArg = $.DoRS<OptR, OptS, $.Maybe<string>>(function* (M) {
   return $.None();
 });
 
-const forceTakeArg = $.DoRSE<OptR, OptS, OptErr, string>(function* (M) {
+const forceTakeArg = $.DoRSE<OptR, OptS, OptE, string>(function* (M) {
   const arg = yield* takeArg();
   return yield* $.maybe(arg, $.pure, function* () {
     const { args } = yield* M.ask();
@@ -79,89 +99,80 @@ const forceTakeArg = $.DoRSE<OptR, OptS, OptErr, string>(function* (M) {
 
 type OptW = OptUpsert[];
 
-const procOpt = $.DoRWSEA<OptR, OptW, OptS, OptErr, number, [string, string[]]>(
-  function* (M, opt, args) {
-    const opts = yield* M.ask();
+const procOpt = $.DoRWSEA<OptR, OptW, OptS, OptE, null, [string]>(
+  function* (M, opt) {
     if (!opt.startsWith("--")) {
-      opts.input = opt;
-      return 1;
+      return yield* OptUpsert("input", opt);
     }
     const optName = opt.substring(2);
     const arg1 = yield* forceTakeArg();
     if (optName === "ini") {
       if (arg1 === ":") {
-        opts.iniChanges = [];
-        yield* OptUpsert("iniChanges", $.None());
-        return 2;
+        return yield* OptUpsert("ini-changes", $.None());
       }
       const arg2 = yield* forceTakeArg();
       const arg3 = yield* forceTakeArg();
-      opts.iniChanges.push([arg1, arg2, arg3]);
-      yield* OptUpsert("iniChanges", $.Some([arg1, arg2, arg3]));
-      return 4;
-    }
-
-    function upsertArg<K extends string>(
-      k: K,
-      s: string,
-      obj: Record<K, string[]>,
-    ) {
-      if (s === ":") {
-        obj[k] = [];
-      } else {
-        obj[k].push(s);
-      }
-      return 2;
+      return yield* OptUpsert("ini-changes", $.Some([arg1, arg2, arg3]));
     }
 
     const arg1Opt = arg1 !== ":" ? $.Some(arg1) : $.None<string>();
     if (optName === "gecko-code") {
-      yield* OptUpsert("geckoCodes", arg1Opt);
-      return upsertArg("geckoCodes", arg1, opts);
+      return yield* OptUpsert("gecko-codes", arg1Opt);
     } else if (optName === "gecko-enable") {
-      return upsertArg("geckoEnables", arg1, opts);
+      return yield* OptUpsert("gecko-enables", arg1Opt);
     } else if (optName === "gecko-disable") {
-      return upsertArg("geckoDisables", arg1, opts);
+      return yield* OptUpsert("gecko-disables", arg1Opt);
     } else if (optName === "texture-path") {
-      return upsertArg("texturePaths", arg1, opts);
+      return yield* OptUpsert("texture-paths", arg1Opt);
+    } else if (optName === "input") {
+      return yield* OptUpsert("input", arg1);
     }
 
-    console.log({ optName });
-    return 1;
+    return yield* M.fail({ type: "unknown opt", opt: optName });
   },
 );
 
-const impl = $.DoWEA_<OptUpsert[], OptErr>(function* () {
-  let argPos = 0;
-  const args = process.argv.slice(2);
-  while (argPos < args.length) {
-    const opt = args[argPos] || "";
-    console.log({ argPos, opt });
-    const optArgs = args.slice(argPos + 1);
-    argPos += yield* procOpt(opt, optArgs);
+const procOpts = $.DoRWSEA<OptR, OptW, OptS, OptE>(function* () {
+  let isDone = false;
+  while (!isDone) {
+    isDone = true;
+    for (const opt of $.iMaybe<string>(yield* takeArg())) {
+      isDone = false;
+      yield* procOpt(opt);
+    }
+    console.log({ isDone });
   }
 });
 
+const impl = $.DoRWSEA_<OptR, OptW, OptS, OptE>(function* () {
+  yield* procOpts();
+});
+
+const launcherSettingsPath = paths.config("..", "Slippi Launcher", "Settings");
+
 async function main() {
+  const launcherSettings = (await fs.slurp<any>(launcherSettingsPath)) || {};
   const baseOpts: Opts = {
-    ffmpegBin: $.None(),
-    slippiPlaybackBin: $.None(),
-    startFrame: $.None(),
-    totalFrames: $.None(),
+    "ffmpeg-bin": "ffmpeg",
+    "slippi-playback-bin": "Slippi_Playback-x86_64.AppImage",
+    "start-frame": $.None(),
+    "total-frames": $.None(),
     input: $.None(),
-    output: $.None(),
-    iso: $.None(),
-    iniChanges: [],
-    geckoCodes: [],
-    geckoEnables: [],
-    geckoDisables: [],
-    texturePaths: [],
+    output: "output.mp4",
+    iso: launcherSettings?.settings?.isoPath || "",
+    "ini-changes": [],
+    "gecko-codes": [],
+    "gecko-enables": [],
+    "gecko-disables": [],
+    "texture-paths": [],
   };
-  const res = await $.rw(baseOpts, (...oss: OptUpsert[][]) =>
-    oss.flatMap((os) => os),
+  const res = await $.rws(
+    { args: process.argv.slice(2) },
+    (...oss: OptW[]) => oss.flatMap((os) => os),
+    { argn: 0 },
   ).execAsync(impl());
-  console.log(res);
   console.log(baseOpts);
+  console.log(res);
 }
 
 $.execAndExit(main());
