@@ -1,5 +1,5 @@
 ### Install
-`npm i --save github:mitchdzugan/slp-rec`
+`npm i -g github:mitchdzugan/slp-rec`
 
 ### Usage
 ```
