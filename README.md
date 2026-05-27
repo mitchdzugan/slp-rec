@@ -1,6 +1,7 @@
 ### Install
 
-`npm i -g github:mitchdzugan/slp-rec`
+  - ensure `ffmpeg` is installed
+  - `npm i -g github:mitchdzugan/slp-rec`
 
 ### Usage
 
