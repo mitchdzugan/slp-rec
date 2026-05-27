@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S npx babel-node --
 
 import path from "node:path";
 import * as fs from "node:fs/promises";
