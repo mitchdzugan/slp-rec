@@ -8,8 +8,8 @@
     "build:clean": "rimraf dist",
     "build:mk": "tsdown",
     "build:exe": "node -e 'import(`make-executable`).then(me => me.makeExecutable(`./dist/index.mjs`))'",
-    "build": "run-s build:clean build:mk build:exe",
-    "prepack": "npm run build",
+    "build:dist": "run-s build:clean build:mk build:exe",
+    "build": "",
     "start": "tsx index.js"
   },
   "bin": "./dist/index.mjs",
