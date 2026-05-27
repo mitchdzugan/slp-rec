@@ -203,8 +203,10 @@ function informUsageAndExit(opts = {}) {
       optionList: optionDefinitions,
     },
     {
-      content:
-        "Project home: {underline https://github.com/mitchdzugan/slp-rec}",
+      content: [
+        "{bold Project home:} {underline https://github.com/mitchdzugan/slp-rec}",
+        "{bold Config Path:} " + configPath,
+      ].join("\n"),
     },
   ]);
   console.log(usage);

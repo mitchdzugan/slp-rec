@@ -1,10 +1,10 @@
 ### Install
+
 `npm i -g github:mitchdzugan/slp-rec`
 
 ### Usage
-```
-Usage:
 
+```
   slp-rec [OPT]* <slp> 
 
 Options
@@ -32,5 +32,30 @@ Options
                                                 work files                      
   -p, --port-colors <1|2|3|4>=<0|1|2|3|4|5>     color override for port         
 
-  Project home: https://github.com/mitchdzugan/slp-rec
+
+Example
+
+  slp-rec \
+    -f $SLPS/game.slp \
+    -p 1=4 -p 2=0 \
+    -x $REPOS/melee-recording-textures/CURRENT \
+    -I GFX.Settings.AspectRatio=6 \
+    -g Widescreen 16:9 \
+    -s 900 \
+    -t 180
+  
+  this will:
+    - record the slippi file at "$SLPS/game/slp"
+    - change port 1's colorscheme to the one with id 4 and port 2's to 0
+    - overwrite default textures with any found at "$REPOS/melee-recording-textures/CURRENT"
+    - set the property Settings.AspectRatio to 6 (widescreen value) in GFX.ini
+    - enable the "Widescreen 16:9" gecko code
+    - start the recording at 900 frames (15s) into the game
+        !! 900 frames after the timer starts. you must supply negative frames if you want to record before "GO!"
+    - record for a total of 180 frames from that point (3 seconds)
 ```
+
+### Configuration
+
+Check [/.SAMPLE-CONFIG](https://github.com/mitchdzugan/slp-rec/tree/main/.SAMPLE-CONFIG) for example configuration. OS specific configuration path location can be found by running `slp-rec -h`
+
