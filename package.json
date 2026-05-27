@@ -5,11 +5,11 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build:mk": "babel index.js --out-file dist/slp-rec.cjs",
+    "build:mk": "npx babel index.js --out-file dist/slp-rec.cjs",
     "build:exe": "node -e 'import(`make-executable`).then(me => me.makeExecutable(`./dist/slp-rec.cjs`))'",
-    "build": "run-s build:mk build:exe",
+    "build": "npx run-s build:mk build:exe",
     "prepare": "npm run build",
-    "start": "babel-node -- index.js"
+    "start": "npx babel-node -- index.js"
   },
   "bin": "./dist/slp-rec.cjs",
   "dependencies": {
