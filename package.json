@@ -5,7 +5,10 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "babel index.js --out-file dist/slp-rec.cjs",
+    "build:mk": "babel index.js --out-file dist/slp-rec.cjs",
+    "build:exe": "node -e 'import(`make-executable`).then(me => me.makeExecutable(`./dist/slp-rec.cjs`))'",
+    "build": "run-s build:mk build:exe",
+    "prepare": "npm run build",
     "start": "babel-node -- index.js"
   },
   "bin": "./dist/slp-rec.cjs",
@@ -27,7 +30,9 @@
     "extensionless": "^2.0.6",
     "hash-it": "^7.0.1",
     "ini": "^6.0.0",
+    "make-executable": "^2.0.2",
     "mkdirp": "^3.0.1",
+    "npm-run-all": "^4.1.5",
     "smol-toml": "^1.6.1",
     "tail-file-stream": "^0.2.0",
     "tsx": "^4.22.3",
