@@ -19,5 +19,4 @@ yarn-error.log*
 .env.production.local
 
 /result
-/dist
 /tmp
