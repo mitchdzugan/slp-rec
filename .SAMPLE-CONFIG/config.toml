@@ -1,0 +1,10 @@
+ssbmIsoPath = "/home/dz/ssbm/iso/ssbm.1_02.iso"
+slippiPlaybackBin = "/home/dz/.config/Slippi Launcher/playback/Slippi_Playback-x86_64.AppImage"
+geckoCode = ["gecko/preventCrowdChants.gecko", "gecko/preventCrowdNoises.gecko"]
+geckoDisabled = ["Show Player Names"]
+geckoEnabled = [
+  "Game Music OFF",
+  "Hide Waiting For Game",
+  "Prevent Character Crowd Chants",
+  "Prevent Crowd Noises",
+]
