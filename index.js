@@ -14,8 +14,7 @@ import * as ini from "ini";
 import * as toml from "smol-toml";
 import cliProgress from "cli-progress";
 import os from "os";
-import userBaseInisStr from "./userBaseInis.json";
-const userBaseInis = JSON.parse(userBaseInisStr);
+import userBaseInis from "./userBaseInis.json" with { type: "json" };
 const { SlippiGame } = SLP_PKG;
 
 async function doesFileExist(path) {
