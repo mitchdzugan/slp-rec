@@ -8,7 +8,7 @@
     "build:mk": "babel index.js --out-file dist/slp-rec.cjs",
     "build:exe": "node -e 'import(`make-executable`).then(me => me.makeExecutable(`./dist/slp-rec.cjs`))'",
     "build": "run-s build:mk build:exe",
-    "prepare": "npm run build",
+    "prepack": "npm run build",
     "start": "babel-node -- index.js"
   },
   "bin": "./dist/slp-rec.cjs",
