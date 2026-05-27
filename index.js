@@ -9,13 +9,12 @@ import commandLineUsage from "command-line-usage";
 import { mkdirp } from "mkdirp";
 import { hash } from "hash-it";
 import { execa } from "execa";
-import * as SLP_PKG from "@slippi/slippi-js/node";
 import * as ini from "ini";
 import * as toml from "smol-toml";
 import cliProgress from "cli-progress";
 import os from "os";
+import { SSBM } from "@dz/-";
 import userBaseInis from "./userBaseInis.json" with { type: "json" };
-const { SlippiGame } = SLP_PKG;
 
 async function doesFileExist(path) {
   try {
@@ -608,9 +607,8 @@ async function recordSlp(filename) {
     ...["--slippi-input", UPATH(getRecordJsonPath(workDir))],
     ...["--exec", UPATH(ssbmIsoPath)],
   ];
-  const game = new SlippiGame(slpFile);
-  const stats = game.getStats();
-  const lastFrame = stats.lastFrame;
+  const { lastFrame } = SSBM.Slp.parseIntakeGame(await fs.readFile(slpFile));
+  console.log({ lastFrame });
   const aviFile = UPATH(userDir, "Dump", "Frames", "framedump0.avi");
   const wavFile = UPATH(userDir, "Dump", "Audio", "dspdump.wav");
   const totalVideoFrames = await limitExecutionTime(1000 * 60 * 1000, () =>

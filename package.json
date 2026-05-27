@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build:clean": "rimraf dist",
-    "build:mk": "tsdown index.js",
+    "build:mk": "tsdown",
     "build:exe": "node -e 'import(`make-executable`).then(me => me.makeExecutable(`./dist/index.mjs`))'",
     "build": "run-s build:clean build:mk build:exe",
     "prepack": "npm run build",
