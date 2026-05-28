@@ -20238,20 +20238,22 @@ var require_semver = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 		rcompareIdentifiers: identifiers.rcompareIdentifiers
 	};
 }));
-require_get();
-require_isEqual();
-require_keyBy();
-require_last();
-require_set();
-require_size();
-require_filter();
-require_groupBy();
-require_orderBy();
-require_first();
-require_flatten();
-require_mapValues();
-require_zip();
-require_semver();
+//#endregion
+//#region node_modules/iconv-cp932/index.mjs
+var import_get = /* @__PURE__ */ __toESM(require_get());
+var import_isEqual = /* @__PURE__ */ __toESM(require_isEqual());
+var import_keyBy = /* @__PURE__ */ __toESM(require_keyBy());
+var import_last = /* @__PURE__ */ __toESM(require_last());
+var import_set = /* @__PURE__ */ __toESM(require_set());
+var import_size = /* @__PURE__ */ __toESM(require_size());
+var import_filter = /* @__PURE__ */ __toESM(require_filter());
+var import_groupBy = /* @__PURE__ */ __toESM(require_groupBy());
+var import_orderBy = /* @__PURE__ */ __toESM(require_orderBy());
+var import_first = /* @__PURE__ */ __toESM(require_first());
+var import_flatten = /* @__PURE__ */ __toESM(require_flatten());
+var import_mapValues = /* @__PURE__ */ __toESM(require_mapValues());
+var import_zip = /* @__PURE__ */ __toESM(require_zip());
+var import_semver = /* @__PURE__ */ __toESM(require_semver());
 /**
 * iconv-cp932
 *
@@ -20426,6 +20428,25 @@ function encode(str) {
 	return buffer.slice(0, cur);
 }
 /**
+* @param buffer {Uint8Array} CP932 Binary e.g. [0x94, 0xFC]
+* @return {string} UTF-8 string e.g. "美"
+*/
+function decode(buffer) {
+	const { length } = buffer;
+	const decodeBinTable = getDecodeBinTable();
+	let str = "";
+	let i = 0;
+	while (i < length) {
+		let c = buffer[i++];
+		if (128 <= c && c <= 159 || 224 <= c && c <= 255) {
+			const low = buffer[i++];
+			c = c << 8 | low;
+		}
+		str += decodeBinTable[c] || cachedDecode("%81%AC");
+	}
+	return str;
+}
+/**
 * @private
 */
 const cachedEncode = cached((c) => {
@@ -20439,6 +20460,11 @@ const getDecodeTable = lazy(() => {
 		if (jcode > 255) jstr = String.fromCharCode(jcode >> 8) + jstr;
 		table[jstr] = ustr;
 	});
+	return table;
+});
+const getDecodeBinTable = lazy(() => {
+	const table = new Array(65536);
+	decoderMapping((jcode, ustr) => table[jcode] = ustr);
 	return table;
 });
 const decoderMapping = (fn) => {
@@ -20459,7 +20485,9 @@ const applyMapping = (mapping, fn) => {
 		mapping[start].split("").forEach((ustr) => fn(jcode++, ustr));
 	});
 };
-(/* @__PURE__ */ __commonJSMin(((exports, module) => {
+//#endregion
+//#region node_modules/@slippi/slippi-js/dist/browser/index.esm.js
+var import_map = /* @__PURE__ */ __toESM((/* @__PURE__ */ __commonJSMin(((exports, module) => {
 	var arrayMap = require__arrayMap(), baseIteratee = require__baseIteratee(), baseMap = require__baseMap(), isArray = require_isArray();
 	/**
 	* Creates an array of values by running each element in `collection` thru
@@ -20507,7 +20535,39850 @@ const applyMapping = (mapping, fn) => {
 		return (isArray(collection) ? arrayMap : baseMap)(collection, baseIteratee(iteratee, 3));
 	}
 	module.exports = map;
-})))();
+})))());
+var framedata = {
+	Bowser: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyKoopa5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 24,
+			iasa: 21,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 83,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyKoopa5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 29,
+			iasa: 26,
+			hitFrames: [{
+				start: 8,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 59,
+			iasa: 56,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 17,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 80,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 120,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 80,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 47,
+			iasa: 37,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 29,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 29,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 47,
+			iasa: 37,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_ml: null,
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 47,
+			iasa: 37,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 31,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 32,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 54,
+			iasa: 50,
+			hitFrames: [{
+				start: 7,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 100,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 59,
+			iasa: 55,
+			hitFrames: [{
+				start: 14,
+				end: 18,
+				hitboxes: [0]
+			}, {
+				start: 27,
+				end: 31,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 69,
+			chargeFrame: 10,
+			iasa: 66,
+			hitFrames: [{
+				start: 29,
+				end: 33,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 24,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 24,
+				angle: 60,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 59,
+			chargeFrame: 10,
+			iasa: 53,
+			hitFrames: [{
+				start: 16,
+				end: 21,
+				hitboxes: [0, 1]
+			}, {
+				start: 30,
+				end: 30,
+				hitboxes: [2]
+			}],
+			hitboxes: [
+				{
+					damage: 20,
+					angle: 90,
+					kbGrowth: 86,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 17,
+					angle: 90,
+					kbGrowth: 86,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 74,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: false
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 69,
+			chargeFrame: 8,
+			iasa: 68,
+			hitFrames: [
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 29,
+					end: 30,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 32,
+					end: 33,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 35,
+					end: 35,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 2,
+					angle: 150,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 190,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 90,
+					kbGrowth: 140,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 49,
+			iasa: 48,
+			autoCancelBefore: 8,
+			autoCancelAfter: 39,
+			landingLag: 30,
+			lcancelledLandingLag: 15,
+			hitFrames: [{
+				start: 8,
+				end: 23,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 45,
+			iasa: 42,
+			autoCancelBefore: 9,
+			autoCancelAfter: 30,
+			landingLag: 30,
+			lcancelledLandingLag: 15,
+			hitFrames: [{
+				start: 8,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 49,
+			iasa: null,
+			autoCancelBefore: 9,
+			autoCancelAfter: 44,
+			landingLag: 35,
+			lcancelledLandingLag: 17,
+			hitFrames: [{
+				start: 9,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 11,
+				end: 17,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 24,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 47,
+			iasa: 45,
+			autoCancelBefore: 10,
+			autoCancelAfter: 39,
+			landingLag: 30,
+			lcancelledLandingLag: 15,
+			hitFrames: [{
+				start: 22,
+				end: 25,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 17,
+				angle: 85,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyKoopa5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 79,
+			iasa: 78,
+			autoCancelBefore: 14,
+			autoCancelAfter: 69,
+			landingLag: 40,
+			lcancelledLandingLag: 20,
+			hitFrames: [
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [0]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [0]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [0]
+				},
+				{
+					start: 29,
+					end: 30,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 33,
+					hitboxes: [0]
+				},
+				{
+					start: 35,
+					end: 36,
+					hitboxes: [0]
+				},
+				{
+					start: 38,
+					end: 39,
+					hitboxes: [0]
+				},
+				{
+					start: 41,
+					end: 42,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 10,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyKoopa5K_Share_ACTION_Catch_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 8,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyKoopa5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyKoopa5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyKoopa5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 59,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 45,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyKoopa5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 45,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyKoopa5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 69,
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				baseKb: 0,
+				element: 0
+			},
+			hitFrames: [
+				{
+					start: 20,
+					end: 23,
+					hitboxes: [0]
+				},
+				{
+					start: 24,
+					end: 27,
+					hitboxes: [0]
+				},
+				{
+					start: 28,
+					end: 31,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 35,
+					hitboxes: [0]
+				},
+				{
+					start: 36,
+					end: 39,
+					hitboxes: [0]
+				},
+				{
+					start: 40,
+					end: 43,
+					hitboxes: [0]
+				},
+				{
+					start: 44,
+					end: 47,
+					hitboxes: [0]
+				},
+				{
+					start: 48,
+					end: 51,
+					hitboxes: [0]
+				},
+				{
+					start: 52,
+					end: 55,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 1,
+				angle: 0,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyKoopa5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 84,
+			iasa: null,
+			"throw": {
+				damage: 0,
+				angle: 50,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				baseKb: 18,
+				element: 12
+			},
+			hitFrames: [{
+				start: 47,
+				end: 47,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 0,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 21,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 21,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 18,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 0,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "grab",
+					shieldDamage: 0,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 0,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "grab",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: false
+				},
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialSHit_figatree",
+			totalFrames: 29,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 30,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [{
+				start: 18,
+				end: 19,
+				hitboxes: [0]
+			}, {
+				start: 21,
+				end: 22,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 80,
+				kbGrowth: 15,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 140,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialSHit_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 18,
+				end: 19,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialSEndF_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 30,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [{
+				start: 17,
+				end: 18,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 15,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 140,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialSEndB_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 59,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 30,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [
+				{
+					start: 16,
+					end: 18,
+					hitboxes: [
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 50,
+					end: 51,
+					hitboxes: [4]
+				},
+				{
+					start: 53,
+					end: 54,
+					hitboxes: [5]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 0,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "grab",
+					shieldDamage: 0,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 0,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "grab",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: false
+				},
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 0,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 15,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 140,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialAirSHit_figatree",
+			totalFrames: 29,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 30,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [{
+				start: 18,
+				end: 19,
+				hitboxes: [0]
+			}, {
+				start: 21,
+				end: 22,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 80,
+				kbGrowth: 15,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 140,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialAirSHit_figatree",
+			totalFrames: 29,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 30,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [{
+				start: 18,
+				end: 19,
+				hitboxes: [0]
+			}, {
+				start: 21,
+				end: 22,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 80,
+				kbGrowth: 15,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 140,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialAirSEndF_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 30,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [{
+				start: 17,
+				end: 18,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 15,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 140,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialAirSEndB_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 5,
+					end: 6,
+					hitboxes: [0]
+				},
+				{
+					start: 7,
+					end: 10,
+					hitboxes: [1]
+				},
+				{
+					start: 11,
+					end: 14,
+					hitboxes: [1]
+				},
+				{
+					start: 15,
+					end: 18,
+					hitboxes: [1]
+				},
+				{
+					start: 19,
+					end: 22,
+					hitboxes: [1]
+				},
+				{
+					start: 23,
+					end: 26,
+					hitboxes: [1]
+				},
+				{
+					start: 27,
+					end: 30,
+					hitboxes: [1]
+				},
+				{
+					start: 31,
+					end: 34,
+					hitboxes: [2]
+				},
+				{
+					start: 35,
+					end: 38,
+					hitboxes: [2]
+				},
+				{
+					start: 39,
+					end: 42,
+					hitboxes: [2]
+				},
+				{
+					start: 43,
+					end: 46,
+					hitboxes: [2]
+				},
+				{
+					start: 47,
+					end: 50,
+					hitboxes: [2]
+				},
+				{
+					start: 51,
+					end: 54,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 90,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 70,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 5,
+					end: 6,
+					hitboxes: [0]
+				},
+				{
+					start: 7,
+					end: 10,
+					hitboxes: [1]
+				},
+				{
+					start: 11,
+					end: 14,
+					hitboxes: [1]
+				},
+				{
+					start: 15,
+					end: 18,
+					hitboxes: [1]
+				},
+				{
+					start: 19,
+					end: 22,
+					hitboxes: [1]
+				},
+				{
+					start: 23,
+					end: 26,
+					hitboxes: [1]
+				},
+				{
+					start: 27,
+					end: 30,
+					hitboxes: [1]
+				},
+				{
+					start: 31,
+					end: 34,
+					hitboxes: [2]
+				},
+				{
+					start: 35,
+					end: 38,
+					hitboxes: [2]
+				},
+				{
+					start: 39,
+					end: 42,
+					hitboxes: [2]
+				},
+				{
+					start: 43,
+					end: 46,
+					hitboxes: [2]
+				},
+				{
+					start: 47,
+					end: 50,
+					hitboxes: [2]
+				},
+				{
+					start: 51,
+					end: 54,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 84,
+					kbGrowth: 20,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 84,
+					kbGrowth: 20,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 31,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyKoopa5K_Share_ACTION_SpecialLwLanding_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 2,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 76,
+				kbGrowth: 72,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "normal",
+				shieldDamage: 5,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		}
+	},
+	"Captain Falcon": {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyCaptain5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 21,
+			iasa: 16,
+			hitFrames: [{
+				start: 3,
+				end: 5,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyCaptain5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 19,
+			iasa: 18,
+			hitFrames: [{
+				start: 4,
+				end: 6,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: {
+			subactionIndex: 48,
+			subactionName: "PlyCaptain5K_Share_ACTION_Attack13_figatree",
+			totalFrames: 31,
+			iasa: 22,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0]
+			}, {
+				start: 9,
+				end: 11,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_start: {
+			subactionIndex: 49,
+			subactionName: "PlyCaptain5K_Share_ACTION_Attack100Start_figatree",
+			totalFrames: 5,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		rapidjabs_loop: {
+			subactionIndex: 50,
+			subactionName: "PlyCaptain5K_Share_ACTION_Attack100Loop_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 5,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_end: {
+			subactionIndex: 51,
+			subactionName: "PlyCaptain5K_Share_ACTION_Attack100End_figatree",
+			totalFrames: 8,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 39,
+			iasa: 38,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 10,
+				end: 16,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 22,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 361,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: {
+			subactionIndex: 54,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackS3HiS_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: {
+			subactionIndex: 56,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackS3LwS_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 39,
+			iasa: 38,
+			hitFrames: [{
+				start: 17,
+				end: 21,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 35,
+			iasa: 35,
+			hitFrames: [{
+				start: 10,
+				end: 15,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 70,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 60,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_h: {
+			subactionIndex: 60,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackS4Hi_figatree",
+			totalFrames: 64,
+			chargeFrame: 10,
+			iasa: 60,
+			hitFrames: [{
+				start: 18,
+				end: 21,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 21,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 24,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackS4S_figatree",
+			totalFrames: 64,
+			chargeFrame: 10,
+			iasa: 60,
+			hitFrames: [{
+				start: 18,
+				end: 21,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 20,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 24,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 19,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 24,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: {
+			subactionIndex: 64,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackS4Lw_figatree",
+			totalFrames: 64,
+			chargeFrame: 10,
+			iasa: 60,
+			hitFrames: [{
+				start: 18,
+				end: 21,
+				hitboxes: [0]
+			}, {
+				start: 63,
+				end: 63,
+				hitboxes: [
+					1,
+					2,
+					3,
+					4
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 19,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 24,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 100,
+					kbGrowth: 100,
+					weightDepKb: 100,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 80,
+					kbGrowth: 105,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 90,
+					kbGrowth: 105,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 54,
+			chargeFrame: 8,
+			iasa: 40,
+			hitFrames: [{
+				start: 21,
+				end: 22,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}, {
+				start: 27,
+				end: 28,
+				hitboxes: [
+					4,
+					5,
+					6
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 100,
+					kbGrowth: 100,
+					weightDepKb: 100,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 80,
+					kbGrowth: 105,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 90,
+					kbGrowth: 105,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 90,
+					kbGrowth: 128,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 90,
+					kbGrowth: 126,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 49,
+			chargeFrame: 14,
+			iasa: 45,
+			hitFrames: [{
+				start: 19,
+				end: 22,
+				hitboxes: [0]
+			}, {
+				start: 29,
+				end: 32,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 18,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 16,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 44,
+			iasa: null,
+			autoCancelBefore: 4,
+			autoCancelAfter: 33,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 7,
+				end: 12,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}, {
+				start: 20,
+				end: 29,
+				hitboxes: [3]
+			}],
+			hitboxes: [
+				{
+					damage: 6,
+					angle: 82,
+					kbGrowth: 100,
+					weightDepKb: 40,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 40,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 74,
+					kbGrowth: 100,
+					weightDepKb: 40,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 7,
+			autoCancelAfter: 34,
+			landingLag: 19,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 14,
+				end: 16,
+				hitboxes: [0]
+			}, {
+				start: 17,
+				end: 30,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 18,
+				angle: 32,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 24,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 35,
+			iasa: 29,
+			autoCancelBefore: 7,
+			autoCancelAfter: 20,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0, 1]
+			}, {
+				start: 14,
+				end: 17,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 33,
+			iasa: 30,
+			autoCancelBefore: 1,
+			autoCancelAfter: 21,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [
+				{
+					start: 6,
+					end: 10,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 11,
+					end: 13,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 14,
+					end: 14,
+					hitboxes: [4, 5]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 30,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 8,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 30,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 8,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 0,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 6,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 0,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 6,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyCaptain5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 44,
+			iasa: 38,
+			autoCancelBefore: 4,
+			autoCancelAfter: 35,
+			landingLag: 24,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 16,
+				end: 20,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 16,
+				angle: 290,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyCaptain5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyCaptain5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyCaptain5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyCaptain5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 45,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				baseKb: 11,
+				element: 4
+			},
+			hitFrames: [{
+				start: 11,
+				end: 17,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 70,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyCaptain5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 135,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				baseKb: 7,
+				element: 8
+			},
+			hitFrames: [{
+				start: 12,
+				end: 19,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 70,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyCaptain5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 43,
+			iasa: null,
+			"throw": {
+				damage: 3,
+				angle: 85,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [{
+				start: 11,
+				end: 28,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 60,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyCaptain5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 65,
+				kbGrowth: 34,
+				weightDepKb: 0,
+				baseKb: 18,
+				element: 12
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 99,
+			iasa: 65,
+			hitFrames: [{
+				start: 52,
+				end: 56,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 27,
+					angle: 361,
+					kbGrowth: 102,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 25,
+					angle: 361,
+					kbGrowth: 102,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 23,
+					angle: 361,
+					kbGrowth: 102,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 99,
+			iasa: null,
+			hitFrames: [{
+				start: 52,
+				end: 56,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 27,
+					angle: 361,
+					kbGrowth: 102,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 25,
+					angle: 361,
+					kbGrowth: 102,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 23,
+					angle: 361,
+					kbGrowth: 102,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "empty",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 90,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 78,
+				element: "fire",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "empty",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 44,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 270,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 60,
+				element: "fire",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 64,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 13,
+				hitboxes: [0, 1]
+			}, {
+				start: 14,
+				end: 39,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 64,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 13,
+				hitboxes: [0, 1]
+			}, {
+				start: 14,
+				end: 39,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialHiCatch_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialHiThrow_figatree",
+			totalFrames: 59,
+			iasa: null,
+			"throw": {
+				damage: 12,
+				angle: 361,
+				kbGrowth: 82,
+				weightDepKb: 0,
+				baseKb: 10,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 14,
+					end: 16,
+					hitboxes: [0]
+				},
+				{
+					start: 17,
+					end: 24,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 25,
+					end: 32,
+					hitboxes: [0, 2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 15,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 90,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialLwEnd_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 15,
+				end: 17,
+				hitboxes: [0]
+			}, {
+				start: 18,
+				end: 25,
+				hitboxes: [1]
+			}],
+			hitboxes: [
+				{
+					damage: 15,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 65,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialAirLwEnd_figatree",
+			totalFrames: 44,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 80,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialLwEndAir_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialAirLwEndAir_figatree",
+			totalFrames: 28,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13d": {
+			subactionIndex: 317,
+			subactionName: "PlyCaptain5K_Share_ACTION_SpecialHiThrow_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	"Donkey Kong": {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyDonkey5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyDonkey5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 54,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 13,
+				end: 20,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 100,
+				kbGrowth: 15,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 115,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 100,
+				kbGrowth: 100,
+				weightDepKb: 120,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 8,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 8,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 8,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 100,
+					kbGrowth: 105,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 100,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 100,
+					kbGrowth: 115,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 22,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 40,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackS4S_figatree",
+			totalFrames: 54,
+			chargeFrame: 15,
+			iasa: null,
+			hitFrames: [{
+				start: 22,
+				end: 23,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 20,
+					angle: 361,
+					kbGrowth: 94,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 22,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 21,
+					angle: 361,
+					kbGrowth: 94,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 22,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 19,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 18,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 18,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 18,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 53,
+			chargeFrame: 7,
+			iasa: null,
+			hitFrames: [{
+				start: 14,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 18,
+				angle: 90,
+				kbGrowth: 93,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 55,
+			chargeFrame: 3,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 115,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 14,
+				angle: 98,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 43,
+			iasa: 39,
+			autoCancelBefore: 10,
+			autoCancelAfter: 38,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 26,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 59,
+			iasa: null,
+			autoCancelBefore: 1,
+			autoCancelAfter: 59,
+			landingLag: 30,
+			lcancelledLandingLag: 15,
+			hitFrames: [{
+				start: 25,
+				end: 26,
+				hitboxes: [0, 1]
+			}, {
+				start: 27,
+				end: 29,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 16,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 16,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 16,
+					angle: 270,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 16,
+					angle: 270,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 32,
+			autoCancelBefore: 7,
+			autoCancelAfter: 19,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 7,
+				end: 8,
+				hitboxes: [0]
+			}, {
+				start: 9,
+				end: 15,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 44,
+			iasa: 38,
+			autoCancelBefore: 6,
+			autoCancelAfter: 12,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 90,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 32,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyDonkey5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 54,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 49,
+			landingLag: 31,
+			lcancelledLandingLag: 15,
+			hitFrames: [{
+				start: 18,
+				end: 23,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 270,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 38,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 270,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyDonkey5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyDonkey5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyDonkey5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyDonkey5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyDonkey5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 45,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyDonkey5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 43,
+			iasa: null,
+			"throw": {
+				damage: 9,
+				angle: 90,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyDonkey5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 361,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13f": {
+			subactionIndex: 319,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x140": {
+			subactionIndex: 320,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 11,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x141": {
+			subactionIndex: 321,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialNCansel_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x142": {
+			subactionIndex: 322,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 44,
+			iasa: null,
+			hitFrames: [{
+				start: 17,
+				end: 17,
+				hitboxes: [0]
+			}, {
+				start: 18,
+				end: 21,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x143": {
+			subactionIndex: 323,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 44,
+			iasa: null,
+			hitFrames: [{
+				start: 18,
+				end: 18,
+				hitboxes: [0]
+			}, {
+				start: 19,
+				end: 22,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 18,
+				angle: 80,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 30,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x144": {
+			subactionIndex: 324,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x145": {
+			subactionIndex: 325,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialAirNLoop_figatree",
+			totalFrames: 11,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x146": {
+			subactionIndex: 326,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialAirNCancel_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x147": {
+			subactionIndex: 327,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 44,
+			iasa: null,
+			hitFrames: [{
+				start: 17,
+				end: 17,
+				hitboxes: [0]
+			}, {
+				start: 18,
+				end: 21,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x148": {
+			subactionIndex: 328,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 44,
+			iasa: null,
+			hitFrames: [{
+				start: 18,
+				end: 18,
+				hitboxes: [0]
+			}, {
+				start: 19,
+				end: 22,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 80,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 27,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x149": {
+			subactionIndex: 329,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 20,
+				end: 21,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 100,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grounded",
+				shieldDamage: 30,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x14a": {
+			subactionIndex: 330,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 20,
+				end: 21,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 100,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 30,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x14b": {
+			subactionIndex: 331,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 84,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 3,
+					end: 5,
+					hitboxes: [0]
+				},
+				{
+					start: 19,
+					end: 26,
+					hitboxes: [1]
+				},
+				{
+					start: 27,
+					end: 34,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 42,
+					hitboxes: [1]
+				},
+				{
+					start: 43,
+					end: 50,
+					hitboxes: [2]
+				},
+				{
+					start: 51,
+					end: 58,
+					hitboxes: [2]
+				},
+				{
+					start: 59,
+					end: 66,
+					hitboxes: [2]
+				},
+				{
+					start: 67,
+					end: 74,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x14c": {
+			subactionIndex: 332,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 84,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 4,
+					end: 5,
+					hitboxes: [0]
+				},
+				{
+					start: 11,
+					end: 18,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 19,
+					end: 26,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 27,
+					end: 34,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 35,
+					end: 42,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 43,
+					end: 50,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 51,
+					end: 58,
+					hitboxes: [3]
+				},
+				{
+					start: 59,
+					end: 66,
+					hitboxes: [3]
+				},
+				{
+					start: 67,
+					end: 74,
+					hitboxes: [3]
+				},
+				{
+					start: 75,
+					end: 82,
+					hitboxes: [3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x14d": {
+			subactionIndex: 333,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialLwStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x14e": {
+			subactionIndex: 334,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialLwLoop_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 6,
+				hitboxes: [0]
+			}, {
+				start: 16,
+				end: 17,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 84,
+				kbGrowth: 100,
+				weightDepKb: 110,
+				hitboxInteraction: 0,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: false
+			}, {
+				damage: 11,
+				angle: 84,
+				kbGrowth: 100,
+				weightDepKb: 110,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x14f": {
+			subactionIndex: 335,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialLwEnd_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x150": {
+			subactionIndex: 336,
+			subactionName: "PlyDonkey5K_Share_ACTION_SpecialLwEnd_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	"Dr. Mario": {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyDrmario5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 83,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 85,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyDrmario5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 83,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 3,
+				angle: 85,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: {
+			subactionIndex: 48,
+			subactionName: "PlyDrmario5K_Share_ACTION_Attack13_figatree",
+			totalFrames: 21,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 18,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 43,
+			iasa: 38,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 10,
+				end: 25,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 80,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 70,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 85,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 11,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 9,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 30,
+			iasa: 30,
+			hitFrames: [{
+				start: 4,
+				end: 4,
+				hitboxes: [0]
+			}, {
+				start: 5,
+				end: 13,
+				hitboxes: [
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 95,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 100,
+					kbGrowth: 122,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 100,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 100,
+					kbGrowth: 118,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 150,
+				kbGrowth: 82,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: {
+			subactionIndex: 60,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackS4Hi_figatree",
+			totalFrames: 41,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 20,
+				angle: 361,
+				kbGrowth: 97,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackS4S_figatree",
+			totalFrames: 41,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 19,
+				angle: 361,
+				kbGrowth: 97,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: {
+			subactionIndex: 64,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackS4Lw_figatree",
+			totalFrames: 41,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 18,
+				angle: 361,
+				kbGrowth: 97,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 39,
+			chargeFrame: 7,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 10,
+				hitboxes: [0, 1]
+			}, {
+				start: 11,
+				end: 11,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 16,
+					angle: 83,
+					kbGrowth: 95,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 16,
+					angle: 259,
+					kbGrowth: 95,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: false
+				},
+				{
+					damage: 13,
+					angle: 76,
+					kbGrowth: 95,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 259,
+					kbGrowth: 95,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: false
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 37,
+			chargeFrame: 3,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 6,
+				hitboxes: [0, 1]
+			}, {
+				start: 14,
+				end: 15,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 18,
+					angle: 361,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 45,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 17,
+					angle: 361,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 45,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 15,
+					angle: 361,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 45,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 35,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 3,
+				end: 19,
+				hitboxes: [0]
+			}, {
+				start: 20,
+				end: 31,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 50,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 14,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 74,
+			iasa: 60,
+			autoCancelBefore: 3,
+			autoCancelAfter: 42,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 18,
+				end: 22,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 17,
+				angle: 60,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 16,
+				angle: 60,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 28,
+			iasa: null,
+			autoCancelBefore: 6,
+			autoCancelAfter: 18,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}, {
+				start: 9,
+				end: 16,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 28,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 43,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 33,
+			iasa: 30,
+			autoCancelBefore: 2,
+			autoCancelAfter: 15,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 4,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 55,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyDrmario5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 38,
+			iasa: 38,
+			autoCancelBefore: 6,
+			autoCancelAfter: 35,
+			landingLag: 24,
+			lcancelledLandingLag: 12,
+			hitFrames: [
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [0]
+				},
+				{
+					start: 13,
+					end: 14,
+					hitboxes: [0]
+				},
+				{
+					start: 16,
+					end: 17,
+					hitboxes: [0]
+				},
+				{
+					start: 19,
+					end: 20,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [0]
+				},
+				{
+					start: 25,
+					end: 26,
+					hitboxes: [0]
+				},
+				{
+					start: 28,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 31,
+					end: 32,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyDrmario5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyDrmario5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyDrmario5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyDrmario5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 27,
+			iasa: null,
+			"throw": {
+				damage: 9,
+				angle: 45,
+				kbGrowth: 72,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyDrmario5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 66,
+			iasa: null,
+			"throw": {
+				damage: 12,
+				angle: 45,
+				kbGrowth: 72,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyDrmario5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 90,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyDrmario5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 6,
+				angle: 90,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 18,
+				element: 12
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyDrmario5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 43,
+			projectiles: [14],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyDrmario5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 43,
+			projectiles: [14],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyDrmario5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 14,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 110,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "cape",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 110,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "cape",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyDrmario5K_Share_ACTION_SpecialSAir_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 14,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 110,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "cape",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 110,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "cape",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyDrmario5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 37,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 3,
+					end: 3,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 4,
+					end: 7,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 8,
+					end: 11,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 12,
+					end: 15,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 16,
+					end: 19,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 20,
+					end: 23,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 24,
+					end: 27,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 28,
+					end: 29,
+					hitboxes: [6]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 150,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 150,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 74,
+					kbGrowth: 100,
+					weightDepKb: 140,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 180,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 72,
+					kbGrowth: 100,
+					weightDepKb: 90,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 120,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 160,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyDrmario5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 37,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 3,
+					end: 3,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 4,
+					end: 7,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 8,
+					end: 11,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 12,
+					end: 15,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 16,
+					end: 19,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 20,
+					end: 23,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 24,
+					end: 27,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 28,
+					end: 29,
+					hitboxes: [6]
+				},
+				{
+					start: 31,
+					end: 31,
+					hitboxes: [7]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 150,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 150,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 74,
+					kbGrowth: 100,
+					weightDepKb: 140,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 180,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 72,
+					kbGrowth: 100,
+					weightDepKb: 90,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 120,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 160,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 140,
+					kbGrowth: 0,
+					weightDepKb: 40,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 180,
+					kbGrowth: 0,
+					weightDepKb: 5,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyDrmario5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 8,
+					end: 8,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 14,
+					hitboxes: [1]
+				},
+				{
+					start: 21,
+					end: 21,
+					hitboxes: [1]
+				},
+				{
+					start: 28,
+					end: 28,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 36,
+					hitboxes: [2]
+				},
+				{
+					start: 39,
+					end: 40,
+					hitboxes: [3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 140,
+					kbGrowth: 0,
+					weightDepKb: 40,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 180,
+					kbGrowth: 0,
+					weightDepKb: 5,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 100,
+					kbGrowth: 0,
+					weightDepKb: 5,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 75,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyDrmario5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 8,
+					end: 8,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 14,
+					hitboxes: [1]
+				},
+				{
+					start: 21,
+					end: 21,
+					hitboxes: [1]
+				},
+				{
+					start: 28,
+					end: 28,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 36,
+					hitboxes: [2]
+				},
+				{
+					start: 38,
+					end: 39,
+					hitboxes: [3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 140,
+					kbGrowth: 0,
+					weightDepKb: 40,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 160,
+					kbGrowth: 0,
+					weightDepKb: 1,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 100,
+					kbGrowth: 0,
+					weightDepKb: 1,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		}
+	},
+	Falco: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyFalco5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 17,
+			iasa: 16,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyFalco5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 19,
+			iasa: 18,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 50,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: {
+			subactionIndex: 49,
+			subactionName: "PlyFalco5K_Share_ACTION_Attack100Start_figatree",
+			totalFrames: 6,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		rapidjabs_loop: {
+			subactionIndex: 50,
+			subactionName: "PlyFalco5K_Share_ACTION_Attack100Loop_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 80,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_end: {
+			subactionIndex: 51,
+			subactionName: "PlyFalco5K_Share_ACTION_Attack100End_figatree",
+			totalFrames: 8,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 17,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 72,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 72,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: {
+			subactionIndex: 54,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackS3HiS_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: {
+			subactionIndex: 56,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackS3LwS_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 23,
+			iasa: 23,
+			hitFrames: [{
+				start: 5,
+				end: 11,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 97,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 90,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 29,
+			iasa: 28,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 75,
+				kbGrowth: 125,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 39,
+			chargeFrame: 7,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0, 1]
+			}, {
+				start: 17,
+				end: 21,
+				hitboxes: [2]
+			}],
+			hitboxes: [
+				{
+					damage: 17,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 17,
+					angle: 110,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 105,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 43,
+			chargeFrame: 2,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 11,
+				end: 15,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 95,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 49,
+			chargeFrame: 2,
+			iasa: 46,
+			hitFrames: [{
+				start: 6,
+				end: 10,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 25,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 80,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 49,
+			iasa: 42,
+			autoCancelBefore: 4,
+			autoCancelAfter: 36,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 31,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 59,
+			iasa: 53,
+			autoCancelBefore: 6,
+			autoCancelAfter: 48,
+			landingLag: 22,
+			lcancelledLandingLag: 11,
+			hitFrames: [
+				{
+					start: 6,
+					end: 8,
+					hitboxes: [0]
+				},
+				{
+					start: 16,
+					end: 18,
+					hitboxes: [1]
+				},
+				{
+					start: 24,
+					end: 26,
+					hitboxes: [2]
+				},
+				{
+					start: 33,
+					end: 35,
+					hitboxes: [3]
+				},
+				{
+					start: 43,
+					end: 45,
+					hitboxes: [4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 38,
+			autoCancelBefore: 4,
+			autoCancelAfter: 22,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0, 1]
+			}, {
+				start: 8,
+				end: 19,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 8,
+			autoCancelAfter: 25,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 8,
+				end: 9,
+				hitboxes: [0, 1]
+			}, {
+				start: 11,
+				end: 14,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 6,
+					angle: 90,
+					kbGrowth: 20,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 90,
+					kbGrowth: 20,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 70,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 22,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 90,
+					kbGrowth: 20,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyFalco5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			autoCancelBefore: 5,
+			autoCancelAfter: 29,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 5,
+				end: 14,
+				hitboxes: [0]
+			}, {
+				start: 15,
+				end: 24,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 290,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 290,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyFalco5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyFalco5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyFalco5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyFalco5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 33,
+			iasa: null,
+			"throw": {
+				damage: 3,
+				angle: 45,
+				kbGrowth: 135,
+				weightDepKb: 0,
+				baseKb: 8,
+				element: 12
+			},
+			hitFrames: [{
+				start: 10,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 60,
+				kbGrowth: 180,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 60,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyFalco5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 38,
+			projectiles: [
+				15,
+				18,
+				21
+			],
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 56,
+				kbGrowth: 85,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyFalco5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 38,
+			projectiles: [
+				18,
+				20,
+				24
+			],
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 90,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				baseKb: 18,
+				element: 12
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyFalco5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 43,
+			projectiles: [
+				23,
+				25,
+				28,
+				31
+			],
+			iasa: null,
+			"throw": {
+				damage: 1,
+				angle: 270,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 37,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 6,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 4,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialAirNLoop_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 21,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 3,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialSEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 3,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialAirSEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialHiHold_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialHiHoldAir_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 16,
+				angle: 80,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "fire",
+				shieldDamage: 5,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialHiLanding_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialHiFall_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialHiBound_figatree",
+			totalFrames: 14,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialLwStart_figatree",
+			totalFrames: 3,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 1,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 84,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 110,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialLwLoop_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialLwHit_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialLwEnd_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13d": {
+			subactionIndex: 317,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialAirLwStart_figatree",
+			totalFrames: 3,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 1,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 84,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 110,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13e": {
+			subactionIndex: 318,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialAirLwLoop_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13f": {
+			subactionIndex: 319,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialAirLwHit_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x140": {
+			subactionIndex: 320,
+			subactionName: "PlyFalco5K_Share_ACTION_SpecialAirLwEnd_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Fox: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyFox5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 17,
+			iasa: 16,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyFox5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 19,
+			iasa: 18,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: {
+			subactionIndex: 49,
+			subactionName: "PlyFox5K_Share_ACTION_Attack100Start_figatree",
+			totalFrames: 6,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		rapidjabs_loop: {
+			subactionIndex: 50,
+			subactionName: "PlyFox5K_Share_ACTION_Attack100Loop_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 78,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_end: {
+			subactionIndex: 51,
+			subactionName: "PlyFox5K_Share_ACTION_Attack100End_figatree",
+			totalFrames: 8,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyFox5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 17,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 72,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 5,
+				angle: 72,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyFox5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: {
+			subactionIndex: 54,
+			subactionName: "PlyFox5K_Share_ACTION_AttackS3HiS_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyFox5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: {
+			subactionIndex: 56,
+			subactionName: "PlyFox5K_Share_ACTION_AttackS3LwS_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyFox5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 26,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyFox5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 23,
+			iasa: 23,
+			hitFrames: [{
+				start: 5,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 110,
+					kbGrowth: 140,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 18,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: false
+				},
+				{
+					damage: 9,
+					angle: 84,
+					kbGrowth: 140,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 18,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 80,
+					kbGrowth: 140,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 18,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyFox5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 29,
+			iasa: 28,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 70,
+					kbGrowth: 125,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 125,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 90,
+					kbGrowth: 125,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyFox5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 39,
+			chargeFrame: 7,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0]
+			}, {
+				start: 17,
+				end: 22,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 2,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyFox5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 41,
+			chargeFrame: 2,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 10,
+				end: 17,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 18,
+				angle: 80,
+				kbGrowth: 112,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyFox5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 49,
+			chargeFrame: 2,
+			iasa: 46,
+			hitFrames: [{
+				start: 6,
+				end: 10,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 25,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 12,
+				angle: 361,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyFox5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 49,
+			iasa: 42,
+			autoCancelBefore: 4,
+			autoCancelAfter: 36,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 31,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyFox5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 59,
+			iasa: 53,
+			autoCancelBefore: 6,
+			autoCancelAfter: 48,
+			landingLag: 22,
+			lcancelledLandingLag: 11,
+			hitFrames: [
+				{
+					start: 6,
+					end: 8,
+					hitboxes: [0]
+				},
+				{
+					start: 16,
+					end: 18,
+					hitboxes: [1]
+				},
+				{
+					start: 24,
+					end: 26,
+					hitboxes: [2]
+				},
+				{
+					start: 33,
+					end: 35,
+					hitboxes: [3]
+				},
+				{
+					start: 43,
+					end: 45,
+					hitboxes: [4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyFox5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 38,
+			autoCancelBefore: 4,
+			autoCancelAfter: 22,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0, 1]
+			}, {
+				start: 8,
+				end: 19,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyFox5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 8,
+			autoCancelAfter: 25,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 8,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 11,
+				end: 14,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 92,
+				kbGrowth: 120,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 85,
+				kbGrowth: 116,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyFox5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			autoCancelBefore: 5,
+			autoCancelAfter: 33,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [
+				{
+					start: 5,
+					end: 6,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 11,
+					end: 12,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [0, 1]
+				}
+			],
+			hitboxes: [{
+				damage: 3,
+				angle: 290,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 2,
+				angle: 290,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyFox5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyFox5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyFox5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyFox5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 33,
+			iasa: null,
+			"throw": {
+				damage: 3,
+				angle: 45,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				baseKb: 8,
+				element: 12
+			},
+			hitFrames: [{
+				start: 10,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 55,
+				kbGrowth: 100,
+				weightDepKb: 140,
+				hitboxInteraction: 0,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyFox5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 38,
+			projectiles: [
+				15,
+				18,
+				21
+			],
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 56,
+				kbGrowth: 85,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyFox5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 38,
+			projectiles: [
+				18,
+				20,
+				24
+			],
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 90,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				baseKb: 18,
+				element: 12
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyFox5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 43,
+			projectiles: [
+				23,
+				25,
+				28,
+				31
+			],
+			iasa: null,
+			"throw": {
+				damage: 1,
+				angle: 270,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 37,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 6,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 4,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialAirNLoop_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 21,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 3,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialSEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 3,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialAirSEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialHiHold_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 20,
+					end: 20,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 22,
+					hitboxes: [0]
+				},
+				{
+					start: 24,
+					end: 24,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 26,
+					hitboxes: [0]
+				},
+				{
+					start: 28,
+					end: 28,
+					hitboxes: [0]
+				},
+				{
+					start: 30,
+					end: 30,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 32,
+					hitboxes: [0]
+				},
+				{
+					start: 34,
+					end: 34,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 40,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialHiHoldAir_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 20,
+					end: 20,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 22,
+					hitboxes: [0]
+				},
+				{
+					start: 24,
+					end: 24,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 26,
+					hitboxes: [0]
+				},
+				{
+					start: 28,
+					end: 28,
+					hitboxes: [0]
+				},
+				{
+					start: 30,
+					end: 30,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 32,
+					hitboxes: [0]
+				},
+				{
+					start: 34,
+					end: 34,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 40,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 14,
+				angle: 80,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "fire",
+				shieldDamage: 5,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialHiLanding_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialHiFall_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialHiBound_figatree",
+			totalFrames: 14,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialLwStart_figatree",
+			totalFrames: 3,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 1,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 0,
+				kbGrowth: 100,
+				weightDepKb: 80,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialLwLoop_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialLwHit_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialLwEnd_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13d": {
+			subactionIndex: 317,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialAirLwStart_figatree",
+			totalFrames: 3,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 1,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 0,
+				kbGrowth: 100,
+				weightDepKb: 80,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13e": {
+			subactionIndex: 318,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialAirLwLoop_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13f": {
+			subactionIndex: 319,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialAirLwHit_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x140": {
+			subactionIndex: 320,
+			subactionName: "PlyFox5K_Share_ACTION_SpecialAirLwEnd_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	"Mr. Game & Watch": {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyGamewatch5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 17,
+			iasa: 16,
+			hitFrames: [{
+				start: 4,
+				end: 6,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 83,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 3,
+				angle: 85,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: null,
+		jab3: null,
+		rapidjabs_start: {
+			subactionIndex: 49,
+			subactionName: "PlyGamewatch5K_Share_ACTION_Attack100Start_figatree",
+			totalFrames: 3,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		rapidjabs_loop: {
+			subactionIndex: 50,
+			subactionName: "PlyGamewatch5K_Share_ACTION_Attack100Loop_figatree",
+			totalFrames: 11,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 18,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_end: {
+			subactionIndex: 51,
+			subactionName: "PlyGamewatch5K_Share_ACTION_Attack100End_figatree",
+			totalFrames: 8,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 37,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 120,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 70,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: null,
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackS3_figatree",
+			totalFrames: 44,
+			iasa: 42,
+			hitFrames: [{
+				start: 13,
+				end: 30,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: null,
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 100,
+					kbGrowth: 127,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 100,
+					kbGrowth: 125,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 100,
+					kbGrowth: 123,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 29,
+			iasa: 26,
+			hitFrames: [{
+				start: 6,
+				end: 13,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 85,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 65,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: false,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 44,
+			chargeFrame: 8,
+			iasa: 42,
+			hitFrames: [{
+				start: 13,
+				end: 16,
+				hitboxes: [0, 1]
+			}, {
+				start: 17,
+				end: 33,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 18,
+					angle: 55,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 44,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 44,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 55,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 44,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 44,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 44,
+			chargeFrame: 18,
+			iasa: 40,
+			hitFrames: [{
+				start: 24,
+				end: 28,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 18,
+				angle: 83,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 34,
+			chargeFrame: 8,
+			iasa: null,
+			hitFrames: [{
+				start: 15,
+				end: 19,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 20,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 16,
+				angle: 80,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 44,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 44,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 20,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 44,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 44,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 10,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 13,
+				end: 32,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: null,
+			autoCancelBefore: 10,
+			autoCancelAfter: 39,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [
+				{
+					start: 10,
+					end: 12,
+					hitboxes: [0]
+				},
+				{
+					start: 13,
+					end: 15,
+					hitboxes: [0]
+				},
+				{
+					start: 16,
+					end: 18,
+					hitboxes: [0]
+				},
+				{
+					start: 19,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 24,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 5,
+				angle: 68,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			autoCancelBefore: 7,
+			autoCancelAfter: 39,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 7,
+				end: 16,
+				hitboxes: [0]
+			}, {
+				start: 21,
+				end: 22,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 94,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 90,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 55,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyGamewatch5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			autoCancelBefore: 6,
+			autoCancelAfter: 49,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 12,
+				end: 12,
+				hitboxes: [0, 1]
+			}, {
+				start: 13,
+				end: 38,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 60,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyGamewatch5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyGamewatch5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyGamewatch5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyGamewatch5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 69,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 68,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 25,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyGamewatch5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 69,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 68,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 25,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyGamewatch5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 69,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 90,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 25,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyGamewatch5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 69,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 88,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 18,
+				end: 21,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 10,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 18,
+				end: 21,
+				hitboxes: [0]
+			}, {
+				start: 40,
+				end: 40,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 10,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 2,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 140,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 45,
+				element: "normal",
+				shieldDamage: 20,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 40,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 18,
+					hitboxes: [0]
+				},
+				{
+					start: 19,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 24,
+					hitboxes: [0]
+				},
+				{
+					start: 25,
+					end: 27,
+					hitboxes: [0]
+				},
+				{
+					start: 28,
+					end: 30,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 3,
+				angle: 75,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 20,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 70,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "ice",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 32,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 100,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 32,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 35,
+					hitboxes: [2]
+				},
+				{
+					start: 38,
+					end: 38,
+					hitboxes: [3]
+				},
+				{
+					start: 41,
+					end: 43,
+					hitboxes: [4]
+				},
+				{
+					start: 44,
+					end: 46,
+					hitboxes: [4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 2,
+					angle: 361,
+					kbGrowth: 0,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 140,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 45,
+					element: "normal",
+					shieldDamage: 20,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 40,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 75,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 32,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 35,
+					hitboxes: [2]
+				},
+				{
+					start: 38,
+					end: 40,
+					hitboxes: [3]
+				},
+				{
+					start: 41,
+					end: 43,
+					hitboxes: [3]
+				},
+				{
+					start: 44,
+					end: 46,
+					hitboxes: [3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 140,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 45,
+					element: "normal",
+					shieldDamage: 20,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 40,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 75,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 32,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 37,
+					hitboxes: [2]
+				},
+				{
+					start: 38,
+					end: 40,
+					hitboxes: [2]
+				},
+				{
+					start: 41,
+					end: 43,
+					hitboxes: [2]
+				},
+				{
+					start: 44,
+					end: 46,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 6,
+					angle: 140,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 45,
+					element: "normal",
+					shieldDamage: 20,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 40,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 75,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 34,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 37,
+					hitboxes: [1]
+				},
+				{
+					start: 38,
+					end: 40,
+					hitboxes: [1]
+				},
+				{
+					start: 41,
+					end: 43,
+					hitboxes: [1]
+				},
+				{
+					start: 44,
+					end: 46,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 8,
+				angle: 40,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 3,
+				angle: 75,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 18,
+					hitboxes: [0]
+				},
+				{
+					start: 19,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 24,
+					hitboxes: [0]
+				},
+				{
+					start: 25,
+					end: 27,
+					hitboxes: [0]
+				},
+				{
+					start: 28,
+					end: 30,
+					hitboxes: [0]
+				},
+				{
+					start: 34,
+					end: 34,
+					hitboxes: [1]
+				},
+				{
+					start: 37,
+					end: 37,
+					hitboxes: [2]
+				},
+				{
+					start: 40,
+					end: 40,
+					hitboxes: [3]
+				},
+				{
+					start: 43,
+					end: 43,
+					hitboxes: [4]
+				},
+				{
+					start: 44,
+					end: 45,
+					hitboxes: [5]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 75,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 20,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 70,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "ice",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 32,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 100,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 32,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 35,
+					hitboxes: [2]
+				},
+				{
+					start: 38,
+					end: 38,
+					hitboxes: [3]
+				},
+				{
+					start: 39,
+					end: 40,
+					hitboxes: [4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 20,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 70,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "ice",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 32,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 100,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 32,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 35,
+					hitboxes: [2]
+				},
+				{
+					start: 36,
+					end: 37,
+					hitboxes: [3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 70,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "ice",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 32,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 100,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 32,
+					hitboxes: [1]
+				},
+				{
+					start: 33,
+					end: 37,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 70,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "ice",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 32,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 100,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 29,
+				hitboxes: [0]
+			}, {
+				start: 30,
+				end: 37,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 32,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 100,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 80,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 37,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 80,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 37,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 80,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13d": {
+			subactionIndex: 317,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13e": {
+			subactionIndex: 318,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialLwCatch_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13f": {
+			subactionIndex: 319,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialLwShoot_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 2,
+					end: 10,
+					hitboxes: [0]
+				},
+				{
+					start: 11,
+					end: 22,
+					hitboxes: [0]
+				},
+				{
+					start: 23,
+					end: 37,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x140": {
+			subactionIndex: 320,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 39,
+					end: 39,
+					hitboxes: [0]
+				},
+				{
+					start: 40,
+					end: 40,
+					hitboxes: [0]
+				},
+				{
+					start: 41,
+					end: 41,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x141": {
+			subactionIndex: 321,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirLwCatch_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 11,
+				end: 22,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x142": {
+			subactionIndex: 322,
+			subactionName: "PlyGamewatch5K_Share_ACTION_SpecialAirLwShoot_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 2,
+					end: 10,
+					hitboxes: [0]
+				},
+				{
+					start: 11,
+					end: 22,
+					hitboxes: [0]
+				},
+				{
+					start: 23,
+					end: 37,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		}
+	},
+	Ganondorf: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyGanon5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 21,
+			iasa: 19,
+			hitFrames: [{
+				start: 3,
+				end: 5,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyGanon5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 30,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 39,
+			iasa: 38,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 10,
+				end: 16,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 115,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 110,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_mh: {
+			subactionIndex: 54,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackS3HiS_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_ml: {
+			subactionIndex: 56,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackS3LwS_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 114,
+			iasa: 113,
+			hitFrames: [{
+				start: 81,
+				end: 83,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 27,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 110,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 35,
+			iasa: 35,
+			hitFrames: [{
+				start: 10,
+				end: 12,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_h: {
+			subactionIndex: 60,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackS4Hi_figatree",
+			totalFrames: 66,
+			chargeFrame: 10,
+			iasa: 60,
+			hitFrames: [{
+				start: 20,
+				end: 24,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 24,
+				angle: 80,
+				kbGrowth: 85,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackS4S_figatree",
+			totalFrames: 66,
+			chargeFrame: 10,
+			iasa: 60,
+			hitFrames: [{
+				start: 20,
+				end: 24,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 22,
+				angle: 70,
+				kbGrowth: 83,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 20,
+				angle: 60,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: {
+			subactionIndex: 64,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackS4Lw_figatree",
+			totalFrames: 66,
+			chargeFrame: 10,
+			iasa: 60,
+			hitFrames: [{
+				start: 20,
+				end: 24,
+				hitboxes: [0]
+			}, {
+				start: 63,
+				end: 65,
+				hitboxes: [
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 20,
+					angle: 60,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 22,
+					angle: 90,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 22,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 22,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 54,
+			chargeFrame: 8,
+			iasa: 40,
+			hitFrames: [{
+				start: 21,
+				end: 23,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}, {
+				start: 26,
+				end: 29,
+				hitboxes: [
+					3,
+					4,
+					5
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 22,
+					angle: 90,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 22,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 22,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 19,
+					angle: 90,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 19,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 19,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 49,
+			chargeFrame: 14,
+			iasa: 47,
+			hitFrames: [{
+				start: 19,
+				end: 22,
+				hitboxes: [0, 1]
+			}, {
+				start: 29,
+				end: 32,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 160,
+					kbGrowth: 100,
+					weightDepKb: 90,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 160,
+					kbGrowth: 100,
+					weightDepKb: 130,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 120,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 120,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 44,
+			iasa: null,
+			autoCancelBefore: 4,
+			autoCancelAfter: 25,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 7,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}, {
+				start: 20,
+				end: 21,
+				hitboxes: [3]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 55,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 65,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 44,
+			iasa: 35,
+			autoCancelBefore: 7,
+			autoCancelAfter: 33,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 14,
+				end: 19,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 17,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 35,
+			iasa: 29,
+			autoCancelBefore: 7,
+			autoCancelAfter: 18,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 10,
+				end: 15,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 16,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 33,
+			iasa: 30,
+			autoCancelBefore: 1,
+			autoCancelAfter: 21,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [
+				{
+					start: 6,
+					end: 10,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 11,
+					end: 13,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 14,
+					end: 16,
+					hitboxes: [4, 5]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 30,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 30,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 0,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 0,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyGanon5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 44,
+			iasa: 38,
+			autoCancelBefore: 4,
+			autoCancelAfter: 35,
+			landingLag: 35,
+			lcancelledLandingLag: 17,
+			hitFrames: [{
+				start: 16,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 22,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 50,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyGanon5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyGanon5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyGanon5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyGanon5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 45,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				baseKb: 11,
+				element: 4
+			},
+			hitFrames: [{
+				start: 11,
+				end: 17,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 70,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyGanon5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 135,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				baseKb: 7,
+				element: 8
+			},
+			hitFrames: [{
+				start: 12,
+				end: 19,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 70,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyGanon5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 43,
+			iasa: null,
+			"throw": {
+				damage: 3,
+				angle: 90,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [{
+				start: 11,
+				end: 28,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 60,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyGanon5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 100,
+				kbGrowth: 36,
+				weightDepKb: 0,
+				baseKb: 18,
+				element: 12
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 119,
+			iasa: 117,
+			hitFrames: [{
+				start: 70,
+				end: 72,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 30,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 32,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 34,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 119,
+			iasa: 117,
+			hitFrames: [{
+				start: 70,
+				end: 72,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 30,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 32,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 34,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "empty",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 17,
+				angle: 105,
+				kbGrowth: 69,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 60,
+				element: "darkness",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "empty",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 44,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 70,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 50,
+				element: "darkness",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 64,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 13,
+				hitboxes: [0, 1]
+			}, {
+				start: 14,
+				end: 39,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 64,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 13,
+				hitboxes: [0, 1]
+			}, {
+				start: 14,
+				end: 39,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialHiCatch_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 4,
+					end: 4,
+					hitboxes: [0]
+				},
+				{
+					start: 8,
+					end: 8,
+					hitboxes: [0]
+				},
+				{
+					start: 12,
+					end: 12,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialHiThrow_figatree",
+			totalFrames: 59,
+			iasa: null,
+			"throw": {
+				damage: 15,
+				angle: 361,
+				kbGrowth: 82,
+				weightDepKb: 0,
+				baseKb: 10,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 14,
+				end: 38,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 85,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "darkness",
+				shieldDamage: 10,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialLwEnd_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 14,
+				angle: 290,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "darkness",
+				shieldDamage: 10,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialAirLwEnd_figatree",
+			totalFrames: 44,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 80,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 60,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialLwEndAir_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialAirLwEndAir_figatree",
+			totalFrames: 28,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13d": {
+			subactionIndex: 317,
+			subactionName: "PlyGanon5K_Share_ACTION_SpecialHiThrow_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Jigglypuff: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyPurin5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 17,
+			iasa: 16,
+			hitFrames: [{
+				start: 5,
+				end: 6,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyPurin5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 19,
+			iasa: 16,
+			hitFrames: [{
+				start: 5,
+				end: 6,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 16,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 39,
+			iasa: 39,
+			hitFrames: [{
+				start: 4,
+				end: 8,
+				hitboxes: [0]
+			}, {
+				start: 9,
+				end: 14,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 16,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 8,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 10,
+				end: 14,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 96,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 88,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 39,
+			iasa: 30,
+			hitFrames: [{
+				start: 10,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 20,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 44,
+			chargeFrame: 4,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 15,
+				hitboxes: [0]
+			}, {
+				start: 16,
+				end: 20,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 17,
+				angle: 361,
+				kbGrowth: 118,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 361,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 6,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 54,
+			chargeFrame: 5,
+			iasa: 45,
+			hitFrames: [{
+				start: 7,
+				end: 10,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 90,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 15,
+				angle: 90,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 54,
+			chargeFrame: 5,
+			iasa: 48,
+			hitFrames: [{
+				start: 9,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 0,
+				kbGrowth: 66,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 34,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 49,
+			iasa: null,
+			autoCancelBefore: 6,
+			autoCancelAfter: 28,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 28,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 39,
+			iasa: 35,
+			autoCancelBefore: 7,
+			autoCancelAfter: 33,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 7,
+				end: 8,
+				hitboxes: [0, 1]
+			}, {
+				start: 9,
+				end: 22,
+				hitboxes: [2]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 31,
+			autoCancelBefore: 9,
+			autoCancelAfter: 24,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 9,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 39,
+			iasa: 38,
+			autoCancelBefore: 9,
+			autoCancelAfter: 36,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 9,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 90,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyPurin5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			autoCancelBefore: 5,
+			autoCancelAfter: 41,
+			landingLag: 30,
+			lcancelledLandingLag: 15,
+			hitFrames: [
+				{
+					start: 5,
+					end: 6,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 11,
+					end: 12,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 29,
+					end: 30,
+					hitboxes: [0, 1]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}, {
+				damage: 2,
+				angle: 30,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: false,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyPurin5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyPurin5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyPurin5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyPurin5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 35,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 55,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				baseKb: 25,
+				element: 0
+			},
+			hitFrames: [{
+				start: 10,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyPurin5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 135,
+				kbGrowth: 25,
+				weightDepKb: 0,
+				baseKb: 22,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyPurin5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 41,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 90,
+				kbGrowth: 25,
+				weightDepKb: 0,
+				baseKb: 32,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyPurin5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 84,
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 80,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				baseKb: 25,
+				element: 0
+			},
+			hitFrames: [
+				{
+					start: 10,
+					end: 12,
+					hitboxes: [0]
+				},
+				{
+					start: 23,
+					end: 25,
+					hitboxes: [0]
+				},
+				{
+					start: 36,
+					end: 38,
+					hitboxes: [0]
+				},
+				{
+					start: 49,
+					end: 51,
+					hitboxes: [0]
+				},
+				{
+					start: 62,
+					end: 64,
+					hitboxes: [0]
+				},
+				{
+					start: 75,
+					end: 75,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 1,
+				angle: 40,
+				kbGrowth: 100,
+				weightDepKb: 25,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 3,
+				angle: 40,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialNStartR_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialNStartL_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 29,
+				end: 48,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 20,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 21,
+				end: 40,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 20,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 20,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialNEndR_figatree",
+			totalFrames: 31,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialNEndL_figatree",
+			totalFrames: 31,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialAirNStartR_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialAirNStartL_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 29,
+				end: 48,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 90,
+				kbGrowth: 102,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 21,
+				end: 40,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 90,
+				kbGrowth: 102,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 90,
+				kbGrowth: 102,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialAirNEndR_figatree",
+			totalFrames: 31,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialAirNEndL_figatree",
+			totalFrames: 31,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13d": {
+			subactionIndex: 317,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 27,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 90,
+				kbGrowth: 75,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 52,
+				element: "normal",
+				shieldDamage: 20,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 120,
+				kbGrowth: 75,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 52,
+				element: "normal",
+				shieldDamage: 20,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13e": {
+			subactionIndex: 318,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 27,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 90,
+				kbGrowth: 75,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 52,
+				element: "normal",
+				shieldDamage: 20,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 120,
+				kbGrowth: 75,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 52,
+				element: "normal",
+				shieldDamage: 20,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13f": {
+			subactionIndex: 319,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialHiL_figatree",
+			totalFrames: 179,
+			iasa: null,
+			hitFrames: [{
+				start: 28,
+				end: 125,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "sleep_103f",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x140": {
+			subactionIndex: 320,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialAirHiL_figatree",
+			totalFrames: 179,
+			iasa: null,
+			hitFrames: [{
+				start: 28,
+				end: 125,
+				hitboxes: [0]
+			}, {
+				start: 127,
+				end: 127,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "sleep_103f",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}, {
+				damage: 28,
+				angle: 361,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 78,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x141": {
+			subactionIndex: 321,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialHiR_figatree",
+			totalFrames: 179,
+			iasa: null,
+			hitFrames: [{
+				start: 28,
+				end: 125,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "sleep_103f",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x142": {
+			subactionIndex: 322,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialAirHiR_figatree",
+			totalFrames: 179,
+			iasa: null,
+			hitFrames: [{
+				start: 28,
+				end: 125,
+				hitboxes: [0]
+			}, {
+				start: 127,
+				end: 127,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "sleep_103f",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}, {
+				damage: 28,
+				angle: 361,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 78,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x143": {
+			subactionIndex: 323,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialLwL_figatree",
+			totalFrames: 249,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 2,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 28,
+				angle: 361,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 78,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x144": {
+			subactionIndex: 324,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialAirLwL_figatree",
+			totalFrames: 249,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 2,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 28,
+				angle: 361,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 78,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x145": {
+			subactionIndex: 325,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialLwR_figatree",
+			totalFrames: 249,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 2,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 28,
+				angle: 361,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 78,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x146": {
+			subactionIndex: 326,
+			subactionName: "PlyPurin5K_Share_ACTION_SpecialAirLwR_figatree",
+			totalFrames: 249,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 2,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 28,
+				angle: 361,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 78,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		}
+	},
+	Kirby: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyKirby5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 17,
+			iasa: 16,
+			hitFrames: [{
+				start: 3,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyKirby5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 19,
+			iasa: 16,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 70,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: {
+			subactionIndex: 49,
+			subactionName: "PlyKirby5K_Share_ACTION_Attack100Start_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		rapidjabs_loop: {
+			subactionIndex: 50,
+			subactionName: "PlyKirby5K_Share_ACTION_Attack100Loop_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 65,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_end: {
+			subactionIndex: 51,
+			subactionName: "PlyKirby5K_Share_ACTION_Attack100End_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 63,
+			iasa: 60,
+			hitFrames: [{
+				start: 9,
+				end: 15,
+				hitboxes: [0]
+			}, {
+				start: 16,
+				end: 43,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 105,
+				kbGrowth: 66,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 70,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 5,
+				angle: 105,
+				kbGrowth: 66,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 50,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 32,
+			iasa: 28,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 32,
+			iasa: 28,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 32,
+			iasa: 28,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 4,
+				hitboxes: [0, 1]
+			}, {
+				start: 5,
+				end: 7,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 92,
+					kbGrowth: 118,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 92,
+					kbGrowth: 114,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 88,
+					kbGrowth: 118,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 88,
+					kbGrowth: 114,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 20,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: {
+			subactionIndex: 60,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackS4Hi_figatree",
+			totalFrames: 49,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 15,
+				hitboxes: [0]
+			}, {
+				start: 16,
+				end: 21,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 24,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 75,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 18,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackS4S_figatree",
+			totalFrames: 49,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 15,
+				hitboxes: [0]
+			}, {
+				start: 16,
+				end: 21,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 24,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 75,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 18,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: {
+			subactionIndex: 64,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackS4Lw_figatree",
+			totalFrames: 49,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 15,
+				hitboxes: [0]
+			}, {
+				start: 16,
+				end: 21,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 24,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 75,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 18,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 49,
+			chargeFrame: 9,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 13,
+					end: 13,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 16,
+					end: 23,
+					hitboxes: [4, 5]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 15,
+					angle: 75,
+					kbGrowth: 118,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 75,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 50,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 50,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 55,
+			chargeFrame: 5,
+			iasa: 50,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [0, 1]
+			}, {
+				start: 10,
+				end: 22,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 76,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 14,
+				angle: 28,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 79,
+			iasa: 50,
+			autoCancelBefore: 10,
+			autoCancelAfter: 37,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [
+				{
+					start: 10,
+					end: 10,
+					hitboxes: [0]
+				},
+				{
+					start: 11,
+					end: 17,
+					hitboxes: [0]
+				},
+				{
+					start: 18,
+					end: 29,
+					hitboxes: [1]
+				},
+				{
+					start: 30,
+					end: 34,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 49,
+			iasa: 40,
+			autoCancelBefore: 10,
+			autoCancelAfter: 37,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [0]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [0]
+				},
+				{
+					start: 25,
+					end: 26,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 5,
+				angle: 60,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 361,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 43,
+			iasa: 36,
+			autoCancelBefore: 6,
+			autoCancelAfter: 27,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}, {
+				start: 9,
+				end: 20,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 11,
+			autoCancelAfter: 16,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 11,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyKirby5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 59,
+			iasa: 55,
+			autoCancelBefore: 18,
+			autoCancelAfter: 47,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [0]
+				},
+				{
+					start: 21,
+					end: 22,
+					hitboxes: [0]
+				},
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [0]
+				},
+				{
+					start: 27,
+					end: 28,
+					hitboxes: [0]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [0]
+				},
+				{
+					start: 33,
+					end: 34,
+					hitboxes: [0]
+				},
+				{
+					start: 36,
+					end: 37,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 3,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyKirby5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyKirby5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyKirby5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyKirby5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 61,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 65,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				baseKb: 10,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyKirby5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 120,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyKirby5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 79,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 90,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyKirby5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 87,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 90,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				baseKb: 10,
+				element: 0
+			},
+			hitFrames: [
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [0]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [0]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [0]
+				},
+				{
+					start: 34,
+					end: 35,
+					hitboxes: [0]
+				},
+				{
+					start: 38,
+					end: 39,
+					hitboxes: [0]
+				},
+				{
+					start: 42,
+					end: 43,
+					hitboxes: [0]
+				},
+				{
+					start: 46,
+					end: 47,
+					hitboxes: [0]
+				},
+				{
+					start: 56,
+					end: 56,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 0,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 10,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 90,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}, {
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13e": {
+			subactionIndex: 318,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialNDrink_figatree",
+			totalFrames: 29,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				baseKb: 0,
+				element: 0,
+				released: false
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13f": {
+			subactionIndex: 319,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialNSpit_figatree",
+			totalFrames: 29,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				baseKb: 0,
+				element: 0,
+				released: false
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x140": {
+			subactionIndex: 320,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x141": {
+			subactionIndex: 321,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x142": {
+			subactionIndex: 322,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 22,
+				end: 28,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 60,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 23,
+				angle: 60,
+				kbGrowth: 76,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 65,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x143": {
+			subactionIndex: 323,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 69,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 7,
+					end: 10,
+					hitboxes: [0]
+				},
+				{
+					start: 11,
+					end: 14,
+					hitboxes: [0]
+				},
+				{
+					start: 15,
+					end: 18,
+					hitboxes: [0]
+				},
+				{
+					start: 19,
+					end: 22,
+					hitboxes: [0]
+				},
+				{
+					start: 23,
+					end: 26,
+					hitboxes: [0]
+				},
+				{
+					start: 27,
+					end: 30,
+					hitboxes: [0]
+				},
+				{
+					start: 31,
+					end: 34,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 38,
+					hitboxes: [1]
+				},
+				{
+					start: 39,
+					end: 42,
+					hitboxes: [1]
+				},
+				{
+					start: 43,
+					end: 46,
+					hitboxes: [1]
+				},
+				{
+					start: 47,
+					end: 50,
+					hitboxes: [1]
+				},
+				{
+					start: 51,
+					end: 54,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 4,
+				angle: 110,
+				kbGrowth: 100,
+				weightDepKb: 40,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 2,
+				angle: 110,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x144": {
+			subactionIndex: 324,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialHi1_figatree",
+			totalFrames: 22,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x145": {
+			subactionIndex: 325,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialHi2_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 1,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}, {
+				start: 24,
+				end: 33,
+				hitboxes: [4]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 117,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 96,
+					kbGrowth: 100,
+					weightDepKb: 117,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 102,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 96,
+					kbGrowth: 100,
+					weightDepKb: 102,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 275,
+					kbGrowth: 100,
+					weightDepKb: 100,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x146": {
+			subactionIndex: 326,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialHi3_figatree",
+			totalFrames: 4,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x147": {
+			subactionIndex: 327,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialHi4_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x148": {
+			subactionIndex: 328,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialAirHi1_figatree",
+			totalFrames: 22,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x149": {
+			subactionIndex: 329,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialAirHi2_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 1,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}, {
+				start: 24,
+				end: 33,
+				hitboxes: [4]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 117,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 96,
+					kbGrowth: 100,
+					weightDepKb: 117,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 102,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 96,
+					kbGrowth: 100,
+					weightDepKb: 102,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 275,
+					kbGrowth: 100,
+					weightDepKb: 100,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x14a": {
+			subactionIndex: 330,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialAirHi3_figatree",
+			totalFrames: 4,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x14b": {
+			subactionIndex: 331,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialAirHi4_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x14c": {
+			subactionIndex: 332,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialLw1_figatree",
+			totalFrames: 28,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x14d": {
+			subactionIndex: 333,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialLw2_figatree",
+			totalFrames: 30,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x14e": {
+			subactionIndex: 334,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialLw2_figatree",
+			totalFrames: 30,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x14f": {
+			subactionIndex: 335,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialAirLw1_figatree",
+			totalFrames: 28,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x150": {
+			subactionIndex: 336,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialAirLw2_figatree",
+			totalFrames: 30,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 18,
+				angle: 70,
+				kbGrowth: 55,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 65,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x151": {
+			subactionIndex: 337,
+			subactionName: "PlyKirby5K_Share_ACTION_SpecialAirLw2_figatree",
+			totalFrames: 30,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Link: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyLink5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 24,
+			iasa: 20,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyLink5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 21,
+			iasa: 17,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: {
+			subactionIndex: 48,
+			subactionName: "PlyLink5K_Share_ACTION_Attack13_figatree",
+			totalFrames: 49,
+			iasa: 32,
+			hitFrames: [{
+				start: 6,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_start: {
+			subactionIndex: 49,
+			subactionName: "PlyLink5K_Share_ACTION_Attack100Start_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		rapidjabs_loop: {
+			subactionIndex: 50,
+			subactionName: "PlyLink5K_Share_ACTION_Attack100Loop_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 1,
+					angle: 0,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 0,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 0,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		rapidjabs_end: {
+			subactionIndex: 51,
+			subactionName: "PlyLink5K_Share_ACTION_Attack100End_figatree",
+			totalFrames: 10,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyLink5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 53,
+			iasa: 40,
+			hitFrames: [{
+				start: 7,
+				end: 12,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_h: null,
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyLink5K_Share_ACTION_AttackS3_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 19,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 5,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 15,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 5,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 2,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 2,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_ml: null,
+		ftilt_l: null,
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyLink5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 15,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 95,
+					kbGrowth: 122,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 85,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 85,
+					kbGrowth: 124,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 85,
+					kbGrowth: 123,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyLink5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 39,
+			iasa: 32,
+			hitFrames: [{
+				start: 14,
+				end: 16,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 80,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 11,
+				angle: 280,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyLink5K_Share_ACTION_AttackS41_figatree",
+			totalFrames: 49,
+			chargeFrame: 10,
+			iasa: null,
+			hitFrames: [{
+				start: 15,
+				end: 18,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 83,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 85,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 85,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyLink5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 60,
+			chargeFrame: 4,
+			iasa: 52,
+			hitFrames: [
+				{
+					start: 11,
+					end: 15,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 26,
+					end: 28,
+					hitboxes: [
+						3,
+						4,
+						5,
+						6
+					]
+				},
+				{
+					start: 41,
+					end: 43,
+					hitboxes: [
+						7,
+						8,
+						9
+					]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 4,
+					angle: 98,
+					kbGrowth: 100,
+					weightDepKb: 26,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 98,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 98,
+					kbGrowth: 100,
+					weightDepKb: 33,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 33,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 37,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 40,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 90,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 90,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 90,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 90,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 90,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyLink5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 49,
+			chargeFrame: 4,
+			iasa: 42,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}, {
+				start: 21,
+				end: 23,
+				hitboxes: [
+					3,
+					4,
+					5
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 75,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 26,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 16,
+					angle: 75,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 26,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 17,
+					angle: 75,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 26,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 75,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 16,
+					angle: 75,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 17,
+					angle: 75,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyLink5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 4,
+			autoCancelAfter: 31,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 4,
+				end: 5,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyLink5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 55,
+			iasa: null,
+			autoCancelBefore: 1,
+			autoCancelAfter: 50,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 14,
+				end: 16,
+				hitboxes: [0]
+			}, {
+				start: 30,
+				end: 33,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyLink5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 30,
+			autoCancelBefore: 1,
+			autoCancelAfter: 28,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 18,
+				end: 23,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyLink5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 69,
+			iasa: 60,
+			autoCancelBefore: 5,
+			autoCancelAfter: 55,
+			landingLag: 30,
+			lcancelledLandingLag: 15,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 49,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 80,
+				kbGrowth: 85,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyLink5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 89,
+			iasa: 80,
+			autoCancelBefore: 13,
+			autoCancelAfter: 64,
+			landingLag: 50,
+			lcancelledLandingLag: 25,
+			hitFrames: [{
+				start: 13,
+				end: 15,
+				hitboxes: [0, 1]
+			}, {
+				start: 16,
+				end: 64,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 22,
+				angle: 65,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 20,
+				angle: 65,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyLink5K_Share_ACTION_Catch_figatree",
+			totalFrames: 84,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 12,
+				hitboxes: [0, 1]
+			}, {
+				start: 13,
+				end: 17,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}, {
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyLink5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 94,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 11,
+				hitboxes: [0]
+			}, {
+				start: 12,
+				end: 17,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyLink5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyLink5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 3,
+				angle: 55,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				baseKb: 6,
+				element: 4
+			},
+			hitFrames: [{
+				start: 12,
+				end: 15,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyLink5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 3,
+				angle: 130,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				baseKb: 6,
+				element: 0
+			},
+			hitFrames: [{
+				start: 11,
+				end: 15,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyLink5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 90,
+				kbGrowth: 230,
+				weightDepKb: 0,
+				baseKb: 6,
+				element: 0
+			},
+			hitFrames: [{
+				start: 26,
+				end: 26,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 20,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 50,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyLink5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 90,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [{
+				start: 22,
+				end: 23,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialAirNLoop_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialS1_figatree",
+			totalFrames: 45,
+			projectiles: [5],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialS2_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialS1_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialAirS1_figatree",
+			totalFrames: 45,
+			projectiles: [5],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialAirS2_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialAirS1_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [{
+				start: 8,
+				end: 13,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 41,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 95,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 32,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 5,
+				angle: 0,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 60,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 8,
+					end: 13,
+					hitboxes: [
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 16,
+					end: 20,
+					hitboxes: [
+						4,
+						5,
+						6,
+						7
+					]
+				},
+				{
+					start: 22,
+					end: 27,
+					hitboxes: [
+						8,
+						9,
+						10,
+						11
+					]
+				},
+				{
+					start: 31,
+					end: 37,
+					hitboxes: [
+						12,
+						13,
+						14,
+						15
+					]
+				},
+				{
+					start: 46,
+					end: 50,
+					hitboxes: [16, 17]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 4,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 72,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 86,
+					kbGrowth: 100,
+					weightDepKb: 68,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 68,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 75,
+					kbGrowth: 100,
+					weightDepKb: 68,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 64,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 86,
+					kbGrowth: 100,
+					weightDepKb: 60,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 60,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 75,
+					kbGrowth: 100,
+					weightDepKb: 60,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 58,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 86,
+					kbGrowth: 100,
+					weightDepKb: 55,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 55,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 75,
+					kbGrowth: 100,
+					weightDepKb: 55,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 46,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 86,
+					kbGrowth: 100,
+					weightDepKb: 43,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 43,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 75,
+					kbGrowth: 100,
+					weightDepKb: 43,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 160,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 361,
+					kbGrowth: 160,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 39,
+			projectiles: [16],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyLink5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 39,
+			projectiles: [16],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Luigi: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyLuigi5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 83,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 3,
+				angle: 85,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyLuigi5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 83,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 2,
+				angle: 85,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: {
+			subactionIndex: 48,
+			subactionName: "PlyLuigi5K_Share_ACTION_Attack13_figatree",
+			totalFrames: 29,
+			iasa: 22,
+			hitFrames: [{
+				start: 4,
+				end: 5,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 63,
+			iasa: 59,
+			hitFrames: [
+				{
+					start: 4,
+					end: 4,
+					hitboxes: [0]
+				},
+				{
+					start: 10,
+					end: 10,
+					hitboxes: [0]
+				},
+				{
+					start: 16,
+					end: 16,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 22,
+					hitboxes: [0]
+				},
+				{
+					start: 29,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 37,
+					end: 37,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 2,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 32,
+			iasa: 32,
+			hitFrames: [{
+				start: 4,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 2,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 32,
+			iasa: 32,
+			hitFrames: [{
+				start: 4,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 2,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 32,
+			iasa: 32,
+			hitFrames: [{
+				start: 4,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 1,
+				hitboxInteraction: 3,
+				baseKb: 2,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 12,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 100,
+					kbGrowth: 127,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 100,
+					kbGrowth: 125,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 100,
+					kbGrowth: 123,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 80,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: {
+			subactionIndex: 60,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackS4Hi_figatree",
+			totalFrames: 41,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 65,
+				kbGrowth: 135,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "slash",
+				shieldDamage: 5,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackS4S_figatree",
+			totalFrames: 41,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 55,
+				kbGrowth: 135,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "slash",
+				shieldDamage: 5,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: {
+			subactionIndex: 64,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackS4Lw_figatree",
+			totalFrames: 41,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 45,
+				kbGrowth: 135,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "slash",
+				shieldDamage: 5,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyMario5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 39,
+			chargeFrame: 7,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 17,
+				angle: 110,
+				kbGrowth: 98,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyMario5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 37,
+			chargeFrame: 3,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 6,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 15,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 17,
+				angle: 90,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 45,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 35,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 3,
+				end: 6,
+				hitboxes: [0]
+			}, {
+				start: 7,
+				end: 31,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 90,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 90,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 34,
+			iasa: 33,
+			autoCancelBefore: 2,
+			autoCancelAfter: 19,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 7,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 43,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 28,
+			iasa: null,
+			autoCancelBefore: 6,
+			autoCancelAfter: 18,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 6,
+				end: 17,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 33,
+			iasa: 30,
+			autoCancelBefore: 2,
+			autoCancelAfter: 15,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 55,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyLuigi5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 32,
+			iasa: 29,
+			autoCancelBefore: 6,
+			autoCancelAfter: 23,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 10,
+				end: 14,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 16,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyMario5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyMario5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyMario5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyMario5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 27,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 45,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyMario5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 66,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 45,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyMario5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 100,
+				kbGrowth: 72,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyMario5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 110,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				baseKb: 18,
+				element: 12
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 46,
+			projectiles: [17],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 46,
+			projectiles: [17],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialSHold_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 43,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "fire",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 43,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 25,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "fire",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 43,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialSEnd_figatree",
+			totalFrames: 40,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialAirSHold_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 43,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "fire",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 25,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "fire",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 43,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 25,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "fire",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialAirSEnd_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 5,
+				hitboxes: [0]
+			}, {
+				start: 6,
+				end: 23,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 25,
+				angle: 90,
+				kbGrowth: 73,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 70,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 80,
+				kbGrowth: 1,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 1,
+				element: "coin",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 5,
+					end: 5,
+					hitboxes: [0]
+				},
+				{
+					start: 6,
+					end: 23,
+					hitboxes: [1]
+				},
+				{
+					start: 25,
+					end: 29,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 20,
+					angle: 90,
+					kbGrowth: 72,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 58,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 80,
+					kbGrowth: 1,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 1,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 90,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 29,
+				hitboxes: [0]
+			}, {
+				start: 43,
+				end: 43,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 90,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 12,
+				angle: 90,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyLuigi5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 29,
+				hitboxes: [0]
+			}, {
+				start: 43,
+				end: 43,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 90,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 12,
+				angle: 90,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		}
+	},
+	Mario: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyMario5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 83,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 3,
+				angle: 85,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyMario5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 83,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 2,
+				angle: 85,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: {
+			subactionIndex: 48,
+			subactionName: "PlyMario5K_Share_ACTION_Attack13_figatree",
+			totalFrames: 21,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyMario5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 48,
+			iasa: 38,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 10,
+				end: 25,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 110,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 70,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 120,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 45,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyMario5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 32,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 6,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyMario5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 32,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 6,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyMario5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 32,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 1,
+				hitboxInteraction: 3,
+				baseKb: 6,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyMario5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 30,
+			iasa: 30,
+			hitFrames: [{
+				start: 4,
+				end: 12,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 96,
+					kbGrowth: 125,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 26,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 96,
+					kbGrowth: 122,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 26,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 96,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 26,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyMario5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 80,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 80,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: {
+			subactionIndex: 60,
+			subactionName: "PlyMario5K_Share_ACTION_AttackS4Hi_figatree",
+			totalFrames: 41,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 19,
+				angle: 361,
+				kbGrowth: 95,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 25,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 15,
+				angle: 361,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyMario5K_Share_ACTION_AttackS4S_figatree",
+			totalFrames: 41,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 18,
+					angle: 361,
+					kbGrowth: 95,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 25,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 96,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 96,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_ml: null,
+		fsmash_l: {
+			subactionIndex: 64,
+			subactionName: "PlyMario5K_Share_ACTION_AttackS4Lw_figatree",
+			totalFrames: 41,
+			chargeFrame: 5,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 17,
+				angle: 361,
+				kbGrowth: 95,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 25,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 361,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyMario5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 39,
+			chargeFrame: 7,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 83,
+				kbGrowth: 97,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 32,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyMario5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 37,
+			chargeFrame: 3,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 6,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 14,
+				hitboxes: [1, 2]
+			}],
+			hitboxes: [
+				{
+					damage: 16,
+					angle: 361,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyMario5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 45,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 35,
+			landingLag: 16,
+			lcancelledLandingLag: 8,
+			hitFrames: [{
+				start: 3,
+				end: 6,
+				hitboxes: [0]
+			}, {
+				start: 7,
+				end: 32,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyMario5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 74,
+			iasa: 60,
+			autoCancelBefore: 3,
+			autoCancelAfter: 42,
+			landingLag: 21,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 18,
+				end: 22,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 280,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyMario5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 28,
+			iasa: null,
+			autoCancelBefore: 6,
+			autoCancelAfter: 18,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}, {
+				start: 9,
+				end: 17,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 7,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyMario5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 33,
+			iasa: 30,
+			autoCancelBefore: 2,
+			autoCancelAfter: 15,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 4,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 55,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyMario5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 38,
+			iasa: 38,
+			autoCancelBefore: 6,
+			autoCancelAfter: 35,
+			landingLag: 23,
+			lcancelledLandingLag: 11,
+			hitFrames: [
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [0]
+				},
+				{
+					start: 13,
+					end: 14,
+					hitboxes: [0]
+				},
+				{
+					start: 16,
+					end: 17,
+					hitboxes: [0]
+				},
+				{
+					start: 19,
+					end: 20,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [0]
+				},
+				{
+					start: 25,
+					end: 26,
+					hitboxes: [0]
+				},
+				{
+					start: 28,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 31,
+					end: 32,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 94,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyMario5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyMario5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyMario5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyMario5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 27,
+			iasa: null,
+			"throw": {
+				damage: 9,
+				angle: 45,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyMario5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 66,
+			iasa: null,
+			"throw": {
+				damage: 12,
+				angle: 45,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyMario5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 90,
+				kbGrowth: 72,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyMario5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 6,
+				angle: 90,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				baseKb: 18,
+				element: 12
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyMario5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 43,
+			projectiles: [14],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyMario5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 43,
+			projectiles: [14],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyMario5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 14,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 110,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "cape",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 110,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "cape",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyMario5K_Share_ACTION_SpecialSAir_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 14,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 110,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "cape",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 110,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "cape",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyMario5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 37,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 3,
+					end: 6,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 7,
+					end: 8,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 9,
+					end: 10,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 11,
+					end: 12,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 13,
+					end: 14,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 15,
+					end: 16,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 19,
+					end: 20,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 21,
+					end: 22,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 25,
+					end: 26,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 27,
+					end: 28,
+					hitboxes: [6]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 130,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 130,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 74,
+					kbGrowth: 100,
+					weightDepKb: 110,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 150,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 72,
+					kbGrowth: 100,
+					weightDepKb: 90,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 120,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 50,
+					kbGrowth: 140,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyMario5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 37,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 3,
+					end: 6,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 7,
+					end: 8,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 9,
+					end: 10,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 11,
+					end: 12,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 13,
+					end: 14,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 15,
+					end: 16,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 19,
+					end: 20,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 21,
+					end: 22,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 25,
+					end: 26,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 27,
+					end: 28,
+					hitboxes: [6]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [7]
+				},
+				{
+					start: 34,
+					end: 35,
+					hitboxes: [8]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 130,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 130,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 74,
+					kbGrowth: 100,
+					weightDepKb: 110,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 150,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 72,
+					kbGrowth: 100,
+					weightDepKb: 90,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 120,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 50,
+					kbGrowth: 140,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "coin",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 140,
+					kbGrowth: 0,
+					weightDepKb: 40,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 180,
+					kbGrowth: 0,
+					weightDepKb: 1,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyMario5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [0]
+				},
+				{
+					start: 12,
+					end: 13,
+					hitboxes: [1]
+				},
+				{
+					start: 15,
+					end: 16,
+					hitboxes: [1]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [1]
+				},
+				{
+					start: 21,
+					end: 22,
+					hitboxes: [1]
+				},
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [1]
+				},
+				{
+					start: 27,
+					end: 28,
+					hitboxes: [1]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [2]
+				},
+				{
+					start: 38,
+					end: 39,
+					hitboxes: [3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 2,
+					angle: 140,
+					kbGrowth: 0,
+					weightDepKb: 40,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 180,
+					kbGrowth: 0,
+					weightDepKb: 1,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 100,
+					kbGrowth: 0,
+					weightDepKb: 1,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 80,
+					kbGrowth: 115,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyMario5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [0]
+				},
+				{
+					start: 12,
+					end: 13,
+					hitboxes: [
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 15,
+					end: 16,
+					hitboxes: [
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 21,
+					end: 22,
+					hitboxes: [
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 27,
+					end: 28,
+					hitboxes: [
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [4]
+				},
+				{
+					start: 38,
+					end: 39,
+					hitboxes: [5]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 2,
+					angle: 140,
+					kbGrowth: 0,
+					weightDepKb: 40,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 160,
+					kbGrowth: 0,
+					weightDepKb: 1,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 270,
+					kbGrowth: 0,
+					weightDepKb: 1,
+					hitboxInteraction: 1,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 270,
+					kbGrowth: 0,
+					weightDepKb: 1,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 100,
+					kbGrowth: 0,
+					weightDepKb: 1,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		}
+	},
+	Marth: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyMars5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 27,
+			iasa: 26,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyMars5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 27,
+			iasa: 26,
+			hitFrames: [{
+				start: 4,
+				end: 8,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyMars5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 49,
+			iasa: 40,
+			hitFrames: [{
+				start: 12,
+				end: 15,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 11,
+					angle: 110,
+					kbGrowth: 55,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 110,
+					kbGrowth: 55,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_h: null,
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyMars5K_Share_ACTION_AttackS31_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 10,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 13,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: null,
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyMars5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 39,
+			iasa: 32,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}, {
+				start: 9,
+				end: 12,
+				hitboxes: [
+					4,
+					5,
+					6,
+					7
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 110,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 118,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 116,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 110,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 85,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 118,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 116,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 85,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyMars5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 49,
+			iasa: 20,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 30,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 30,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 30,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 30,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyMars5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 49,
+			chargeFrame: 3,
+			iasa: 48,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 20,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyMars5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 54,
+			chargeFrame: 7,
+			iasa: 46,
+			hitFrames: [{
+				start: 13,
+				end: 16,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 100,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 15,
+					angle: 90,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 18,
+					angle: 90,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyMars5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 64,
+			chargeFrame: 3,
+			iasa: 62,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}, {
+				start: 20,
+				end: 22,
+				hitboxes: [
+					0,
+					4,
+					5,
+					6
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 11,
+					angle: 75,
+					kbGrowth: 72,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 16,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 16,
+					angle: 75,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyMars5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 49,
+			iasa: null,
+			autoCancelBefore: 6,
+			autoCancelAfter: 24,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0, 1]
+			}, {
+				start: 15,
+				end: 21,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 4,
+					angle: 100,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 90,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyMars5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 33,
+			iasa: 30,
+			autoCancelBefore: 1,
+			autoCancelAfter: 26,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 67,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 42,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyMars5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 35,
+			autoCancelBefore: 1,
+			autoCancelAfter: 31,
+			landingLag: 24,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 7,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyMars5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 45,
+			iasa: null,
+			autoCancelBefore: 5,
+			autoCancelAfter: 26,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 80,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 80,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 18,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 90,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyMars5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			autoCancelBefore: 6,
+			autoCancelAfter: 47,
+			landingLag: 32,
+			lcancelledLandingLag: 16,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 290,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyMars5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyMars5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyMars5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 6,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyMars5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 31,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 50,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyMars5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 44,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 117,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyMars5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 44,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 93,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyMars5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 42,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 135,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 16,
+				element: 4
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		nspecial_start: {
+			subactionIndex: 295,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 11,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		nspecial_loop: {
+			subactionIndex: 296,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 19,
+				end: 20,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 38,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 30,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 34,
+					element: "slash",
+					shieldDamage: 30,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 38,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nspecial_end: {
+			subactionIndex: 297,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 10,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 38,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 30,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 34,
+					element: "slash",
+					shieldDamage: 30,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 38,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nspecial_end_full: {
+			subactionIndex: 298,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 10,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 28,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 60,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 28,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 34,
+					element: "slash",
+					shieldDamage: 60,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 28,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 60,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nspecial_start_air: {
+			subactionIndex: 299,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 11,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		nspecial_loop_air: {
+			subactionIndex: 300,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirNLoop_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 12,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 38,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 30,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 34,
+					element: "slash",
+					shieldDamage: 30,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 38,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nspecial_end_air: {
+			subactionIndex: 301,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 10,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}, {
+				start: 30,
+				end: 31,
+				hitboxes: [
+					4,
+					5,
+					6
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 38,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 30,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 34,
+					element: "slash",
+					shieldDamage: 30,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 38,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 28,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 60,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 28,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 34,
+					element: "slash",
+					shieldDamage: 60,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 28,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 60,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nspecial_end_full_air: {
+			subactionIndex: 302,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 10,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}, {
+				start: 30,
+				end: 31,
+				hitboxes: [
+					3,
+					4,
+					5,
+					6
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 28,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 60,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 28,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 34,
+					element: "slash",
+					shieldDamage: 60,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 28,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 60,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 85,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 96,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 76,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		sspecial_1: {
+			subactionIndex: 303,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialS1_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 4,
+					angle: 85,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 96,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 76,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		sspecial_2_U: {
+			subactionIndex: 304,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialS2Hi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 14,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 85,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 70,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 79,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 85,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		sspecial_2_NSD: {
+			subactionIndex: 305,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialS2Lw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 15,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 105,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 50,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		sspecial_3_U: {
+			subactionIndex: 306,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialS3Hi_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 80,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 60,
+				element: "slash",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		sspecial_3_NS: {
+			subactionIndex: 307,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialS3S_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 160,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		sspecial_3_D: {
+			subactionIndex: 308,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialS3Lw_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [{
+				start: 14,
+				end: 17,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "slash",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		sspecial_4_U: {
+			subactionIndex: 309,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialS4Hi_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 19,
+				end: 24,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 80,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 40,
+				element: "slash",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		sspecial_4_NS: {
+			subactionIndex: 310,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialS4S_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 22,
+				end: 25,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 15,
+				element: "slash",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		sspecial_4_D: {
+			subactionIndex: 311,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialS4Lw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 12,
+					end: 14,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 18,
+					end: 20,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 24,
+					end: 26,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 30,
+					end: 32,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 36,
+					end: 38,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 43,
+					end: 43,
+					hitboxes: [2, 3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 2,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 2,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		sspecial_1_air: {
+			subactionIndex: 312,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirS1_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 4,
+					angle: 85,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 96,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 76,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 55,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 85,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 70,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 79,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 85,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		sspecial_2_U_air: {
+			subactionIndex: 313,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirS2Hi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 14,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}, {
+				start: 34,
+				end: 34,
+				hitboxes: [
+					4,
+					5,
+					6,
+					7
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 85,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 70,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 79,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 85,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 105,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 50,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		sspecial_2_NSD_air: {
+			subactionIndex: 314,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirS2Lw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 15,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}, {
+				start: 35,
+				end: 35,
+				hitboxes: [4]
+			}],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 105,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 50,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		sspecial_3_U_air: {
+			subactionIndex: 315,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirS3Hi_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 16,
+				hitboxes: [0]
+			}, {
+				start: 40,
+				end: 40,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 80,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 60,
+				element: "slash",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 160,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		sspecial_3_NS_air: {
+			subactionIndex: 316,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirS3S_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0]
+			}, {
+				start: 39,
+				end: 40,
+				hitboxes: [1]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 160,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 270,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		sspecial_3_D_air: {
+			subactionIndex: 317,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirS3Lw_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 14,
+					end: 17,
+					hitboxes: [0]
+				},
+				{
+					start: 37,
+					end: 37,
+					hitboxes: [1]
+				},
+				{
+					start: 41,
+					end: 41,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 270,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 15,
+					element: "slash",
+					shieldDamage: 2,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		sspecial_4_U_air: {
+			subactionIndex: 318,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirS4Hi_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 19,
+				end: 24,
+				hitboxes: [0]
+			}, {
+				start: 28,
+				end: 28,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 80,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 40,
+				element: "slash",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 14,
+				angle: 361,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 15,
+				element: "slash",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		sspecial_4_NS_air: {
+			subactionIndex: 319,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirS4S_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 22,
+				end: 25,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 15,
+				element: "slash",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		sspecial_4_D_air: {
+			subactionIndex: 320,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirS4Lw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 12,
+					end: 14,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 18,
+					end: 20,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 24,
+					end: 26,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 30,
+					end: 32,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 36,
+					end: 38,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 43,
+					end: 43,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 53,
+					end: 53,
+					hitboxes: [4, 5]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 2,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 2,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 74,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 74,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 74,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		uspecial: {
+			subactionIndex: 321,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 5,
+				hitboxes: [0, 1]
+			}, {
+				start: 6,
+				end: 11,
+				hitboxes: [
+					2,
+					3,
+					4
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 74,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 74,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 74,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		uspecial_air: {
+			subactionIndex: 322,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 5,
+				hitboxes: [0, 1]
+			}, {
+				start: 6,
+				end: 11,
+				hitboxes: [
+					2,
+					3,
+					4
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 74,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 74,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 74,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dspecial: {
+			subactionIndex: 323,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dspecial_hit: {
+			subactionIndex: 324,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialLwHit_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 35,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 90,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dspecial_air: {
+			subactionIndex: 325,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 32,
+				end: 33,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 35,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 90,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dspecial_hit_air: {
+			subactionIndex: 326,
+			subactionName: "PlyMars5K_Share_ACTION_SpecialAirLwHit_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 35,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 90,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		}
+	},
+	Mewtwo: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyMewtwo5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 29,
+			iasa: 26,
+			hitFrames: [{
+				start: 8,
+				end: 8,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 83,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 83,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: null,
+		jab3: null,
+		rapidjabs_start: {
+			subactionIndex: 49,
+			subactionName: "PlyMewtwo5K_Share_ACTION_Attack100Start_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		rapidjabs_loop: {
+			subactionIndex: 50,
+			subactionName: "PlyMewtwo5K_Share_ACTION_Attack100Loop_figatree",
+			totalFrames: 50,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 7,
+					end: 7,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 14,
+					end: 14,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 21,
+					end: 21,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 28,
+					end: 28,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 35,
+					end: 35,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 42,
+					end: 42,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 49,
+					end: 49,
+					hitboxes: [0, 1]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 2,
+				angle: 70,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_end: {
+			subactionIndex: 51,
+			subactionName: "PlyMewtwo5K_Share_ACTION_Attack100End_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 49,
+			iasa: 38,
+			hitFrames: [{
+				start: 10,
+				end: 14,
+				hitboxes: [0, 1]
+			}, {
+				start: 15,
+				end: 29,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 80,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "darkness",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 110,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "darkness",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "darkness",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 110,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "darkness",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 31,
+			iasa: 29,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 31,
+			iasa: 29,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_ml: null,
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 31,
+			iasa: 29,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 6,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}, {
+				start: 7,
+				end: 11,
+				hitboxes: [
+					4,
+					5,
+					6,
+					7
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 110,
+					kbGrowth: 115,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 110,
+					kbGrowth: 114,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 110,
+					kbGrowth: 114,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 78,
+					kbGrowth: 114,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 78,
+					kbGrowth: 114,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 78,
+					kbGrowth: 114,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 78,
+					kbGrowth: 114,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 29,
+			iasa: 20,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 59,
+			chargeFrame: 14,
+			iasa: 52,
+			hitFrames: [{
+				start: 18,
+				end: 19,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 20,
+				angle: 361,
+				kbGrowth: 75,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 21,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 79,
+			chargeFrame: 1,
+			iasa: 70,
+			hitFrames: [
+				{
+					start: 9,
+					end: 10,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 13,
+					end: 14,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 21,
+					end: 22,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 25,
+					end: 26,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 29,
+					end: 30,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 33,
+					end: 34,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 37,
+					end: 38,
+					hitboxes: [3, 4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 1,
+					angle: 95,
+					kbGrowth: 100,
+					weightDepKb: 40,
+					hitboxInteraction: 2,
+					baseKb: 0,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 95,
+					kbGrowth: 100,
+					weightDepKb: 8,
+					hitboxInteraction: 2,
+					baseKb: 0,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 170,
+					kbGrowth: 100,
+					weightDepKb: 18,
+					hitboxInteraction: 2,
+					baseKb: 0,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 90,
+					kbGrowth: 118,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 40,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 118,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 40,
+					element: "darkness",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 59,
+			chargeFrame: 17,
+			iasa: 38,
+			hitFrames: [{
+				start: 20,
+				end: 21,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 103,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 20,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 15,
+				angle: 361,
+				kbGrowth: 103,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 20,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 54,
+			iasa: 45,
+			autoCancelBefore: 5,
+			autoCancelAfter: 43,
+			landingLag: 26,
+			lcancelledLandingLag: 13,
+			hitFrames: [
+				{
+					start: 5,
+					end: 6,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 9,
+					end: 10,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 13,
+					end: 14,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 21,
+					end: 22,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 25,
+					end: 26,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 29,
+					end: 30,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 33,
+					end: 34,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 37,
+					end: 38,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 41,
+					end: 42,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 2,
+					angle: 160,
+					kbGrowth: 100,
+					weightDepKb: 20,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 110,
+					kbGrowth: 100,
+					weightDepKb: 40,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 1,
+			autoCancelAfter: 34,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 84,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "darkness",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 31,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 29,
+			landingLag: 28,
+			lcancelledLandingLag: 14,
+			hitFrames: [{
+				start: 12,
+				end: 15,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 37,
+			iasa: 35,
+			autoCancelBefore: 4,
+			autoCancelAfter: 32,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 55,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 55,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 55,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyMewtwo5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 57,
+			iasa: 47,
+			autoCancelBefore: 6,
+			autoCancelAfter: 44,
+			landingLag: 28,
+			lcancelledLandingLag: 14,
+			hitFrames: [{
+				start: 18,
+				end: 21,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 16,
+					angle: 270,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 15,
+					angle: 270,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 270,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyMewtwo5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyMewtwo5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 8,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyMewtwo5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyMewtwo5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 74,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 78,
+				kbGrowth: 100,
+				weightDepKb: 9,
+				baseKb: 0,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyMewtwo5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 45,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyMewtwo5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 69,
+			iasa: null,
+			"throw": {
+				damage: 12,
+				angle: 90,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				baseKb: 25,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyMewtwo5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 6,
+				angle: 69,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 16,
+				element: 4
+			},
+			hitFrames: [{
+				start: 15,
+				end: 24,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 80,
+				kbGrowth: 104,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 5,
+				angle: 80,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 20,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 20,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialNCancel_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 15,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 20,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialAirNLoop_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 20,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialAirNLoop_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 20,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialAirNCancel_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 23,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 280,
+				kbGrowth: 16,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [{
+				start: 12,
+				end: 15,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 40,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 0,
+				angle: 40,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 55,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 280,
+				kbGrowth: 16,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [{
+				start: 12,
+				end: 15,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 40,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 0,
+				angle: 40,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 55,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 280,
+				kbGrowth: 16,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [{
+				start: 12,
+				end: 15,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 40,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 0,
+				angle: 40,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialHiLost_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyMewtwo5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Nana: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyPopo5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 29,
+			iasa: 16,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 45,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyPopo5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 29,
+			iasa: 18,
+			hitFrames: [{
+				start: 4,
+				end: 6,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 45,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 41,
+			iasa: 38,
+			hitFrames: [{
+				start: 11,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 80,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 90,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: {
+			subactionIndex: 54,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS3HiS_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: {
+			subactionIndex: 56,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS3LwS_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 29,
+				end: 30,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 95,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 49,
+			iasa: 42,
+			hitFrames: [
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [0]
+				},
+				{
+					start: 11,
+					end: 12,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [0]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [0]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [0]
+				},
+				{
+					start: 29,
+					end: 29,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 1,
+				angle: 95,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 90,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 34,
+			iasa: 29,
+			hitFrames: [{
+				start: 8,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 47,
+			chargeFrame: 7,
+			iasa: 47,
+			hitFrames: [{
+				start: 13,
+				end: 14,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 49,
+			chargeFrame: 8,
+			iasa: 44,
+			hitFrames: [{
+				start: 14,
+				end: 18,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 83,
+				kbGrowth: 128,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 39,
+			chargeFrame: 2,
+			iasa: 36,
+			hitFrames: [{
+				start: 6,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 49,
+			iasa: 46,
+			autoCancelBefore: 6,
+			autoCancelAfter: 29,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 6,
+				end: 23,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 59,
+			iasa: 55,
+			autoCancelBefore: 3,
+			autoCancelAfter: 23,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 19,
+				end: 22,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 11,
+					angle: 270,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 8,
+			autoCancelAfter: 18,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 8,
+				end: 11,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 39,
+			iasa: 30,
+			autoCancelBefore: 6,
+			autoCancelAfter: 26,
+			landingLag: 32,
+			lcancelledLandingLag: 16,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 10,
+				end: 23,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 70,
+				kbGrowth: 140,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 70,
+				kbGrowth: 140,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 65,
+			iasa: 64,
+			autoCancelBefore: 3,
+			autoCancelAfter: 57,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 3,
+				end: 52,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 36,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyPopo5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyPopo5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyPopo5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyPopo5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 45,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [{
+				start: 24,
+				end: 27,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyPopo5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 60,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyPopo5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 59,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 88,
+				kbGrowth: 28,
+				weightDepKb: 0,
+				baseKb: 27,
+				element: 8
+			},
+			hitFrames: [{
+				start: 25,
+				end: 30,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyPopo5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 6,
+				angle: 80,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 15,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 80,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 15,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 80,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialS1_figatree",
+			totalFrames: 89,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 15,
+				end: 15,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialS2_figatree",
+			totalFrames: 69,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 14,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirS1_figatree",
+			totalFrames: 89,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 15,
+				end: 15,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirS2_figatree",
+			totalFrames: 69,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 14,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 16,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialHiThrow_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialHiThrow2_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 16,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialHiThrow_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 16,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirHiThrow_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirHiThrow2_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 16,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirHiThrow_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Ness: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyNess5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyNess5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: {
+			subactionIndex: 48,
+			subactionName: "PlyNess5K_Share_ACTION_Attack13_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 16,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyNess5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 41,
+			iasa: 40,
+			hitFrames: [
+				{
+					start: 8,
+					end: 8,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 15,
+					end: 15,
+					hitboxes: [3]
+				},
+				{
+					start: 22,
+					end: 22,
+					hitboxes: [4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 0,
+					kbGrowth: 70,
+					weightDepKb: 60,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "electric",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: false
+				},
+				{
+					damage: 5,
+					angle: 100,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 60,
+					element: "electric",
+					shieldDamage: 1,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 18,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 20,
+					kbGrowth: 70,
+					weightDepKb: 60,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "electric",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 100,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 70,
+					element: "electric",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyNess5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: {
+			subactionIndex: 54,
+			subactionName: "PlyNess5K_Share_ACTION_AttackS3HiS_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyNess5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: {
+			subactionIndex: 56,
+			subactionName: "PlyNess5K_Share_ACTION_AttackS3LwS_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyNess5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyNess5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 39,
+			iasa: 32,
+			hitFrames: [{
+				start: 5,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 96,
+				kbGrowth: 126,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 42,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyNess5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 5,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 0,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 4,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyNess5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 49,
+			chargeFrame: 10,
+			iasa: null,
+			hitFrames: [{
+				start: 16,
+				end: 17,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 18,
+					angle: 361,
+					kbGrowth: 62,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 20,
+					angle: 361,
+					kbGrowth: 62,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 22,
+					angle: 361,
+					kbGrowth: 62,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 24,
+					angle: 361,
+					kbGrowth: 62,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyNess5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 49,
+			iasa: 49,
+			hitFrames: [{
+				start: 12,
+				end: 14,
+				hitboxes: [0]
+			}, {
+				start: 15,
+				end: 31,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 70,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 80,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyNess5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 61,
+			iasa: 59,
+			hitFrames: [{
+				start: 12,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 13,
+				end: 31,
+				hitboxes: [1]
+			}],
+			hitboxes: [
+				{
+					damage: 11,
+					angle: 70,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 70,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyNess5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 5,
+			autoCancelAfter: 26,
+			landingLag: 22,
+			lcancelledLandingLag: 11,
+			hitFrames: [{
+				start: 5,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 13,
+				end: 23,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyNess5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 41,
+			iasa: 40,
+			autoCancelBefore: 8,
+			autoCancelAfter: 29,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [
+				{
+					start: 8,
+					end: 10,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 11,
+					end: 13,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 14,
+					end: 16,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 17,
+					end: 19,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 20,
+					end: 22,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "electric",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 16,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 135,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 24,
+					element: "electric",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyNess5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 10,
+			autoCancelAfter: 24,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}, {
+				start: 12,
+				end: 19,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 16,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyNess5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 45,
+			iasa: 42,
+			autoCancelBefore: 8,
+			autoCancelAfter: 26,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 8,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 85,
+				kbGrowth: 109,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 13,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyNess5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			autoCancelBefore: 20,
+			autoCancelAfter: 28,
+			landingLag: 28,
+			lcancelledLandingLag: 14,
+			hitFrames: [{
+				start: 20,
+				end: 28,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 270,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 90,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyNess5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyNess5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyNess5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 15,
+				end: 15,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyNess5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 52,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 45,
+				kbGrowth: 10,
+				weightDepKb: 0,
+				baseKb: 30,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyNess5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 52,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 135,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				baseKb: 3,
+				element: 12
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyNess5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 55,
+			iasa: null,
+			"throw": {
+				damage: 10,
+				angle: 90,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 26,
+				element: 4
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyNess5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 70,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				baseKb: 22,
+				element: 8
+			},
+			hitFrames: [
+				{
+					start: 10,
+					end: 13,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 17,
+					hitboxes: [0]
+				},
+				{
+					start: 18,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 25,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 29,
+					hitboxes: [0]
+				},
+				{
+					start: 30,
+					end: 33,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialNHold_figatree",
+			totalFrames: 6,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialNHold_figatree",
+			totalFrames: 6,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 15,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirNHold_figatree",
+			totalFrames: 6,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirNHold_figatree",
+			totalFrames: 6,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 69,
+			projectiles: [20],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 69,
+			projectiles: [20],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialHiHold_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialHiEnd_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 69,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 13,
+				end: 43,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 25,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 20,
+				angle: 361,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 45,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirHiHold_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirHiEnd_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 69,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 13,
+				end: 43,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 25,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 20,
+				angle: 361,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 45,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13e": {
+			subactionIndex: 318,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialLwStart_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13f": {
+			subactionIndex: 319,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialLwHold_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x140": {
+			subactionIndex: 320,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialLwHit_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x141": {
+			subactionIndex: 321,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialLwEnd_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x142": {
+			subactionIndex: 322,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirLwStart_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x143": {
+			subactionIndex: 323,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirLwHold_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x144": {
+			subactionIndex: 324,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirLwHit_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x145": {
+			subactionIndex: 325,
+			subactionName: "PlyNess5K_Share_ACTION_SpecialAirLwEnd_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Peach: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyPeach5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 19,
+			iasa: 16,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 74,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 3,
+				angle: 78,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyPeach5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 19,
+			iasa: 16,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 37,
+			iasa: 36,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0, 1]
+			}, {
+				start: 9,
+				end: 20,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 80,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_h: null,
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackS3_figatree",
+			totalFrames: 41,
+			iasa: 37,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}, {
+				start: 8,
+				end: 13,
+				hitboxes: [3]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 90,
+					kbGrowth: 85,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 100,
+					kbGrowth: 85,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 85,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 90,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 55,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_ml: null,
+		ftilt_l: null,
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 39,
+			iasa: 37,
+			hitFrames: [{
+				start: 9,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 80,
+				kbGrowth: 72,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 48,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 27,
+			iasa: 26,
+			hitFrames: [{
+				start: 12,
+				end: 13,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 270,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: false
+				},
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 270,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 47,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 44,
+			chargeFrame: 10,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 22,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 19,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 4,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 15,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 4,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 75,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 4,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 39,
+			chargeFrame: 3,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 5,
+					end: 6,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 9,
+					end: 10,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 13,
+					end: 14,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 21,
+					end: 22,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 25,
+					end: 26,
+					hitboxes: [0, 1]
+				}
+			],
+			hitboxes: [{
+				damage: 14,
+				angle: 140,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 12,
+				angle: 140,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 49,
+			iasa: 42,
+			autoCancelBefore: 3,
+			autoCancelAfter: 35,
+			landingLag: 17,
+			lcancelledLandingLag: 8,
+			hitFrames: [{
+				start: 3,
+				end: 6,
+				hitboxes: [0]
+			}, {
+				start: 7,
+				end: 23,
+				hitboxes: [1, 2]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 54,
+			iasa: 51,
+			autoCancelBefore: 16,
+			autoCancelAfter: 38,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 16,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 60,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 44,
+			iasa: 38,
+			autoCancelBefore: 6,
+			autoCancelAfter: 22,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 10,
+				end: 22,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 35,
+			iasa: 34,
+			autoCancelBefore: 7,
+			autoCancelAfter: 21,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 7,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 80,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyPeach5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			autoCancelBefore: 12,
+			autoCancelAfter: 39,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [
+				{
+					start: 12,
+					end: 13,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 36,
+					end: 37,
+					hitboxes: [0, 1]
+				}
+			],
+			hitboxes: [{
+				damage: 3,
+				angle: 90,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 16,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 3,
+				angle: 90,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyPeach5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyPeach5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyPeach5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 15,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyPeach5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 33,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 45,
+				kbGrowth: 160,
+				weightDepKb: 0,
+				baseKb: 2,
+				element: 8
+			},
+			hitFrames: [{
+				start: 14,
+				end: 14,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 80,
+				kbGrowth: 200,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyPeach5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 9,
+				angle: 135,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [{
+				start: 20,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 200,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyPeach5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 6,
+				angle: 88,
+				kbGrowth: 56,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [{
+				start: 20,
+				end: 24,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyPeach5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 64,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 108,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [{
+				start: 34,
+				end: 42,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 20,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 29,
+			projectiles: [2],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 21,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialSEnd_figatree",
+			totalFrames: 32,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialSJump_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 0,
+				kbGrowth: 0,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "empty",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 31,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialAirSEnd_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialAirSEnd_figatree",
+			totalFrames: 27,
+			iasa: 20,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 40,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 6,
+					end: 9,
+					hitboxes: [0]
+				},
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 12,
+					end: 13,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 16,
+					end: 17,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 28,
+					end: 29,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 32,
+					end: 33,
+					hitboxes: [2, 3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 150,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 74,
+					kbGrowth: 100,
+					weightDepKb: 120,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 90,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 72,
+					kbGrowth: 100,
+					weightDepKb: 60,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialHiEnd_figatree",
+			totalFrames: 8,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 40,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 6,
+					end: 9,
+					hitboxes: [0]
+				},
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 12,
+					end: 13,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 16,
+					end: 17,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 28,
+					end: 29,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 32,
+					end: 33,
+					hitboxes: [2, 3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 150,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 74,
+					kbGrowth: 100,
+					weightDepKb: 120,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 90,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 72,
+					kbGrowth: 100,
+					weightDepKb: 60,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialAirHiEnd_figatree",
+			totalFrames: 8,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 64,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialLwHit_figatree",
+			totalFrames: 74,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 64,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyPeach5K_Share_ACTION_SpecialAirLwHit_figatree",
+			totalFrames: 74,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Pichu: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyPichu5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 21,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 0,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 7,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 2,
+				angle: 0,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 7,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: null,
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 14,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 14,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 14,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 14,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 95,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 95,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 21,
+			iasa: 19,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 35,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 49,
+			chargeFrame: 14,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 18,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 19,
+					end: 21,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 22,
+					end: 24,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 25,
+					end: 27,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 28,
+					end: 30,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 31,
+					end: 33,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 34,
+					end: 36,
+					hitboxes: [3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 2,
+					angle: 0,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 10,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 20,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 10,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 180,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 10,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 361,
+					kbGrowth: 140,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 90,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 43,
+			chargeFrame: 8,
+			iasa: 41,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 95,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 16,
+				angle: 95,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 54,
+			chargeFrame: 5,
+			iasa: 51,
+			hitFrames: [{
+				start: 7,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 160,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 39,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 34,
+			landingLag: 12,
+			lcancelledLandingLag: 6,
+			hitFrames: [{
+				start: 3,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 11,
+				end: 28,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 18,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 39,
+			iasa: null,
+			autoCancelBefore: 10,
+			autoCancelAfter: 37,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [
+				{
+					start: 10,
+					end: 12,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 16,
+					hitboxes: [0]
+				},
+				{
+					start: 18,
+					end: 20,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 24,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 28,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 59,
+			iasa: null,
+			autoCancelBefore: 4,
+			autoCancelAfter: 49,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 37,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 27,
+			iasa: null,
+			autoCancelBefore: 4,
+			autoCancelAfter: 17,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [
+				{
+					start: 4,
+					end: 5,
+					hitboxes: [0]
+				},
+				{
+					start: 6,
+					end: 7,
+					hitboxes: [0]
+				},
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 100,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyPichu5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 57,
+			iasa: 48,
+			autoCancelBefore: 1,
+			autoCancelAfter: 38,
+			landingLag: 26,
+			lcancelledLandingLag: 13,
+			hitFrames: [{
+				start: 14,
+				end: 26,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyPichu5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyPichu5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyPichu5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 2,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyPichu5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 43,
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 45,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				baseKb: 11,
+				element: 4
+			},
+			hitFrames: [
+				{
+					start: 10,
+					end: 13,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 17,
+					hitboxes: [0]
+				},
+				{
+					start: 18,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 25,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 29,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyPichu5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 9,
+				angle: 135,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 18,
+				element: 12
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyPichu5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 43,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 90,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				baseKb: 22,
+				element: 8
+			},
+			hitFrames: [{
+				start: 14,
+				end: 19,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyPichu5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 47,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 80,
+				kbGrowth: 38,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [{
+				start: 12,
+				end: 19,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 57,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 57,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialSHold_figatree",
+			totalFrames: 5,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "electric",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialSEnd_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirSHold_figatree",
+			totalFrames: 5,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "electric",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirSEnd_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialHiEnd_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirHiEnd_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialLwStart_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialLwLoop_figatree",
+			totalFrames: 9,
+			projectiles: [3],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialLwLoop_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 90,
+				element: "electric",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialLwEnd_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirLwStart_figatree",
+			totalFrames: 17,
+			projectiles: [3],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13d": {
+			subactionIndex: 317,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirLwLoop_figatree",
+			totalFrames: 9,
+			projectiles: [3],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13e": {
+			subactionIndex: 318,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirLwLoop_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 90,
+				element: "electric",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13f": {
+			subactionIndex: 319,
+			subactionName: "PlyPichu5K_Share_ACTION_SpecialAirLwEnd_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Pikachu: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyPikachu5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 21,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 0,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 7,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 2,
+				angle: 0,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 7,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: null,
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 14,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 14,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 14,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 14,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 7,
+					angle: 96,
+					kbGrowth: 124,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 96,
+					kbGrowth: 124,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 45,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 88,
+					kbGrowth: 124,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 45,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 21,
+			iasa: 19,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 35,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 12,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 49,
+			chargeFrame: 14,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 18,
+					hitboxes: [0]
+				},
+				{
+					start: 19,
+					end: 21,
+					hitboxes: [1, 2]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [
+						3,
+						4,
+						5
+					]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 21,
+					angle: 361,
+					kbGrowth: 92,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 25,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 19,
+					angle: 361,
+					kbGrowth: 95,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 25,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 19,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 25,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 18,
+					angle: 361,
+					kbGrowth: 95,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 22,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 18,
+					angle: 361,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 22,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 18,
+					angle: 361,
+					kbGrowth: 85,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 22,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 43,
+			chargeFrame: 5,
+			iasa: 41,
+			hitFrames: [
+				{
+					start: 8,
+					end: 10,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 11,
+					end: 13,
+					hitboxes: [3]
+				},
+				{
+					start: 14,
+					end: 17,
+					hitboxes: [4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 19,
+					angle: 85,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 18,
+					angle: 85,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 17,
+					angle: 85,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 90,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 40,
+					kbGrowth: 48,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 5,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 54,
+			chargeFrame: 5,
+			iasa: 51,
+			hitFrames: [
+				{
+					start: 7,
+					end: 8,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 13,
+					end: 14,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 16,
+					end: 17,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 19,
+					end: 20,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 25,
+					end: 26,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 28,
+					end: 28,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 2,
+					angle: 170,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 70,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 30,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 70,
+					kbGrowth: 170,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 70,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 39,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 34,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 3,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 11,
+				end: 28,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 18,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 39,
+			iasa: null,
+			autoCancelBefore: 10,
+			autoCancelAfter: 37,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [
+				{
+					start: 10,
+					end: 12,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 16,
+					hitboxes: [0]
+				},
+				{
+					start: 18,
+					end: 20,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 24,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 28,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 59,
+			iasa: null,
+			autoCancelBefore: 4,
+			autoCancelAfter: 49,
+			landingLag: 30,
+			lcancelledLandingLag: 15,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 37,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 27,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 17,
+			landingLag: 26,
+			lcancelledLandingLag: 13,
+			hitFrames: [
+				{
+					start: 3,
+					end: 4,
+					hitboxes: [0]
+				},
+				{
+					start: 5,
+					end: 6,
+					hitboxes: [1]
+				},
+				{
+					start: 7,
+					end: 8,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 4,
+					angle: 80,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 100,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 0,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 130,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyPikachu5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 57,
+			iasa: 48,
+			autoCancelBefore: 1,
+			autoCancelAfter: 38,
+			landingLag: 40,
+			lcancelledLandingLag: 20,
+			hitFrames: [{
+				start: 14,
+				end: 26,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyPikachu5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyPikachu5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyPikachu5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 2,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyPikachu5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 43,
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 45,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				baseKb: 11,
+				element: 4
+			},
+			hitFrames: [
+				{
+					start: 10,
+					end: 13,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 17,
+					hitboxes: [0]
+				},
+				{
+					start: 18,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 25,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 29,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyPikachu5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 9,
+				angle: 135,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 18,
+				element: 12
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyPikachu5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 43,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 90,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				baseKb: 22,
+				element: 8
+			},
+			hitFrames: [{
+				start: 14,
+				end: 19,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyPikachu5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 47,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 80,
+				kbGrowth: 38,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [{
+				start: 12,
+				end: 19,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 57,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 57,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialSHold_figatree",
+			totalFrames: 5,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "electric",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialSEnd_figatree",
+			totalFrames: 44,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirSHold_figatree",
+			totalFrames: 5,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 29,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "electric",
+				shieldDamage: 4,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirSEnd_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 3,
+				angle: 0,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 5,
+				element: "electric",
+				shieldDamage: 5,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 2,
+				angle: 0,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "electric",
+				shieldDamage: 5,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialHiEnd_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 3,
+				angle: 0,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 5,
+				element: "electric",
+				shieldDamage: 5,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 2,
+				angle: 0,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "electric",
+				shieldDamage: 5,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirHiEnd_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialLwStart_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialLwLoop_figatree",
+			totalFrames: 9,
+			projectiles: [3],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialLwLoop_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 17,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 100,
+				element: "electric",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialLwEnd_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirLwStart_figatree",
+			totalFrames: 17,
+			projectiles: [3],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13d": {
+			subactionIndex: 317,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirLwLoop_figatree",
+			totalFrames: 9,
+			projectiles: [3],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13e": {
+			subactionIndex: 318,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirLwLoop_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 17,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 100,
+				element: "electric",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x13f": {
+			subactionIndex: 319,
+			subactionName: "PlyPikachu5K_Share_ACTION_SpecialAirLwEnd_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Popo: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyPopo5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 29,
+			iasa: 16,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 45,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyPopo5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 29,
+			iasa: 18,
+			hitFrames: [{
+				start: 4,
+				end: 6,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 45,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 41,
+			iasa: 38,
+			hitFrames: [{
+				start: 11,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 80,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 90,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: {
+			subactionIndex: 54,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS3HiS_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: {
+			subactionIndex: 56,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS3LwS_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 31,
+			iasa: 28,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 29,
+				end: 30,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 95,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 49,
+			iasa: 42,
+			hitFrames: [
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [0]
+				},
+				{
+					start: 11,
+					end: 12,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [0]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [0]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [0]
+				},
+				{
+					start: 29,
+					end: 29,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 1,
+				angle: 95,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 90,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 34,
+			iasa: 29,
+			hitFrames: [{
+				start: 8,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 47,
+			chargeFrame: 7,
+			iasa: 47,
+			hitFrames: [{
+				start: 13,
+				end: 14,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 49,
+			chargeFrame: 8,
+			iasa: 44,
+			hitFrames: [{
+				start: 14,
+				end: 18,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 83,
+				kbGrowth: 128,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 39,
+			chargeFrame: 2,
+			iasa: 36,
+			hitFrames: [{
+				start: 6,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 49,
+			iasa: 46,
+			autoCancelBefore: 6,
+			autoCancelAfter: 29,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 6,
+				end: 23,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 59,
+			iasa: 55,
+			autoCancelBefore: 3,
+			autoCancelAfter: 23,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 19,
+				end: 22,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 11,
+					angle: 270,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 8,
+			autoCancelAfter: 18,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 8,
+				end: 11,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 39,
+			iasa: 30,
+			autoCancelBefore: 6,
+			autoCancelAfter: 26,
+			landingLag: 32,
+			lcancelledLandingLag: 16,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 10,
+				end: 23,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 70,
+				kbGrowth: 140,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 70,
+				kbGrowth: 140,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyPopo5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 65,
+			iasa: 64,
+			autoCancelBefore: 3,
+			autoCancelAfter: 57,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 3,
+				end: 52,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 36,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyPopo5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyPopo5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyPopo5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyPopo5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 45,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [{
+				start: 24,
+				end: 27,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyPopo5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 60,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyPopo5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 59,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 88,
+				kbGrowth: 28,
+				weightDepKb: 0,
+				baseKb: 27,
+				element: 8
+			},
+			hitFrames: [{
+				start: 25,
+				end: 30,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyPopo5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 6,
+				angle: 80,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 15,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 80,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 15,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 80,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialS1_figatree",
+			totalFrames: 89,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 15,
+				end: 15,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialS2_figatree",
+			totalFrames: 69,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 14,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirS1_figatree",
+			totalFrames: 89,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 15,
+				end: 15,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirS2_figatree",
+			totalFrames: 69,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 14,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 70,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 16,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialHiThrow_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialHiThrow2_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 16,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialHiThrow_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 16,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirHiThrow_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirHiThrow2_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 16,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirHiThrow_figatree",
+			totalFrames: 42,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyPopo5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Roy: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyEmblem5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 31,
+			iasa: 26,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 361,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 5,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		jab2: null,
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 57,
+			iasa: 40,
+			hitFrames: [{
+				start: 12,
+				end: 15,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 110,
+				kbGrowth: 55,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 70,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: null,
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackS31_figatree",
+			totalFrames: 40,
+			iasa: 40,
+			hitFrames: [{
+				start: 9,
+				end: 13,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_ml: null,
+		ftilt_l: null,
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 45,
+			iasa: 40,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}, {
+				start: 10,
+				end: 13,
+				hitboxes: [
+					3,
+					4,
+					5,
+					6
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 110,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 110,
+					kbGrowth: 118,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 110,
+					kbGrowth: 116,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 85,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 85,
+					kbGrowth: 118,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 85,
+					kbGrowth: 116,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 57,
+			iasa: 20,
+			hitFrames: [{
+				start: 8,
+				end: 10,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 90,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 90,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 57,
+			chargeFrame: 3,
+			iasa: 54,
+			hitFrames: [{
+				start: 12,
+				end: 14,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 20,
+				angle: 361,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 12,
+				angle: 361,
+				kbGrowth: 65,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 62,
+			chargeFrame: 8,
+			iasa: 46,
+			hitFrames: [
+				{
+					start: 15,
+					end: 16,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 19,
+					end: 20,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 21,
+					end: 22,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 25,
+					end: 26,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 2,
+					angle: 98,
+					kbGrowth: 100,
+					weightDepKb: 120,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 259,
+					kbGrowth: 100,
+					weightDepKb: 120,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 90,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 73,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 74,
+			chargeFrame: 3,
+			iasa: 72,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0, 1]
+			}, {
+				start: 24,
+				end: 26,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 21,
+					angle: 75,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 42,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 16,
+					angle: 75,
+					kbGrowth: 68,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 42,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 57,
+			iasa: 50,
+			autoCancelBefore: 7,
+			autoCancelAfter: 31,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 7,
+				end: 8,
+				hitboxes: [0, 1]
+			}, {
+				start: 17,
+				end: 20,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 4,
+					angle: 100,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 90,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 30,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 361,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 38,
+			iasa: 35,
+			autoCancelBefore: 1,
+			autoCancelAfter: 29,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 5,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 45,
+			iasa: 43,
+			autoCancelBefore: 1,
+			autoCancelAfter: 33,
+			landingLag: 24,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 8,
+				end: 10,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 52,
+			iasa: 49,
+			autoCancelBefore: 5,
+			autoCancelAfter: 29,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 5,
+				end: 10,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 80,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 6,
+				angle: 80,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyEmblem5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 68,
+			iasa: 64,
+			autoCancelBefore: 7,
+			autoCancelAfter: 54,
+			landingLag: 32,
+			lcancelledLandingLag: 16,
+			hitFrames: [{
+				start: 7,
+				end: 10,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 270,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 90,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyEmblem5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyEmblem5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyEmblem5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 6,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyEmblem5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 31,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 45,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyEmblem5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 44,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 117,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyEmblem5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 44,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 97,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyEmblem5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 42,
+			iasa: null,
+			"throw": {
+				damage: 6,
+				angle: 120,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				baseKb: 16,
+				element: 4
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 11,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 19,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 40,
+				element: "fire",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 40,
+				element: "fire",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 50,
+				angle: 361,
+				kbGrowth: 83,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 50,
+				element: "fire",
+				shieldDamage: 30,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 11,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirNLoop_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 40,
+				element: "fire",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 5,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 31,
+				end: 31,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 40,
+				element: "fire",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 50,
+				angle: 361,
+				kbGrowth: 83,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 50,
+				element: "fire",
+				shieldDamage: 30,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 30,
+				end: 31,
+				hitboxes: [
+					1,
+					2,
+					3,
+					4
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 50,
+					angle: 361,
+					kbGrowth: 83,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "fire",
+					shieldDamage: 30,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 96,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 80,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 60,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 85,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialS1_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 96,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 80,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 60,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 85,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialS2Hi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 14,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 96,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 96,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialS2Lw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 15,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 56,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 35,
+					kbGrowth: 35,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 105,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialS3Hi_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 13,
+				hitboxes: [0, 1]
+			}, {
+				start: 14,
+				end: 16,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 280,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 270,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 36,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialS3S_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "slash",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 361,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialS3Lw_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 15,
+					end: 15,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 17,
+					end: 17,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 19,
+					end: 19,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 21,
+					end: 21,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 23,
+					end: 23,
+					hitboxes: [3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 75,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 95,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 64,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialS4Hi_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 19,
+				end: 24,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 40,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 22,
+				element: "fire",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 40,
+				kbGrowth: 130,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 22,
+				element: "fire",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialS4S_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 22,
+				end: 25,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 135,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "fire",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 135,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "fire",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialS4Lw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 12,
+					end: 14,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 18,
+					end: 20,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 24,
+					end: 26,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 30,
+					end: 32,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 36,
+					end: 38,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 43,
+					end: 43,
+					hitboxes: [2, 3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 2,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 2,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirS1_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 96,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 80,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 60,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 85,
+					kbGrowth: 25,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 96,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 96,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirS2Hi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 14,
+				hitboxes: [0, 1]
+			}, {
+				start: 34,
+				end: 34,
+				hitboxes: [
+					2,
+					3,
+					4,
+					5
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 6,
+					angle: 96,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 96,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 56,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 35,
+					kbGrowth: 35,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 105,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirS2Lw_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 13,
+					end: 15,
+					hitboxes: [
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 35,
+					end: 35,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 36,
+					end: 36,
+					hitboxes: [6, 7]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 56,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 35,
+					kbGrowth: 35,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 105,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirS3Hi_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [{
+				start: 12,
+				end: 13,
+				hitboxes: [0, 1]
+			}, {
+				start: 14,
+				end: 16,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 60,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 60,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirS3S_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 10,
+					end: 13,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 39,
+					end: 39,
+					hitboxes: [
+						2,
+						3,
+						4
+					]
+				},
+				{
+					start: 41,
+					end: 41,
+					hitboxes: [
+						2,
+						3,
+						4
+					]
+				},
+				{
+					start: 43,
+					end: 43,
+					hitboxes: [
+						2,
+						3,
+						4
+					]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 75,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 95,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x13d": {
+			subactionIndex: 317,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirS3Lw_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 15,
+					end: 15,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 17,
+					end: 17,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 19,
+					end: 19,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 21,
+					end: 21,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 23,
+					end: 23,
+					hitboxes: [3]
+				},
+				{
+					start: 37,
+					end: 37,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 41,
+					end: 41,
+					hitboxes: [6, 7]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 75,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 95,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 64,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 40,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 22,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 40,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 22,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 135,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "fire",
+					shieldDamage: 2,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 135,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "fire",
+					shieldDamage: 2,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x13e": {
+			subactionIndex: 318,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirS4Hi_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 19,
+				end: 24,
+				hitboxes: [0, 1]
+			}, {
+				start: 28,
+				end: 28,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 40,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 22,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 40,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 22,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 361,
+					kbGrowth: 135,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "fire",
+					shieldDamage: 2,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 135,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "fire",
+					shieldDamage: 2,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x13f": {
+			subactionIndex: 319,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirS4S_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [{
+				start: 22,
+				end: 25,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 135,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "fire",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 135,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "fire",
+				shieldDamage: 2,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x140": {
+			subactionIndex: 320,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirS4Lw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 12,
+					end: 14,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 18,
+					end: 20,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 24,
+					end: 26,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 30,
+					end: 32,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 36,
+					end: 38,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 43,
+					end: 43,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 53,
+					end: 53,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 54,
+					end: 55,
+					hitboxes: [6, 7]
+				},
+				{
+					start: 56,
+					end: 57,
+					hitboxes: [6, 7]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 2,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 2,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 1,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 110,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 84,
+					kbGrowth: 100,
+					weightDepKb: 200,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 84,
+					kbGrowth: 100,
+					weightDepKb: 160,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x141": {
+			subactionIndex: 321,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 48,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 9,
+					end: 9,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 12,
+					end: 13,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 16,
+					end: 17,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [3, 4]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [3, 4]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [3, 4]
+				},
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [3, 4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 84,
+					kbGrowth: 100,
+					weightDepKb: 200,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 84,
+					kbGrowth: 100,
+					weightDepKb: 160,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 84,
+					kbGrowth: 100,
+					weightDepKb: 100,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x142": {
+			subactionIndex: 322,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 48,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 9,
+					end: 9,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 12,
+					end: 13,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 16,
+					end: 17,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [3, 4]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [3, 4]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [3, 4]
+				},
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [3, 4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 84,
+					kbGrowth: 100,
+					weightDepKb: 200,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 84,
+					kbGrowth: 100,
+					weightDepKb: 160,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 10,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 84,
+					kbGrowth: 100,
+					weightDepKb: 100,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x143": {
+			subactionIndex: 323,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x144": {
+			subactionIndex: 324,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialLwHit_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 9,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x145": {
+			subactionIndex: 325,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 23,
+				end: 24,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x146": {
+			subactionIndex: 326,
+			subactionName: "PlyEmblem5K_Share_ACTION_SpecialAirLwHit_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 9,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 1,
+				angle: 361,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 30,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		}
+	},
+	Samus: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlySamus5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlySamus5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 4,
+				end: 6,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlySamus5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 37,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 10,
+				end: 16,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 60,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 22,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 60,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 22,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlySamus5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 31,
+			iasa: 30,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_mh: {
+			subactionIndex: 54,
+			subactionName: "PlySamus5K_Share_ACTION_AttackS3HiS_figatree",
+			totalFrames: 31,
+			iasa: 30,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlySamus5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 31,
+			iasa: 30,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: {
+			subactionIndex: 56,
+			subactionName: "PlySamus5K_Share_ACTION_AttackS3LwS_figatree",
+			totalFrames: 31,
+			iasa: 30,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlySamus5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 31,
+			iasa: 30,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlySamus5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 39,
+			iasa: 35,
+			hitFrames: [{
+				start: 14,
+				end: 17,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}, {
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: false,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlySamus5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 100,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 80,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: {
+			subactionIndex: 60,
+			subactionName: "PlySamus5K_Share_ACTION_AttackS4Hi_figatree",
+			totalFrames: 43,
+			chargeFrame: 4,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 361,
+				kbGrowth: 104,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_mh: {
+			subactionIndex: 61,
+			subactionName: "PlySamus5K_Share_ACTION_AttackS4HiS_figatree",
+			totalFrames: 43,
+			chargeFrame: 4,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 104,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlySamus5K_Share_ACTION_AttackS4S_figatree",
+			totalFrames: 43,
+			chargeFrame: 4,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 104,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: {
+			subactionIndex: 63,
+			subactionName: "PlySamus5K_Share_ACTION_AttackS4LwS_figatree",
+			totalFrames: 43,
+			chargeFrame: 4,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 104,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_l: {
+			subactionIndex: 64,
+			subactionName: "PlySamus5K_Share_ACTION_AttackS4Lw_figatree",
+			totalFrames: 43,
+			chargeFrame: 4,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 361,
+				kbGrowth: 104,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlySamus5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 59,
+			chargeFrame: 8,
+			iasa: 58,
+			hitFrames: [
+				{
+					start: 12,
+					end: 14,
+					hitboxes: [0]
+				},
+				{
+					start: 16,
+					end: 18,
+					hitboxes: [1]
+				},
+				{
+					start: 20,
+					end: 22,
+					hitboxes: [2]
+				},
+				{
+					start: 24,
+					end: 26,
+					hitboxes: [3]
+				},
+				{
+					start: 28,
+					end: 29,
+					hitboxes: [4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 4,
+					angle: 130,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 120,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 35,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 90,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 85,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 80,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "fire",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlySamus5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 48,
+			chargeFrame: 3,
+			iasa: 45,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 16,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 120,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 110,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 15,
+				angle: 120,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 90,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlySamus5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 49,
+			iasa: 40,
+			autoCancelBefore: 5,
+			autoCancelAfter: 34,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0]
+			}, {
+				start: 9,
+				end: 29,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlySamus5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 55,
+			iasa: 50,
+			autoCancelBefore: 1,
+			autoCancelAfter: 46,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [
+				{
+					start: 6,
+					end: 7,
+					hitboxes: [0]
+				},
+				{
+					start: 13,
+					end: 14,
+					hitboxes: [0]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 27,
+					end: 28,
+					hitboxes: [0]
+				},
+				{
+					start: 34,
+					end: 35,
+					hitboxes: [0]
+				},
+				{
+					start: 39,
+					end: 40,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 5,
+				angle: 85,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 5,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlySamus5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 37,
+			autoCancelBefore: 9,
+			autoCancelAfter: 30,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 9,
+				end: 12,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 14,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 42,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlySamus5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 39,
+			iasa: 39,
+			autoCancelBefore: 5,
+			autoCancelAfter: 33,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [
+				{
+					start: 5,
+					end: 6,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 11,
+					end: 12,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 17,
+					end: 18,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 23,
+					end: 24,
+					hitboxes: [4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 30,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 80,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlySamus5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 54,
+			iasa: 49,
+			autoCancelBefore: 3,
+			autoCancelAfter: 33,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 18,
+				end: 22,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlySamus5K_Share_ACTION_Catch_figatree",
+			totalFrames: 93,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 17,
+					end: 19,
+					hitboxes: [0]
+				},
+				{
+					start: 20,
+					end: 22,
+					hitboxes: [1]
+				},
+				{
+					start: 23,
+					end: 25,
+					hitboxes: [1]
+				},
+				{
+					start: 26,
+					end: 28,
+					hitboxes: [1]
+				},
+				{
+					start: 29,
+					end: 31,
+					hitboxes: [1]
+				},
+				{
+					start: 32,
+					end: 34,
+					hitboxes: [1]
+				},
+				{
+					start: 35,
+					end: 37,
+					hitboxes: [1]
+				},
+				{
+					start: 38,
+					end: 43,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlySamus5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 73,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 17,
+					end: 19,
+					hitboxes: [0]
+				},
+				{
+					start: 20,
+					end: 22,
+					hitboxes: [1]
+				},
+				{
+					start: 23,
+					end: 25,
+					hitboxes: [1]
+				},
+				{
+					start: 26,
+					end: 28,
+					hitboxes: [1]
+				},
+				{
+					start: 29,
+					end: 31,
+					hitboxes: [1]
+				},
+				{
+					start: 32,
+					end: 35,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlySamus5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlySamus5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 41,
+			iasa: null,
+			"throw": {
+				damage: 9,
+				angle: 42,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlySamus5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 41,
+			iasa: null,
+			"throw": {
+				damage: 8,
+				angle: 140,
+				kbGrowth: 42,
+				weightDepKb: 0,
+				baseKb: 12,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlySamus5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 41,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 90,
+				kbGrowth: 45,
+				weightDepKb: 0,
+				baseKb: 25,
+				element: 0
+			},
+			hitFrames: [
+				{
+					start: 13,
+					end: 13,
+					hitboxes: [0]
+				},
+				{
+					start: 15,
+					end: 15,
+					hitboxes: [0]
+				},
+				{
+					start: 17,
+					end: 17,
+					hitboxes: [0]
+				},
+				{
+					start: 19,
+					end: 19,
+					hitboxes: [0]
+				},
+				{
+					start: 21,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 23,
+					end: 23,
+					hitboxes: [0]
+				},
+				{
+					start: 25,
+					end: 25,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlySamus5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 41,
+			iasa: null,
+			"throw": {
+				damage: 6,
+				angle: 80,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dspecial_hit: {
+			subactionIndex: 295,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 53,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dspecial_hit_air: {
+			subactionIndex: 296,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 53,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		nspecial_start: {
+			subactionIndex: 297,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		nspecial_charge: {
+			subactionIndex: 298,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialNHold_figatree",
+			totalFrames: 9,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		nspecial_cancel: {
+			subactionIndex: 299,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialNCancel_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		nspecial_shoot: {
+			subactionIndex: 300,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		nspecial_start_air: {
+			subactionIndex: 301,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 13,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		nspecial_shoot_air: {
+			subactionIndex: 302,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		sspecial: {
+			subactionIndex: 303,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 59,
+			projectiles: [22],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		sspecial_smash: {
+			subactionIndex: 304,
+			subactionName: "PlySamus5K_Share_ACTION_Special_figatree",
+			totalFrames: 49,
+			projectiles: [22],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		sspecial_air: {
+			subactionIndex: 305,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 59,
+			projectiles: [24],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		sspecial_smash_air: {
+			subactionIndex: 306,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialAir_figatree",
+			totalFrames: 49,
+			projectiles: [15],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		uspecial: {
+			subactionIndex: 307,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 49,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 4,
+					end: 5,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 6,
+					end: 7,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 12,
+					end: 13,
+					hitboxes: [2, 3]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 16,
+					end: 17,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 28,
+					end: 29,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [4, 5]
+				},
+				{
+					start: 32,
+					end: 33,
+					hitboxes: [6]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 2,
+					angle: 100,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 130,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 100,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 100,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 105,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 110,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 100,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 110,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 200,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "electric",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		uspecial_air: {
+			subactionIndex: 308,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 47,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 4,
+					end: 5,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 6,
+					end: 7,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 12,
+					end: 13,
+					hitboxes: [0, 2]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [0, 2]
+				},
+				{
+					start: 16,
+					end: 17,
+					hitboxes: [0, 2]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [0, 2]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [0, 2]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [0, 2]
+				},
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [0, 2]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [0, 2]
+				},
+				{
+					start: 28,
+					end: 29,
+					hitboxes: [0, 2]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 1,
+					angle: 140,
+					kbGrowth: 0,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 110,
+					kbGrowth: 0,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 100,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 110,
+					kbGrowth: 0,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "normal",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "electric",
+					shieldDamage: 3,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dspecial: {
+			subactionIndex: 309,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 53,
+			projectiles: [10],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dspecial_air: {
+			subactionIndex: 310,
+			subactionName: "PlySamus5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 53,
+			projectiles: [10],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Sheik: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlySeak5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 17,
+			iasa: 16,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlySeak5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 17,
+			iasa: 16,
+			hitFrames: [{
+				start: 2,
+				end: 4,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: {
+			subactionIndex: 49,
+			subactionName: "PlySeak5K_Share_ACTION_Attack100Start_figatree",
+			totalFrames: 6,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		rapidjabs_loop: {
+			subactionIndex: 50,
+			subactionName: "PlySeak5K_Share_ACTION_Attack100Loop_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 2,
+					end: 3,
+					hitboxes: [0]
+				},
+				{
+					start: 8,
+					end: 9,
+					hitboxes: [0]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [0]
+				},
+				{
+					start: 20,
+					end: 21,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 33,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 1,
+				angle: 80,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_end: {
+			subactionIndex: 51,
+			subactionName: "PlySeak5K_Share_ACTION_Attack100End_figatree",
+			totalFrames: 8,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlySeak5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 37,
+			iasa: 36,
+			hitFrames: [{
+				start: 6,
+				end: 6,
+				hitboxes: [0]
+			}, {
+				start: 7,
+				end: 12,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 34,
+				element: "slash",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: null,
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlySeak5K_Share_ACTION_AttackS3_figatree",
+			totalFrames: 29,
+			iasa: 27,
+			hitFrames: [{
+				start: 5,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 74,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_ml: null,
+		ftilt_l: null,
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlySeak5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 33,
+			iasa: 26,
+			hitFrames: [{
+				start: 5,
+				end: 10,
+				hitboxes: [0]
+			}, {
+				start: 19,
+				end: 24,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 80,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 4,
+				angle: 80,
+				kbGrowth: 140,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlySeak5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 29,
+			iasa: 28,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 70,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 90,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlySeak5K_Share_ACTION_AttackS4_figatree",
+			totalFrames: 50,
+			chargeFrame: 5,
+			iasa: 46,
+			hitFrames: [{
+				start: 12,
+				end: 12,
+				hitboxes: [0, 1]
+			}, {
+				start: 27,
+				end: 29,
+				hitboxes: [2]
+			}],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 60,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 60,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlySeak5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 47,
+			chargeFrame: 10,
+			iasa: 40,
+			hitFrames: [{
+				start: 12,
+				end: 12,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 16,
+				hitboxes: [1, 2]
+			}],
+			hitboxes: [
+				{
+					damage: 17,
+					angle: 90,
+					kbGrowth: 105,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 4,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 38,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 78,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 38,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlySeak5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 49,
+			chargeFrame: 2,
+			iasa: 46,
+			hitFrames: [
+				{
+					start: 5,
+					end: 9,
+					hitboxes: [0]
+				},
+				{
+					start: 16,
+					end: 19,
+					hitboxes: [1]
+				},
+				{
+					start: 22,
+					end: 24,
+					hitboxes: [1]
+				}
+			],
+			hitboxes: [{
+				damage: 13,
+				angle: 40,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 50,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 35,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlySeak5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 48,
+			iasa: 42,
+			autoCancelBefore: 3,
+			autoCancelAfter: 30,
+			landingLag: 16,
+			lcancelledLandingLag: 8,
+			hitFrames: [{
+				start: 3,
+				end: 6,
+				hitboxes: [0, 1]
+			}, {
+				start: 7,
+				end: 30,
+				hitboxes: [2]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlySeak5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 33,
+			iasa: null,
+			autoCancelBefore: 5,
+			autoCancelAfter: 10,
+			landingLag: 16,
+			lcancelledLandingLag: 8,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 25,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlySeak5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 37,
+			iasa: null,
+			autoCancelBefore: 4,
+			autoCancelAfter: 24,
+			landingLag: 16,
+			lcancelledLandingLag: 8,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}, {
+				start: 8,
+				end: 19,
+				hitboxes: [
+					3,
+					4,
+					5,
+					6
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 5,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 12,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 4,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 8,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlySeak5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 39,
+			iasa: 37,
+			autoCancelBefore: 5,
+			autoCancelAfter: 29,
+			landingLag: 24,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 20,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 80,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 9,
+				angle: 70,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlySeak5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 48,
+			iasa: null,
+			autoCancelBefore: 3,
+			autoCancelAfter: 48,
+			landingLag: 20,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 15,
+				end: 33,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 80,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlySeak5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlySeak5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 7,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlySeak5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlySeak5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 47,
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 45,
+				kbGrowth: 140,
+				weightDepKb: 0,
+				baseKb: 10,
+				element: 0
+			},
+			hitFrames: [{
+				start: 20,
+				end: 23,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 80,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlySeak5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 47,
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 135,
+				kbGrowth: 140,
+				weightDepKb: 0,
+				baseKb: 10,
+				element: 0
+			},
+			hitFrames: [{
+				start: 15,
+				end: 19,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 80,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlySeak5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 57,
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 88,
+				kbGrowth: 30,
+				weightDepKb: 0,
+				baseKb: 22,
+				element: 8
+			},
+			hitFrames: [{
+				start: 19,
+				end: 22,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 6,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlySeak5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 57,
+			iasa: null,
+			"throw": {
+				damage: 3,
+				angle: 80,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [{
+				start: 31,
+				end: 35,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialNCansel_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirNLoop_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirNCansel_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 80,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 35,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 70,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 14,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 60,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 8,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 6,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialSEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialS_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [
+				{
+					damage: 5,
+					angle: 80,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 35,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 70,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 14,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 60,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 8,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 30,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 6,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirSEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirS_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 35,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 36,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13a": {
+			subactionIndex: 314,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialLw2_figatree",
+			totalFrames: 25,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13b": {
+			subactionIndex: 315,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 36,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x13c": {
+			subactionIndex: 316,
+			subactionName: "PlySeak5K_Share_ACTION_SpecialAirLw2_figatree",
+			totalFrames: 25,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Yoshi: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyYoshi5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 17,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 5,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyYoshi5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [{
+				start: 3,
+				end: 5,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 8,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 43,
+			iasa: 42,
+			hitFrames: [{
+				start: 10,
+				end: 13,
+				hitboxes: [0]
+			}, {
+				start: 14,
+				end: 23,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 9,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 70,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 60,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_mh: {
+			subactionIndex: 54,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackS3HiS_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 70,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 60,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 70,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 60,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_ml: {
+			subactionIndex: 56,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackS3LwS_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 70,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 60,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 11,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 70,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 60,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 8,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 100,
+				kbGrowth: 40,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 72,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 8,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 28,
+				kbGrowth: 100,
+				weightDepKb: 100,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_h: {
+			subactionIndex: 60,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackS4Hi_figatree",
+			totalFrames: 47,
+			chargeFrame: 6,
+			iasa: 44,
+			hitFrames: [{
+				start: 14,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 361,
+				kbGrowth: 94,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 32,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackS4S_figatree",
+			totalFrames: 47,
+			chargeFrame: 6,
+			iasa: 44,
+			hitFrames: [{
+				start: 14,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 361,
+				kbGrowth: 94,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 32,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: {
+			subactionIndex: 64,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackS4Lw_figatree",
+			totalFrames: 47,
+			chargeFrame: 6,
+			iasa: 44,
+			hitFrames: [{
+				start: 14,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 16,
+				angle: 361,
+				kbGrowth: 94,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 32,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 43,
+			chargeFrame: 6,
+			iasa: 40,
+			hitFrames: [{
+				start: 11,
+				end: 15,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 75,
+				kbGrowth: 108,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 26,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 49,
+			chargeFrame: 4,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0, 1]
+			}, {
+				start: 21,
+				end: 22,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 14,
+					angle: 30,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 30,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 30,
+					kbGrowth: 75,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 30,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 47,
+			iasa: 45,
+			autoCancelBefore: 3,
+			autoCancelAfter: 35,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 3,
+				end: 6,
+				hitboxes: [0]
+			}, {
+				start: 7,
+				end: 33,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 49,
+			iasa: 44,
+			autoCancelBefore: 4,
+			autoCancelAfter: 35,
+			landingLag: 21,
+			lcancelledLandingLag: 10,
+			hitFrames: [{
+				start: 19,
+				end: 21,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 17,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 30,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 38,
+			autoCancelBefore: 10,
+			autoCancelAfter: 32,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [
+				{
+					start: 10,
+					end: 12,
+					hitboxes: [0]
+				},
+				{
+					start: 16,
+					end: 18,
+					hitboxes: [1]
+				},
+				{
+					start: 23,
+					end: 25,
+					hitboxes: [2]
+				},
+				{
+					start: 28,
+					end: 30,
+					hitboxes: [3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 7,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 10,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 39,
+			iasa: 39,
+			autoCancelBefore: 5,
+			autoCancelAfter: 32,
+			landingLag: 19,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 5,
+				end: 6,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 90,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyYoshi5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 59,
+			iasa: null,
+			autoCancelBefore: 16,
+			autoCancelAfter: 59,
+			landingLag: 26,
+			lcancelledLandingLag: 13,
+			hitFrames: [
+				{
+					start: 18,
+					end: 18,
+					hitboxes: [0]
+				},
+				{
+					start: 20,
+					end: 20,
+					hitboxes: [0]
+				},
+				{
+					start: 22,
+					end: 22,
+					hitboxes: [0]
+				},
+				{
+					start: 24,
+					end: 24,
+					hitboxes: [0]
+				},
+				{
+					start: 26,
+					end: 26,
+					hitboxes: [0]
+				},
+				{
+					start: 28,
+					end: 28,
+					hitboxes: [0]
+				},
+				{
+					start: 30,
+					end: 30,
+					hitboxes: [0]
+				},
+				{
+					start: 32,
+					end: 32,
+					hitboxes: [0]
+				},
+				{
+					start: 34,
+					end: 34,
+					hitboxes: [0]
+				},
+				{
+					start: 36,
+					end: 36,
+					hitboxes: [0]
+				},
+				{
+					start: 38,
+					end: 38,
+					hitboxes: [0]
+				},
+				{
+					start: 40,
+					end: 40,
+					hitboxes: [0]
+				},
+				{
+					start: 42,
+					end: 42,
+					hitboxes: [0]
+				},
+				{
+					start: 44,
+					end: 44,
+					hitboxes: [0]
+				},
+				{
+					start: 46,
+					end: 46,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 4,
+				angle: 270,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyYoshi5K_Share_ACTION_Catch_figatree",
+			totalFrames: 78,
+			iasa: null,
+			hitFrames: [{
+				start: 17,
+				end: 18,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}, {
+				start: 19,
+				end: 22,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [
+				{
+					damage: 0,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 0,
+					element: "grab",
+					shieldDamage: 0,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 0,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 0,
+					element: "grab",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: false
+				},
+				{
+					damage: 0,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 0,
+					element: "grab",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyYoshi5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 69,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 15,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: false,
+				hitAirborne: true
+			}, {
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyYoshi5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 23,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyYoshi5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 6,
+				angle: 45,
+				kbGrowth: 66,
+				weightDepKb: 0,
+				baseKb: 10,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyYoshi5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 43,
+			iasa: null,
+			"throw": {
+				damage: 6,
+				angle: 45,
+				kbGrowth: 66,
+				weightDepKb: 0,
+				baseKb: 10,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyYoshi5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 43,
+			iasa: null,
+			"throw": {
+				damage: 5,
+				angle: 90,
+				kbGrowth: 43,
+				weightDepKb: 0,
+				baseKb: 16,
+				element: 4
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyYoshi5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 43,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 80,
+				kbGrowth: 20,
+				weightDepKb: 0,
+				baseKb: 30,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialN1_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 17,
+				end: 17,
+				hitboxes: [0]
+			}, {
+				start: 18,
+				end: 21,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialN1_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialN2_figatree",
+			totalFrames: 29,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				baseKb: 0,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialAirN1_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				baseKb: 0,
+				element: 0
+			},
+			hitFrames: [{
+				start: 17,
+				end: 17,
+				hitboxes: [0]
+			}, {
+				start: 18,
+				end: 21,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 1,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialAirN1_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				baseKb: 0,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialAirN2_figatree",
+			totalFrames: 29,
+			iasa: null,
+			"throw": {
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				baseKb: 0,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialSLoop_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 43,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialSLoop_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialSEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialSLoop_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialSLoop_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 70,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 43,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialAirSEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 54,
+			projectiles: [3],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 54,
+			projectiles: [3],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 16,
+				angle: 80,
+				kbGrowth: 98,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 10,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 16,
+				angle: 80,
+				kbGrowth: 98,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 50,
+				element: "normal",
+				shieldDamage: 10,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x138": {
+			subactionIndex: 312,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialLwLanding_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x139": {
+			subactionIndex: 313,
+			subactionName: "PlyYoshi5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: [{
+				damage: 14,
+				angle: 80,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 46,
+				element: "normal",
+				shieldDamage: 10,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		}
+	},
+	"Young Link": {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyClink5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 23,
+			iasa: 20,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: {
+			subactionIndex: 47,
+			subactionName: "PlyClink5K_Share_ACTION_Attack12_figatree",
+			totalFrames: 21,
+			iasa: 17,
+			hitFrames: [{
+				start: 6,
+				end: 7,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab3: {
+			subactionIndex: 48,
+			subactionName: "PlyClink5K_Share_ACTION_Attack13_figatree",
+			totalFrames: 49,
+			iasa: 32,
+			hitFrames: [{
+				start: 6,
+				end: 10,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 5,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		rapidjabs_start: {
+			subactionIndex: 49,
+			subactionName: "PlyClink5K_Share_ACTION_Attack100Start_figatree",
+			totalFrames: 7,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		rapidjabs_loop: {
+			subactionIndex: 50,
+			subactionName: "PlyClink5K_Share_ACTION_Attack100Loop_figatree",
+			totalFrames: 34,
+			iasa: null,
+			hitFrames: [{
+				start: 2,
+				end: 3,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 1,
+					angle: 0,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 0,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 0,
+					kbGrowth: 60,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 15,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		rapidjabs_end: {
+			subactionIndex: 51,
+			subactionName: "PlyClink5K_Share_ACTION_Attack100End_figatree",
+			totalFrames: 10,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyClink5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 53,
+			iasa: 40,
+			hitFrames: [{
+				start: 7,
+				end: 12,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 10,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		ftilt_h: null,
+		ftilt_mh: null,
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyClink5K_Share_ACTION_AttackS3_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 13,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 5,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 5,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 10,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 2,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_ml: null,
+		ftilt_l: null,
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyClink5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 15,
+				hitboxes: [
+					0,
+					1,
+					2,
+					3
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 8,
+					angle: 85,
+					kbGrowth: 128,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 85,
+					kbGrowth: 126,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 85,
+					kbGrowth: 124,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 70,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyClink5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 39,
+			iasa: 32,
+			hitFrames: [{
+				start: 14,
+				end: 16,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 10,
+					angle: 280,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 280,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 70,
+					kbGrowth: 50,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyClink5K_Share_ACTION_AttackS41_figatree",
+			totalFrames: 49,
+			chargeFrame: 10,
+			iasa: null,
+			hitFrames: [{
+				start: 15,
+				end: 17,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 75,
+				kbGrowth: 100,
+				weightDepKb: 40,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyClink5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 60,
+			chargeFrame: 4,
+			iasa: 52,
+			hitFrames: [
+				{
+					start: 11,
+					end: 14,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 26,
+					end: 28,
+					hitboxes: [
+						3,
+						4,
+						5,
+						6
+					]
+				},
+				{
+					start: 40,
+					end: 42,
+					hitboxes: [7, 8]
+				},
+				{
+					start: 43,
+					end: 44,
+					hitboxes: [9, 10]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 98,
+					kbGrowth: 100,
+					weightDepKb: 23,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 98,
+					kbGrowth: 100,
+					weightDepKb: 29,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 98,
+					kbGrowth: 100,
+					weightDepKb: 31,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 28,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 31,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 35,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 37,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 100,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 100,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 70,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 30,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 30,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyClink5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 49,
+			chargeFrame: 4,
+			iasa: 42,
+			hitFrames: [{
+				start: 9,
+				end: 11,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}, {
+				start: 21,
+				end: 23,
+				hitboxes: [
+					3,
+					4,
+					5
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 30,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 13,
+					angle: 70,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 30,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 30,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 30,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 30,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 6,
+					angle: 30,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 25,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyClink5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 4,
+			autoCancelAfter: 31,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 4,
+				end: 5,
+				hitboxes: [0]
+			}, {
+				start: 6,
+				end: 27,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 12,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 8,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 10,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyClink5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 55,
+			iasa: 47,
+			autoCancelBefore: 1,
+			autoCancelAfter: 46,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 14,
+				end: 16,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}, {
+				start: 17,
+				end: 33,
+				hitboxes: [
+					3,
+					4,
+					5
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 5,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 5,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 5,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 76,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 76,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 76,
+					kbGrowth: 90,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyClink5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 39,
+			iasa: 30,
+			autoCancelBefore: 1,
+			autoCancelAfter: 28,
+			landingLag: 15,
+			lcancelledLandingLag: 7,
+			hitFrames: [{
+				start: 6,
+				end: 9,
+				hitboxes: [0]
+			}, {
+				start: 18,
+				end: 23,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 15,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyClink5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 69,
+			iasa: 60,
+			autoCancelBefore: 5,
+			autoCancelAfter: 55,
+			landingLag: 30,
+			lcancelledLandingLag: 15,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 8,
+				end: 49,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 15,
+				angle: 80,
+				kbGrowth: 85,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 25,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyClink5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 89,
+			iasa: 80,
+			autoCancelBefore: 13,
+			autoCancelAfter: 64,
+			landingLag: 50,
+			lcancelledLandingLag: 25,
+			hitFrames: [{
+				start: 13,
+				end: 15,
+				hitboxes: [0, 1]
+			}, {
+				start: 16,
+				end: 64,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 14,
+				angle: 70,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 40,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 16,
+				angle: 270,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 70,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyClink5K_Share_ACTION_Catch_figatree",
+			totalFrames: 84,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 12,
+				hitboxes: [0, 1]
+			}, {
+				start: 13,
+				end: 17,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}, {
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyClink5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 94,
+			iasa: null,
+			hitFrames: [{
+				start: 13,
+				end: 14,
+				hitboxes: [0]
+			}, {
+				start: 15,
+				end: 20,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: false
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyClink5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [{
+				start: 9,
+				end: 9,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyClink5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 3,
+				angle: 55,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				baseKb: 6,
+				element: 4
+			},
+			hitFrames: [{
+				start: 12,
+				end: 15,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyClink5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 39,
+			iasa: null,
+			"throw": {
+				damage: 3,
+				angle: 130,
+				kbGrowth: 110,
+				weightDepKb: 0,
+				baseKb: 6,
+				element: 0
+			},
+			hitFrames: [{
+				start: 11,
+				end: 15,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyClink5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 90,
+				kbGrowth: 230,
+				weightDepKb: 0,
+				baseKb: 4,
+				element: 8
+			},
+			hitFrames: [{
+				start: 26,
+				end: 26,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 20,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 0,
+				baseKb: 35,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyClink5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 4,
+				angle: 90,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 15,
+				element: 0
+			},
+			hitFrames: [{
+				start: 22,
+				end: 23,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 0,
+				weightDepKb: 90,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 1,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialNStart_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialNLoop_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialNEnd_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialAirNStart_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialAirNLoop_figatree",
+			totalFrames: 27,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialAirNEnd_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialS1_figatree",
+			totalFrames: 45,
+			projectiles: [5],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialS2_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialS1_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialAirS1_figatree",
+			totalFrames: 45,
+			projectiles: [5],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialAirS2_figatree",
+			totalFrames: 19,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialAirS1_figatree",
+			totalFrames: 45,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 8,
+					end: 10,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 11,
+					end: 13,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 14,
+					end: 16,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 17,
+					end: 19,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 20,
+					end: 22,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 23,
+					end: 25,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 26,
+					end: 28,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 29,
+					end: 31,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 32,
+					end: 34,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 35,
+					end: 37,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 38,
+					end: 40,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 41,
+					end: 43,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 44,
+					end: 46,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 47,
+					end: 47,
+					hitboxes: [2]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 1,
+					angle: 173,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 80,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 173,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 80,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 0,
+					baseKb: 60,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 79,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 8,
+					end: 13,
+					hitboxes: [
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 16,
+					end: 20,
+					hitboxes: [
+						4,
+						5,
+						6,
+						7
+					]
+				},
+				{
+					start: 22,
+					end: 27,
+					hitboxes: [
+						8,
+						9,
+						10,
+						11
+					]
+				},
+				{
+					start: 31,
+					end: 37,
+					hitboxes: [
+						12,
+						13,
+						14,
+						15
+					]
+				},
+				{
+					start: 46,
+					end: 50,
+					hitboxes: [16]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 3,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 79,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 80,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 72,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 79,
+					kbGrowth: 100,
+					weightDepKb: 72,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 72,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 72,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 70,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 79,
+					kbGrowth: 100,
+					weightDepKb: 70,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 70,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 70,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 88,
+					kbGrowth: 100,
+					weightDepKb: 68,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 79,
+					kbGrowth: 100,
+					weightDepKb: 68,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 70,
+					kbGrowth: 100,
+					weightDepKb: 68,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 68,
+					hitboxInteraction: 3,
+					baseKb: 0,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 361,
+					kbGrowth: 180,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 39,
+			projectiles: [16],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x137": {
+			subactionIndex: 311,
+			subactionName: "PlyClink5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 39,
+			projectiles: [16],
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	},
+	Zelda: {
+		jab1: {
+			subactionIndex: 46,
+			subactionName: "PlyZelda5K_Share_ACTION_Attack11_figatree",
+			totalFrames: 29,
+			iasa: 27,
+			hitFrames: [
+				{
+					start: 11,
+					end: 11,
+					hitboxes: [0]
+				},
+				{
+					start: 13,
+					end: 13,
+					hitboxes: [0]
+				},
+				{
+					start: 15,
+					end: 15,
+					hitboxes: [0]
+				},
+				{
+					start: 17,
+					end: 17,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 10,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		jab2: null,
+		jab3: null,
+		rapidjabs_start: null,
+		rapidjabs_loop: null,
+		rapidjabs_end: null,
+		dashattack: {
+			subactionIndex: 52,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackDash_figatree",
+			totalFrames: 37,
+			iasa: 36,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0, 1]
+			}, {
+				start: 9,
+				end: 13,
+				hitboxes: [2, 3]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 90,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 70,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 9,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 90,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 7,
+					angle: 361,
+					kbGrowth: 70,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 20,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_h: {
+			subactionIndex: 53,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackS3Hi_figatree",
+			totalFrames: 37,
+			iasa: 37,
+			hitFrames: [{
+				start: 12,
+				end: 14,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 110,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_mh: {
+			subactionIndex: 54,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackS3HiS_figatree",
+			totalFrames: 37,
+			iasa: 37,
+			hitFrames: [{
+				start: 12,
+				end: 14,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 110,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_m: {
+			subactionIndex: 55,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackS3S_figatree",
+			totalFrames: 37,
+			iasa: 37,
+			hitFrames: [{
+				start: 12,
+				end: 14,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 110,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_ml: {
+			subactionIndex: 56,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackS3LwS_figatree",
+			totalFrames: 37,
+			iasa: 37,
+			hitFrames: [{
+				start: 12,
+				end: 14,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 110,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		ftilt_l: {
+			subactionIndex: 57,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackS3Lw_figatree",
+			totalFrames: 37,
+			iasa: 37,
+			hitFrames: [{
+				start: 12,
+				end: 14,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 13,
+					angle: 110,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 12,
+					angle: 361,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 11,
+					angle: 361,
+					kbGrowth: 88,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		utilt: {
+			subactionIndex: 58,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackHi3_figatree",
+			totalFrames: 43,
+			iasa: 40,
+			hitFrames: [{
+				start: 10,
+				end: 24,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 70,
+				kbGrowth: 105,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 65,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dtilt: {
+			subactionIndex: 59,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackLw3_figatree",
+			totalFrames: 31,
+			iasa: 30,
+			hitFrames: [{
+				start: 5,
+				end: 7,
+				hitboxes: [
+					0,
+					1,
+					2
+				]
+			}],
+			hitboxes: [
+				{
+					damage: 7,
+					angle: 270,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: false
+				},
+				{
+					damage: 7,
+					angle: 80,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: false,
+					hitAirborne: true
+				},
+				{
+					damage: 8,
+					angle: 270,
+					kbGrowth: 80,
+					weightDepKb: 0,
+					hitboxInteraction: 3,
+					baseKb: 20,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_h: null,
+		fsmash_mh: null,
+		fsmash_m: {
+			subactionIndex: 62,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackS4S_figatree",
+			totalFrames: 39,
+			chargeFrame: 11,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 16,
+					end: 16,
+					hitboxes: [
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 18,
+					end: 18,
+					hitboxes: [
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 20,
+					end: 20,
+					hitboxes: [
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 22,
+					end: 22,
+					hitboxes: [
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 24,
+					end: 24,
+					hitboxes: [
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					start: 26,
+					end: 26,
+					hitboxes: [4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 1,
+					angle: 160,
+					kbGrowth: 100,
+					weightDepKb: 40,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 60,
+					kbGrowth: 100,
+					weightDepKb: 12,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 45,
+					kbGrowth: 100,
+					weightDepKb: 11,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 30,
+					kbGrowth: 100,
+					weightDepKb: 13,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 14,
+					angle: 361,
+					kbGrowth: 98,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fsmash_ml: null,
+		fsmash_l: null,
+		usmash: {
+			subactionIndex: 66,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackHi4_figatree",
+			totalFrames: 56,
+			chargeFrame: 4,
+			iasa: 51,
+			hitFrames: [
+				{
+					start: 5,
+					end: 5,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 7,
+					end: 7,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 9,
+					end: 9,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 11,
+					end: 11,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 13,
+					end: 13,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 15,
+					end: 15,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 17,
+					end: 17,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 24,
+					end: 24,
+					hitboxes: [
+						0,
+						2,
+						3
+					]
+				},
+				{
+					start: 26,
+					end: 26,
+					hitboxes: [
+						0,
+						2,
+						3
+					]
+				},
+				{
+					start: 28,
+					end: 28,
+					hitboxes: [
+						0,
+						2,
+						3
+					]
+				},
+				{
+					start: 30,
+					end: 30,
+					hitboxes: [
+						0,
+						2,
+						3
+					]
+				},
+				{
+					start: 32,
+					end: 32,
+					hitboxes: [
+						0,
+						2,
+						3
+					]
+				},
+				{
+					start: 34,
+					end: 34,
+					hitboxes: [
+						0,
+						2,
+						3
+					]
+				},
+				{
+					start: 36,
+					end: 36,
+					hitboxes: [4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 1,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 16,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 170,
+					kbGrowth: 100,
+					weightDepKb: 20,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 90,
+					kbGrowth: 100,
+					weightDepKb: 45,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 1,
+					angle: 110,
+					kbGrowth: 100,
+					weightDepKb: 20,
+					hitboxInteraction: 0,
+					baseKb: 0,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 90,
+					kbGrowth: 210,
+					weightDepKb: 0,
+					hitboxInteraction: 2,
+					baseKb: 20,
+					element: "electric",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		dsmash: {
+			subactionIndex: 67,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackLw4_figatree",
+			totalFrames: 39,
+			chargeFrame: 2,
+			iasa: 32,
+			hitFrames: [{
+				start: 4,
+				end: 7,
+				hitboxes: [0]
+			}, {
+				start: 13,
+				end: 16,
+				hitboxes: [1]
+			}],
+			hitboxes: [{
+				damage: 11,
+				angle: 30,
+				kbGrowth: 90,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 11,
+				angle: 30,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 20,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		nair: {
+			subactionIndex: 68,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackAirN_figatree",
+			totalFrames: 49,
+			iasa: 42,
+			autoCancelBefore: 6,
+			autoCancelAfter: 37,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [
+				{
+					start: 6,
+					end: 7,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 10,
+					end: 11,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 14,
+					end: 15,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 18,
+					end: 19,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 22,
+					end: 23,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 26,
+					end: 27,
+					hitboxes: [
+						0,
+						1,
+						2
+					]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [3, 4]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 2,
+					angle: 130,
+					kbGrowth: 100,
+					weightDepKb: 70,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 90,
+					kbGrowth: 90,
+					weightDepKb: 120,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 3,
+					angle: 90,
+					kbGrowth: 90,
+					weightDepKb: 50,
+					hitboxInteraction: 1,
+					baseKb: 0,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 130,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 120,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "normal",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		fair: {
+			subactionIndex: 69,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackAirF_figatree",
+			totalFrames: 39,
+			iasa: 36,
+			autoCancelBefore: 8,
+			autoCancelAfter: 24,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 8,
+				end: 11,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 20,
+				angle: 361,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 30,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		bair: {
+			subactionIndex: 70,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackAirB_figatree",
+			totalFrames: 35,
+			iasa: 33,
+			autoCancelBefore: 5,
+			autoCancelAfter: 25,
+			landingLag: 18,
+			lcancelledLandingLag: 9,
+			hitFrames: [{
+				start: 5,
+				end: 8,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 10,
+				angle: 361,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 20,
+				angle: 361,
+				kbGrowth: 96,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 30,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		upair: {
+			subactionIndex: 71,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackAirHi_figatree",
+			totalFrames: 54,
+			iasa: null,
+			autoCancelBefore: 14,
+			autoCancelAfter: 44,
+			landingLag: 25,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 14,
+				end: 16,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 13,
+				angle: 90,
+				kbGrowth: 120,
+				weightDepKb: 0,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dair: {
+			subactionIndex: 72,
+			subactionName: "PlyZelda5K_Share_ACTION_AttackAirLw_figatree",
+			totalFrames: 43,
+			iasa: 43,
+			autoCancelBefore: 1,
+			autoCancelAfter: 39,
+			landingLag: 24,
+			lcancelledLandingLag: 12,
+			hitFrames: [{
+				start: 14,
+				end: 17,
+				hitboxes: [0, 1]
+			}],
+			hitboxes: [{
+				damage: 8,
+				angle: 275,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 5,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}, {
+				damage: 7,
+				angle: 275,
+				kbGrowth: 80,
+				weightDepKb: 0,
+				hitboxInteraction: 3,
+				baseKb: 0,
+				element: "normal",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		grab: {
+			subactionIndex: 242,
+			subactionName: "PlyZelda5K_Share_ACTION_Catch_figatree",
+			totalFrames: 29,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		dashgrab: {
+			subactionIndex: 243,
+			subactionName: "PlyZelda5K_Share_ACTION_CatchDash_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 11,
+				end: 12,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 0,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 0,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "grab",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		pummel: {
+			subactionIndex: 245,
+			subactionName: "PlyZelda5K_Share_ACTION_CatchAttack_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [{
+				start: 6,
+				end: 8,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 3,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 30,
+				hitboxInteraction: 0,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		fthrow: {
+			subactionIndex: 247,
+			subactionName: "PlyZelda5K_Share_ACTION_ThrowF_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 12,
+				angle: 45,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 17,
+				element: 8
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		bthrow: {
+			subactionIndex: 248,
+			subactionName: "PlyZelda5K_Share_ACTION_ThrowB_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 45,
+				kbGrowth: 60,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		uthrow: {
+			subactionIndex: 249,
+			subactionName: "PlyZelda5K_Share_ACTION_ThrowHi_figatree",
+			totalFrames: 49,
+			iasa: null,
+			"throw": {
+				damage: 11,
+				angle: 90,
+				kbGrowth: 50,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [],
+			hitboxes: []
+		},
+		dthrow: {
+			subactionIndex: 250,
+			subactionName: "PlyZelda5K_Share_ACTION_ThrowLw_figatree",
+			totalFrames: 64,
+			iasa: null,
+			"throw": {
+				damage: 2,
+				angle: 120,
+				kbGrowth: 42,
+				weightDepKb: 0,
+				baseKb: 20,
+				element: 0
+			},
+			hitFrames: [
+				{
+					start: 24,
+					end: 25,
+					hitboxes: [0]
+				},
+				{
+					start: 30,
+					end: 31,
+					hitboxes: [0]
+				},
+				{
+					start: 36,
+					end: 37,
+					hitboxes: [0]
+				},
+				{
+					start: 42,
+					end: 43,
+					hitboxes: [0]
+				},
+				{
+					start: 48,
+					end: 49,
+					hitboxes: [0]
+				}
+			],
+			hitboxes: [{
+				damage: 2,
+				angle: 40,
+				kbGrowth: 100,
+				weightDepKb: 25,
+				hitboxInteraction: 1,
+				baseKb: 0,
+				element: "electric",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x127": {
+			subactionIndex: 295,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 12,
+					end: 12,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 15,
+					end: 15,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 18,
+					end: 18,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 21,
+					end: 21,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 24,
+					end: 24,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 27,
+					end: 27,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 30,
+					end: 30,
+					hitboxes: [2, 3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 1,
+					angle: 10,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 12,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 10,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 12,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x128": {
+			subactionIndex: 296,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialAirN_figatree",
+			totalFrames: 59,
+			iasa: null,
+			hitFrames: [
+				{
+					start: 12,
+					end: 12,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 15,
+					end: 15,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 18,
+					end: 18,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 21,
+					end: 21,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 24,
+					end: 24,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 27,
+					end: 27,
+					hitboxes: [0, 1]
+				},
+				{
+					start: 30,
+					end: 30,
+					hitboxes: [2, 3]
+				}
+			],
+			hitboxes: [
+				{
+					damage: 1,
+					angle: 10,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 12,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 2,
+					angle: 10,
+					kbGrowth: 40,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 12,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 5,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 50,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				},
+				{
+					damage: 4,
+					angle: 361,
+					kbGrowth: 100,
+					weightDepKb: 0,
+					hitboxInteraction: 1,
+					baseKb: 40,
+					element: "slash",
+					shieldDamage: 0,
+					hitGrounded: true,
+					hitAirborne: true
+				}
+			]
+		},
+		"0x129": {
+			subactionIndex: 297,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialSStart_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12a": {
+			subactionIndex: 298,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialSLoop_figatree",
+			totalFrames: 14,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12b": {
+			subactionIndex: 299,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialSEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12c": {
+			subactionIndex: 300,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialAirSStart_figatree",
+			totalFrames: 24,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12d": {
+			subactionIndex: 301,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialAirSLoop_figatree",
+			totalFrames: 14,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x12e": {
+			subactionIndex: 302,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialAirSEnd_figatree",
+			totalFrames: 39,
+			iasa: null,
+			hitFrames: [{
+				start: 18,
+				end: 18,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 120,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x12f": {
+			subactionIndex: 303,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialHiStart_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 120,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x130": {
+			subactionIndex: 304,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialHi_figatree",
+			totalFrames: 21,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 2,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 120,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x131": {
+			subactionIndex: 305,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialAirHiStart_figatree",
+			totalFrames: 33,
+			iasa: null,
+			hitFrames: [{
+				start: 10,
+				end: 11,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 80,
+				kbGrowth: 100,
+				weightDepKb: 120,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "slash",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x132": {
+			subactionIndex: 306,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialAirHi_figatree",
+			totalFrames: 61,
+			iasa: null,
+			hitFrames: [{
+				start: 1,
+				end: 2,
+				hitboxes: [0]
+			}],
+			hitboxes: [{
+				damage: 4,
+				angle: 361,
+				kbGrowth: 100,
+				weightDepKb: 120,
+				hitboxInteraction: 2,
+				baseKb: 0,
+				element: "fire",
+				shieldDamage: 0,
+				hitGrounded: true,
+				hitAirborne: true
+			}]
+		},
+		"0x133": {
+			subactionIndex: 307,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialLw_figatree",
+			totalFrames: 43,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x134": {
+			subactionIndex: 308,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialLw2_figatree",
+			totalFrames: 25,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x135": {
+			subactionIndex: 309,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialAirLw_figatree",
+			totalFrames: 43,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		},
+		"0x136": {
+			subactionIndex: 310,
+			subactionName: "PlyZelda5K_Share_ACTION_SpecialAirLw2_figatree",
+			totalFrames: 25,
+			iasa: null,
+			hitFrames: [],
+			hitboxes: []
+		}
+	}
+};
+const characterNames = {
+	0: "Mario",
+	1: "Fox",
+	2: "Captain Falcon",
+	3: "Donkey Kong",
+	4: "Kirby",
+	5: "Bowser",
+	6: "Link",
+	7: "Sheik",
+	8: "Ness",
+	9: "Peach",
+	10: "Popo",
+	11: "Nana",
+	12: "Pikachu",
+	13: "Samus",
+	14: "Yoshi",
+	15: "Jigglypuff",
+	16: "Mewtwo",
+	17: "Luigi",
+	18: "Marth",
+	19: "Zelda",
+	20: "Young Link",
+	21: "Dr. Mario",
+	22: "Falco",
+	23: "Pichu",
+	24: "Mr. Game & Watch",
+	25: "Ganondorf",
+	26: "Roy"
+};
+function getAerialFrameData(internalCharacterId, aerialName) {
+	const characterName = characterNames[internalCharacterId];
+	if (!characterName) return;
+	return framedata[characterName][aerialName];
+}
 new Map(Object.entries({
 	"2": {
 		name: "Fountain of Dreams",
@@ -20917,6 +60788,9 @@ var Stage;
 	Stage[Stage["EVENT_THIRTY_SIX_PART_TWO"] = 273] = "EVENT_THIRTY_SIX_PART_TWO";
 	Stage[Stage["MULTI_MAN_MELEE"] = 285] = "MULTI_MAN_MELEE";
 })(Stage || (Stage = {}));
+function exists(value) {
+	return value != null;
+}
 const State = {
 	DAMAGE_START: 75,
 	DAMAGE_END: 91,
@@ -21016,13 +60890,574 @@ const State = {
 	COMMAND_GRAB_RANGE2_START: 327,
 	COMMAND_GRAB_RANGE2_END: 338
 };
-State.DASH, State.TURN, State.DASH;
+const Timers = {
+	PUNISH_RESET_FRAMES: 45,
+	RECOVERY_RESET_FRAMES: 45,
+	COMBO_STRING_RESET_FRAMES: 45
+};
+function getSinglesPlayerPermutationsFromSettings(settings) {
+	if (!settings || settings.players.length !== 2) return [];
+	return [{
+		playerIndex: settings.players[0].playerIndex,
+		opponentIndex: settings.players[1].playerIndex
+	}, {
+		playerIndex: settings.players[1].playerIndex,
+		opponentIndex: settings.players[0].playerIndex
+	}];
+}
+function didLoseStock(frame, prevFrame) {
+	if (!frame || !prevFrame) return false;
+	return prevFrame.stocksRemaining - frame.stocksRemaining > 0;
+}
+function isInControl(state) {
+	const ground = state >= State.GROUNDED_CONTROL_START && state <= State.GROUNDED_CONTROL_END;
+	const squat = state >= State.SQUAT_START && state <= State.SQUAT_END;
+	const groundAttack = state > State.GROUND_ATTACK_START && state <= State.GROUND_ATTACK_END;
+	const isGrab = state === State.GRAB;
+	return ground || squat || groundAttack || isGrab;
+}
+function isTeching(state) {
+	return state >= State.TECH_START && state <= State.TECH_END;
+}
+function isDown(state) {
+	return state >= State.DOWN_START && state <= State.DOWN_END;
+}
+function isDamaged(state) {
+	return state >= State.DAMAGE_START && state <= State.DAMAGE_END || state === State.DAMAGE_FALL || state === State.JAB_RESET_UP || state === State.JAB_RESET_DOWN;
+}
+function isGrabbed(state) {
+	return state >= State.CAPTURE_START && state <= State.CAPTURE_END;
+}
+function isCommandGrabbed(state) {
+	return (state >= State.COMMAND_GRAB_RANGE1_START && state <= State.COMMAND_GRAB_RANGE1_END || state >= State.COMMAND_GRAB_RANGE2_START && state <= State.COMMAND_GRAB_RANGE2_END) && state !== State.BARREL_WAIT;
+}
+function isDead(state) {
+	return state >= State.DYING_START && state <= State.DYING_END;
+}
+function calcDamageTaken(frame, prevFrame) {
+	var _a, _b;
+	return ((_a = frame.percent) !== null && _a !== void 0 ? _a : 0) - ((_b = prevFrame.percent) !== null && _b !== void 0 ? _b : 0);
+}
+const dashDanceAnimations = [
+	State.DASH,
+	State.TURN,
+	State.DASH
+];
+var ActionsComputer = class {
+	constructor() {
+		this.playerPermutations = [];
+		this.state = /* @__PURE__ */ new Map();
+	}
+	setup(settings) {
+		this.state = /* @__PURE__ */ new Map();
+		this.playerPermutations = getSinglesPlayerPermutationsFromSettings(settings);
+		this.playerPermutations.forEach((indices) => {
+			const playerState = {
+				playerCounts: {
+					playerIndex: indices.playerIndex,
+					wavedashCount: 0,
+					wavelandCount: 0,
+					airDodgeCount: 0,
+					dashDanceCount: 0,
+					spotDodgeCount: 0,
+					ledgegrabCount: 0,
+					rollCount: 0,
+					edgeCancelCount: {
+						success: 0,
+						slow: 0
+					},
+					lCancelCount: {
+						success: 0,
+						fail: 0
+					},
+					attackCount: {
+						jab1: 0,
+						jab2: 0,
+						jab3: 0,
+						jabm: 0,
+						dash: 0,
+						ftilt: 0,
+						utilt: 0,
+						dtilt: 0,
+						fsmash: 0,
+						usmash: 0,
+						dsmash: 0,
+						nair: 0,
+						fair: 0,
+						bair: 0,
+						uair: 0,
+						dair: 0
+					},
+					grabCount: {
+						success: 0,
+						fail: 0
+					},
+					throwCount: {
+						up: 0,
+						forward: 0,
+						back: 0,
+						down: 0
+					},
+					groundTechCount: {
+						away: 0,
+						in: 0,
+						neutral: 0,
+						fail: 0
+					},
+					wallTechCount: {
+						success: 0,
+						fail: 0
+					}
+				},
+				animations: [],
+				actionFrameCounters: [],
+				lastLCancelStatus: 0
+			};
+			this.state.set(indices, playerState);
+		});
+	}
+	processFrame(frame) {
+		this.playerPermutations.forEach((indices) => {
+			const state = this.state.get(indices);
+			if (state) handleActionCompute(state, indices, frame);
+		});
+	}
+	fetch() {
+		return Array.from(this.state.values()).map((val) => val.playerCounts);
+	}
+};
+function isMissGroundTech(animation) {
+	return animation === State.TECH_MISS_DOWN || animation === State.TECH_MISS_UP;
+}
+function isRolling(animation) {
+	return animation === State.ROLL_BACKWARD || animation === State.ROLL_FORWARD;
+}
+function isGrabAction(animation) {
+	return animation > State.GRAB && animation <= State.THROW_DOWN && animation !== State.DASH_GRAB;
+}
+function isGrabbing(animation) {
+	return animation === State.GRAB || animation === State.DASH_GRAB;
+}
+function isAerialLanding(animation) {
+	return animation >= State.AERIAL_LANDING_START && animation <= State.AERIAL_LANDING_END;
+}
+function isForwardTilt(animation) {
+	return animation >= State.ATTACK_FTILT_START && animation <= State.ATTACK_FTILT_END;
+}
+function isForwardSmash(animation) {
+	return animation >= State.ATTACK_FSMASH_START && animation <= State.ATTACK_FSMASH_END;
+}
+function getLandLagFromLandAnimation(animation, internalCharacterId) {
+	let aerialName;
+	if (animation === State.AERIAL_BAIR_LANDING) aerialName = "bair";
+	else if (animation === State.AERIAL_FAIR_LANDING) aerialName = "fair";
+	else if (animation === State.AERIAL_DAIR_LANDING) aerialName = "dair";
+	else if (animation === State.AERIAL_NAIR_LANDING) aerialName = "nair";
+	else if (animation === State.AERIAL_UAIR_LANDING) aerialName = "upair";
+	else return;
+	const aerialFrameData = getAerialFrameData(internalCharacterId, aerialName);
+	if (aerialFrameData) return [aerialFrameData.landingLag, aerialFrameData.lcancelledLandingLag];
+}
+function getPrevAnimationLength(state) {
+	const startIndex = state.animations.length - 2;
+	let i = startIndex;
+	let frameCount = 0;
+	while (state.animations[i] === state.animations[startIndex]) {
+		frameCount += 1;
+		i--;
+	}
+	return frameCount;
+}
+function handleActionCompute(state, indices, frame) {
+	const playerFrame = frame.players[indices.playerIndex].post;
+	const opponentFrame = frame.players[indices.opponentIndex].post;
+	const incrementCount = (field, condition) => {
+		if (!condition) return;
+		const current = (0, import_get.default)(state.playerCounts, field, 0);
+		(0, import_set.default)(state.playerCounts, field, current + 1);
+	};
+	const currentAnimation = playerFrame.actionStateId;
+	state.animations.push(currentAnimation);
+	const currentFrameCounter = playerFrame.actionStateCounter;
+	state.actionFrameCounters.push(currentFrameCounter);
+	const last3Frames = state.animations.slice(-3);
+	const prevAnimation = last3Frames[last3Frames.length - 2];
+	const prevFrameCounter = state.actionFrameCounters[state.actionFrameCounters.length - 2];
+	if (!(currentAnimation !== prevAnimation || prevFrameCounter > currentFrameCounter)) return;
+	incrementCount("dashDanceCount", (0, import_isEqual.default)(last3Frames, dashDanceAnimations));
+	incrementCount("rollCount", isRolling(currentAnimation));
+	incrementCount("spotDodgeCount", currentAnimation === State.SPOT_DODGE);
+	incrementCount("airDodgeCount", currentAnimation === State.AIR_DODGE);
+	incrementCount("ledgegrabCount", currentAnimation === State.CLIFF_CATCH);
+	incrementCount("grabCount.success", isGrabbing(prevAnimation) && isGrabAction(currentAnimation));
+	incrementCount("grabCount.fail", isGrabbing(prevAnimation) && !isGrabAction(currentAnimation));
+	if (currentAnimation === State.DASH_GRAB && prevAnimation === State.ATTACK_DASH) state.playerCounts.attackCount.dash -= 1;
+	incrementCount("attackCount.jab1", currentAnimation === State.ATTACK_JAB1);
+	incrementCount("attackCount.jab2", currentAnimation === State.ATTACK_JAB2);
+	incrementCount("attackCount.jab3", currentAnimation === State.ATTACK_JAB3);
+	incrementCount("attackCount.jabm", currentAnimation === State.ATTACK_JABM);
+	incrementCount("attackCount.dash", currentAnimation === State.ATTACK_DASH);
+	incrementCount("attackCount.ftilt", isForwardTilt(currentAnimation));
+	incrementCount("attackCount.utilt", currentAnimation === State.ATTACK_UTILT);
+	incrementCount("attackCount.dtilt", currentAnimation === State.ATTACK_DTILT);
+	incrementCount("attackCount.fsmash", isForwardSmash(currentAnimation));
+	incrementCount("attackCount.usmash", currentAnimation === State.ATTACK_USMASH);
+	incrementCount("attackCount.dsmash", currentAnimation === State.ATTACK_DSMASH);
+	incrementCount("attackCount.nair", currentAnimation === State.AERIAL_NAIR);
+	incrementCount("attackCount.fair", currentAnimation === State.AERIAL_FAIR);
+	incrementCount("attackCount.bair", currentAnimation === State.AERIAL_BAIR);
+	incrementCount("attackCount.uair", currentAnimation === State.AERIAL_UAIR);
+	incrementCount("attackCount.dair", currentAnimation === State.AERIAL_DAIR);
+	if (playerFrame.internalCharacterId === 24) {
+		incrementCount("attackCount.jab1", currentAnimation === State.GNW_JAB1);
+		incrementCount("attackCount.jabm", currentAnimation === State.GNW_JABM);
+		incrementCount("attackCount.dtilt", currentAnimation === State.GNW_DTILT);
+		incrementCount("attackCount.fsmash", currentAnimation === State.GNW_FSMASH);
+		incrementCount("attackCount.nair", currentAnimation === State.GNW_NAIR);
+		incrementCount("attackCount.bair", currentAnimation === State.GNW_BAIR);
+		incrementCount("attackCount.uair", currentAnimation === State.GNW_UAIR);
+	}
+	if (playerFrame.internalCharacterId === 9) {
+		incrementCount("attackCount.fsmash", currentAnimation === State.PEACH_FSMASH1);
+		incrementCount("attackCount.fsmash", currentAnimation === State.PEACH_FSMASH2);
+		incrementCount("attackCount.fsmash", currentAnimation === State.PEACH_FSMASH3);
+	}
+	incrementCount("throwCount.up", currentAnimation === State.THROW_UP);
+	incrementCount("throwCount.forward", currentAnimation === State.THROW_FORWARD);
+	incrementCount("throwCount.down", currentAnimation === State.THROW_DOWN);
+	incrementCount("throwCount.back", currentAnimation === State.THROW_BACK);
+	const opponentDir = playerFrame.positionX > opponentFrame.positionX ? -1 : 1;
+	const facingOpponent = playerFrame.facingDirection === opponentDir;
+	incrementCount("groundTechCount.fail", isMissGroundTech(currentAnimation));
+	incrementCount("groundTechCount.in", currentAnimation === State.FORWARD_TECH && facingOpponent);
+	incrementCount("groundTechCount.in", currentAnimation === State.BACKWARD_TECH && !facingOpponent);
+	incrementCount("groundTechCount.neutral", currentAnimation === State.NEUTRAL_TECH);
+	incrementCount("groundTechCount.away", currentAnimation === State.BACKWARD_TECH && facingOpponent);
+	incrementCount("groundTechCount.away", currentAnimation === State.FORWARD_TECH && !facingOpponent);
+	incrementCount("wallTechCount.success", currentAnimation === State.WALL_TECH);
+	incrementCount("wallTechCount.fail", currentAnimation === State.MISSED_WALL_TECH);
+	if (isAerialLanding(currentAnimation)) {
+		incrementCount("lCancelCount.success", playerFrame.lCancelStatus === 1);
+		incrementCount("lCancelCount.fail", playerFrame.lCancelStatus === 2);
+	}
+	if (isAerialLanding(prevAnimation) && (currentAnimation === State.FALL || currentAnimation === State.TEETER) && exists(playerFrame.internalCharacterId)) {
+		const landingFrames = getPrevAnimationLength(state);
+		const [landingLag, lCanceledLag] = getLandLagFromLandAnimation(prevAnimation, playerFrame.internalCharacterId);
+		incrementCount("edgeCancelCount.success", landingFrames < lCanceledLag);
+		incrementCount("edgeCancelCount.slow", landingFrames >= lCanceledLag && landingFrames < landingLag);
+		if (landingFrames <= lCanceledLag && state.lastLCancelStatus === 2) state.playerCounts.lCancelCount.fail -= 1;
+	}
+	handleActionWavedash(state.playerCounts, state.animations);
+	if (exists(playerFrame.lCancelStatus) && playerFrame.lCancelStatus > 0) state.lastLCancelStatus = playerFrame.lCancelStatus;
+}
+function handleActionWavedash(counts, animations) {
+	const currentAnimation = (0, import_last.default)(animations);
+	const prevAnimation = animations[animations.length - 2];
+	const isSpecialLanding = currentAnimation === State.LANDING_FALL_SPECIAL;
+	const isAcceptablePrevious = isWavedashInitiationAnimation(prevAnimation);
+	if (!(isSpecialLanding && isAcceptablePrevious)) return;
+	const recentAnimations = (0, import_keyBy.default)(animations.slice(-8), (animation) => animation);
+	if ((0, import_size.default)(recentAnimations) === 2 && recentAnimations[State.AIR_DODGE]) return;
+	if (recentAnimations[State.AIR_DODGE]) counts.airDodgeCount -= 1;
+	if (recentAnimations[State.ACTION_KNEE_BEND]) counts.wavedashCount += 1;
+	else counts.wavelandCount += 1;
+}
+function isWavedashInitiationAnimation(animation) {
+	if (animation === State.AIR_DODGE) return true;
+	const isAboveMin = animation >= State.CONTROLLED_JUMP_START;
+	const isBelowMax = animation <= State.CONTROLLED_JUMP_END;
+	return isAboveMin && isBelowMax;
+}
+var TypedEventEmitter = class {
+	constructor() {
+		this.listeners = /* @__PURE__ */ new Map();
+	}
+	on(type, listener) {
+		let listeners = this.listeners.get(type);
+		if (!listeners) {
+			listeners = /* @__PURE__ */ new Set();
+			this.listeners.set(type, listeners);
+		}
+		listeners.add(listener);
+		return () => this.off(type, listener);
+	}
+	once(type, listener) {
+		const wrappedListener = (data) => {
+			this.off(type, wrappedListener);
+			listener(data);
+		};
+		return this.on(type, wrappedListener);
+	}
+	off(type, listener) {
+		var _a;
+		(_a = this.listeners.get(type)) === null || _a === void 0 || _a.delete(listener);
+	}
+	removeListener(type, listener) {
+		this.off(type, listener);
+	}
+	emit(type, data) {
+		var _a;
+		(_a = this.listeners.get(type)) === null || _a === void 0 || _a.forEach((fn) => fn(data));
+	}
+};
 var ComboEvent;
 (function(ComboEvent) {
 	ComboEvent["COMBO_START"] = "COMBO_START";
 	ComboEvent["COMBO_EXTEND"] = "COMBO_EXTEND";
 	ComboEvent["COMBO_END"] = "COMBO_END";
 })(ComboEvent || (ComboEvent = {}));
+var ComboComputer = class extends TypedEventEmitter {
+	constructor() {
+		super(...arguments);
+		this.playerPermutations = [];
+		this.state = /* @__PURE__ */ new Map();
+		this.combos = [];
+	}
+	setup(settings) {
+		this.settings = settings;
+		this.state = /* @__PURE__ */ new Map();
+		this.combos = [];
+		this.playerPermutations = getSinglesPlayerPermutationsFromSettings(settings);
+		this.playerPermutations.forEach((indices) => {
+			this.state.set(indices, {
+				combo: void 0,
+				move: void 0,
+				resetCounter: 0,
+				lastHitAnimation: void 0,
+				event: void 0
+			});
+		});
+	}
+	processFrame(frame, allFrames) {
+		this.playerPermutations.forEach((indices) => {
+			const state = this.state.get(indices);
+			if (state) {
+				handleComboCompute(allFrames, state, indices, frame, this.combos);
+				if (state.event != null) {
+					this.emit(state.event, {
+						combo: (0, import_last.default)(this.combos),
+						settings: this.settings
+					});
+					state.event = void 0;
+				}
+			}
+		});
+	}
+	fetch() {
+		return this.combos;
+	}
+};
+function handleComboCompute(frames, state, indices, frame, combos) {
+	var _a, _b, _c, _d;
+	const currentFrameNumber = frame.frame;
+	const playerFrame = frame.players[indices.playerIndex].post;
+	const opponentFrame = frame.players[indices.opponentIndex].post;
+	const prevFrameNumber = currentFrameNumber - 1;
+	let prevPlayerFrame = void 0;
+	let prevOpponentFrame = void 0;
+	if (frames[prevFrameNumber]) {
+		prevPlayerFrame = frames[prevFrameNumber].players[indices.playerIndex].post;
+		prevOpponentFrame = frames[prevFrameNumber].players[indices.opponentIndex].post;
+	}
+	const oppActionStateId = opponentFrame.actionStateId;
+	const opntIsDamaged = isDamaged(oppActionStateId);
+	const opntIsGrabbed = isGrabbed(oppActionStateId);
+	const opntIsCommandGrabbed = isCommandGrabbed(oppActionStateId);
+	const opntDamageTaken = prevOpponentFrame ? calcDamageTaken(opponentFrame, prevOpponentFrame) : 0;
+	const actionChangedSinceHit = playerFrame.actionStateId !== state.lastHitAnimation;
+	const actionFrameCounterReset = playerFrame.actionStateCounter < (prevPlayerFrame ? prevPlayerFrame.actionStateCounter : 0);
+	if (actionChangedSinceHit || actionFrameCounterReset) state.lastHitAnimation = void 0;
+	if (opntIsDamaged || opntIsGrabbed || opntIsCommandGrabbed) {
+		let comboStarted = false;
+		if (!state.combo) {
+			state.combo = {
+				playerIndex: indices.opponentIndex,
+				startFrame: currentFrameNumber,
+				endFrame: void 0,
+				startPercent: prevOpponentFrame ? (_a = prevOpponentFrame.percent) !== null && _a !== void 0 ? _a : 0 : 0,
+				currentPercent: (_b = opponentFrame.percent) !== null && _b !== void 0 ? _b : 0,
+				endPercent: void 0,
+				moves: [],
+				didKill: false,
+				lastHitBy: indices.playerIndex
+			};
+			combos.push(state.combo);
+			comboStarted = true;
+		}
+		if (opntDamageTaken) {
+			if (state.lastHitAnimation == null) {
+				state.move = {
+					playerIndex: indices.playerIndex,
+					frame: currentFrameNumber,
+					moveId: playerFrame.lastAttackLanded,
+					hitCount: 0,
+					damage: 0
+				};
+				state.combo.moves.push(state.move);
+				if (!comboStarted) state.event = ComboEvent.COMBO_EXTEND;
+			}
+			if (state.move) {
+				state.move.hitCount += 1;
+				state.move.damage += opntDamageTaken;
+			}
+			state.lastHitAnimation = prevPlayerFrame ? prevPlayerFrame.actionStateId : void 0;
+		}
+		if (comboStarted) state.event = ComboEvent.COMBO_START;
+	}
+	if (!state.combo) return;
+	const opntIsTeching = isTeching(oppActionStateId);
+	const opntIsDowned = isDown(oppActionStateId);
+	const opntDidLoseStock = prevOpponentFrame && didLoseStock(opponentFrame, prevOpponentFrame);
+	const opntIsDying = isDead(oppActionStateId);
+	if (!opntDidLoseStock) state.combo.currentPercent = (_c = opponentFrame.percent) !== null && _c !== void 0 ? _c : 0;
+	if (opntIsDamaged || opntIsGrabbed || opntIsCommandGrabbed || opntIsTeching || opntIsDowned || opntIsDying) state.resetCounter = 0;
+	else state.resetCounter += 1;
+	let shouldTerminate = false;
+	if (opntDidLoseStock) {
+		state.combo.didKill = true;
+		shouldTerminate = true;
+	}
+	if (state.resetCounter > Timers.COMBO_STRING_RESET_FRAMES) shouldTerminate = true;
+	if (shouldTerminate) {
+		state.combo.endFrame = playerFrame.frame;
+		state.combo.endPercent = prevOpponentFrame ? (_d = prevOpponentFrame.percent) !== null && _d !== void 0 ? _d : 0 : 0;
+		state.event = ComboEvent.COMBO_END;
+		state.combo = void 0;
+		state.move = void 0;
+	}
+}
+var ConversionComputer = class extends TypedEventEmitter {
+	constructor() {
+		super();
+		this.playerPermutations = [];
+		this.conversions = [];
+		this.state = /* @__PURE__ */ new Map();
+		this.metadata = { lastEndFrameByOppIdx: {} };
+	}
+	setup(settings) {
+		this.playerPermutations = getSinglesPlayerPermutationsFromSettings(settings);
+		this.conversions = [];
+		this.state = /* @__PURE__ */ new Map();
+		this.metadata = { lastEndFrameByOppIdx: {} };
+		this.settings = settings;
+		this.playerPermutations.forEach((indices) => {
+			this.state.set(indices, {
+				conversion: void 0,
+				move: void 0,
+				resetCounter: 0,
+				lastHitAnimation: void 0
+			});
+		});
+	}
+	processFrame(frame, allFrames) {
+		this.playerPermutations.forEach((indices) => {
+			const state = this.state.get(indices);
+			if (state) {
+				if (handleConversionCompute(allFrames, state, indices, frame, this.conversions)) this.emit("CONVERSION", {
+					combo: (0, import_last.default)(this.conversions),
+					settings: this.settings
+				});
+			}
+		});
+	}
+	fetch() {
+		this._populateConversionTypes();
+		return this.conversions;
+	}
+	_populateConversionTypes() {
+		(0, import_orderBy.default)((0, import_groupBy.default)((0, import_filter.default)(this.conversions, (conversion) => {
+			return conversion.openingType === "unknown";
+		}), "startFrame"), (conversions) => (0, import_get.default)(conversions, [0, "startFrame"])).forEach((conversions) => {
+			const isTrade = conversions.length >= 2;
+			conversions.forEach((conversion) => {
+				this.metadata.lastEndFrameByOppIdx[conversion.playerIndex] = conversion.endFrame;
+				if (isTrade) {
+					conversion.openingType = "trade";
+					return;
+				}
+				const lastMove = (0, import_last.default)(conversion.moves);
+				const oppEndFrame = this.metadata.lastEndFrameByOppIdx[lastMove ? lastMove.playerIndex : conversion.playerIndex];
+				conversion.openingType = oppEndFrame && oppEndFrame > conversion.startFrame ? "counter-attack" : "neutral-win";
+			});
+		});
+	}
+};
+function handleConversionCompute(frames, state, indices, frame, conversions) {
+	var _a, _b, _c, _d;
+	const currentFrameNumber = frame.frame;
+	const playerFrame = frame.players[indices.playerIndex].post;
+	const opponentFrame = frame.players[indices.opponentIndex].post;
+	const prevFrameNumber = currentFrameNumber - 1;
+	let prevPlayerFrame = void 0;
+	let prevOpponentFrame = void 0;
+	if (frames[prevFrameNumber]) {
+		prevPlayerFrame = frames[prevFrameNumber].players[indices.playerIndex].post;
+		prevOpponentFrame = frames[prevFrameNumber].players[indices.opponentIndex].post;
+	}
+	const oppActionStateId = opponentFrame.actionStateId;
+	const opntIsDamaged = isDamaged(oppActionStateId);
+	const opntIsGrabbed = isGrabbed(oppActionStateId);
+	const opntIsCommandGrabbed = isCommandGrabbed(oppActionStateId);
+	const opntDamageTaken = prevOpponentFrame ? calcDamageTaken(opponentFrame, prevOpponentFrame) : 0;
+	const actionChangedSinceHit = playerFrame.actionStateId !== state.lastHitAnimation;
+	const actionFrameCounterReset = playerFrame.actionStateCounter < (prevPlayerFrame ? prevPlayerFrame.actionStateCounter : 0);
+	if (actionChangedSinceHit || actionFrameCounterReset) state.lastHitAnimation = void 0;
+	if (opntIsDamaged || opntIsGrabbed || opntIsCommandGrabbed) {
+		if (!state.conversion) {
+			state.conversion = {
+				playerIndex: indices.opponentIndex,
+				lastHitBy: indices.playerIndex,
+				startFrame: currentFrameNumber,
+				endFrame: void 0,
+				startPercent: prevOpponentFrame ? (_a = prevOpponentFrame.percent) !== null && _a !== void 0 ? _a : 0 : 0,
+				currentPercent: (_b = opponentFrame.percent) !== null && _b !== void 0 ? _b : 0,
+				endPercent: void 0,
+				moves: [],
+				didKill: false,
+				openingType: "unknown"
+			};
+			conversions.push(state.conversion);
+		}
+		if (opntDamageTaken) {
+			if (state.lastHitAnimation == null) {
+				state.move = {
+					playerIndex: indices.playerIndex,
+					frame: currentFrameNumber,
+					moveId: playerFrame.lastAttackLanded,
+					hitCount: 0,
+					damage: 0
+				};
+				state.conversion.moves.push(state.move);
+			}
+			if (state.move) {
+				state.move.hitCount += 1;
+				state.move.damage += opntDamageTaken;
+			}
+			state.lastHitAnimation = prevPlayerFrame ? prevPlayerFrame.actionStateId : void 0;
+		}
+	}
+	if (!state.conversion) return false;
+	const opntInControl = isInControl(oppActionStateId);
+	const opntDidLoseStock = prevOpponentFrame && didLoseStock(opponentFrame, prevOpponentFrame);
+	if (!opntDidLoseStock) state.conversion.currentPercent = (_c = opponentFrame.percent) !== null && _c !== void 0 ? _c : 0;
+	if (opntIsDamaged || opntIsGrabbed || opntIsCommandGrabbed) state.resetCounter = 0;
+	const shouldStartResetCounter = state.resetCounter === 0 && opntInControl;
+	const shouldContinueResetCounter = state.resetCounter > 0;
+	if (shouldStartResetCounter || shouldContinueResetCounter) state.resetCounter += 1;
+	let shouldTerminate = false;
+	if (opntDidLoseStock) {
+		state.conversion.didKill = true;
+		shouldTerminate = true;
+	}
+	if (state.resetCounter > Timers.PUNISH_RESET_FRAMES) shouldTerminate = true;
+	if (shouldTerminate) {
+		state.conversion.endFrame = playerFrame.frame;
+		state.conversion.endPercent = prevOpponentFrame ? (_d = prevOpponentFrame.percent) !== null && _d !== void 0 ? _d : 0 : 0;
+		state.conversion = void 0;
+		state.move = void 0;
+	}
+	return shouldTerminate;
+}
 var Command$1;
 (function(Command) {
 	Command[Command["SPLIT_MESSAGE"] = 16] = "SPLIT_MESSAGE";
@@ -21161,6 +61596,331 @@ var JoystickRegion;
 	JoystickRegion[JoystickRegion["S"] = 7] = "S";
 	JoystickRegion[JoystickRegion["W"] = 8] = "W";
 })(JoystickRegion || (JoystickRegion = {}));
+var InputComputer = class {
+	constructor() {
+		this.state = /* @__PURE__ */ new Map();
+		this.playerPermutations = [];
+	}
+	setup(settings) {
+		this.state = /* @__PURE__ */ new Map();
+		this.playerPermutations = getSinglesPlayerPermutationsFromSettings(settings);
+		this.playerPermutations.forEach((indices) => {
+			const playerState = {
+				playerIndex: indices.playerIndex,
+				opponentIndex: indices.opponentIndex,
+				inputCount: 0,
+				joystickInputCount: 0,
+				cstickInputCount: 0,
+				buttonInputCount: 0,
+				triggerInputCount: 0
+			};
+			this.state.set(indices, playerState);
+		});
+	}
+	processFrame(frame, allFrames) {
+		this.playerPermutations.forEach((indices) => {
+			const state = this.state.get(indices);
+			if (state) handleInputCompute(allFrames, state, indices, frame);
+		});
+	}
+	fetch() {
+		return Array.from(this.state.values());
+	}
+};
+function handleInputCompute(frames, state, indices, frame) {
+	const playerFrame = frame.players[indices.playerIndex].pre;
+	const currentFrameNumber = playerFrame.frame;
+	const prevFrameNumber = currentFrameNumber - 1;
+	const prevPlayerFrame = frames[prevFrameNumber] ? frames[prevFrameNumber].players[indices.playerIndex].pre : void 0;
+	if (currentFrameNumber < Frames.FIRST_PLAYABLE || !prevPlayerFrame) return;
+	const newInputsPressed = countSetBits(~prevPlayerFrame.physicalButtons & playerFrame.physicalButtons & 4095);
+	state.inputCount += newInputsPressed;
+	state.buttonInputCount += newInputsPressed;
+	const prevAnalogRegion = getJoystickRegion(prevPlayerFrame.joystickX, prevPlayerFrame.joystickY);
+	const currentAnalogRegion = getJoystickRegion(playerFrame.joystickX, playerFrame.joystickY);
+	if (prevAnalogRegion !== currentAnalogRegion && currentAnalogRegion !== JoystickRegion.DZ) {
+		state.inputCount += 1;
+		state.joystickInputCount += 1;
+	}
+	const prevCstickRegion = getJoystickRegion(prevPlayerFrame.cStickX, prevPlayerFrame.cStickY);
+	const currentCstickRegion = getJoystickRegion(playerFrame.cStickX, playerFrame.cStickY);
+	if (prevCstickRegion !== currentCstickRegion && currentCstickRegion !== JoystickRegion.DZ) {
+		state.inputCount += 1;
+		state.cstickInputCount += 1;
+	}
+	if (prevPlayerFrame.physicalLTrigger < .3 && playerFrame.physicalLTrigger >= .3) {
+		state.inputCount += 1;
+		state.triggerInputCount += 1;
+	}
+	if (prevPlayerFrame.physicalRTrigger < .3 && playerFrame.physicalRTrigger >= .3) {
+		state.inputCount += 1;
+		state.triggerInputCount += 1;
+	}
+}
+function countSetBits(x) {
+	let bits = x;
+	let count;
+	for (count = 0; bits; count += 1) bits &= bits - 1;
+	return count;
+}
+function getJoystickRegion(x, y) {
+	let region = JoystickRegion.DZ;
+	if (x >= .2875 && y >= .2875) region = JoystickRegion.NE;
+	else if (x >= .2875 && y <= -.2875) region = JoystickRegion.SE;
+	else if (x <= -.2875 && y <= -.2875) region = JoystickRegion.SW;
+	else if (x <= -.2875 && y >= .2875) region = JoystickRegion.NW;
+	else if (y >= .2875) region = JoystickRegion.N;
+	else if (x >= .2875) region = JoystickRegion.E;
+	else if (y <= -.2875) region = JoystickRegion.S;
+	else if (x <= -.2875) region = JoystickRegion.W;
+	return region;
+}
+function generateOverallStats({ settings, inputs, conversions, playableFrameCount }) {
+	const inputsByPlayer = (0, import_keyBy.default)(inputs, "playerIndex");
+	const originalConversions = conversions;
+	const conversionsByPlayerByOpening = (0, import_mapValues.default)((0, import_groupBy.default)(conversions, (conv) => {
+		var _a;
+		return (_a = conv.moves[0]) === null || _a === void 0 ? void 0 : _a.playerIndex;
+	}), (conversions) => (0, import_groupBy.default)(conversions, "openingType"));
+	const gameMinutes = playableFrameCount / 3600;
+	return settings.players.map((player) => {
+		const playerIndex = player.playerIndex;
+		const playerInputs = (0, import_get.default)(inputsByPlayer, playerIndex) || {};
+		const inputCounts = {
+			buttons: (0, import_get.default)(playerInputs, "buttonInputCount"),
+			triggers: (0, import_get.default)(playerInputs, "triggerInputCount"),
+			cstick: (0, import_get.default)(playerInputs, "cstickInputCount"),
+			joystick: (0, import_get.default)(playerInputs, "joystickInputCount"),
+			total: (0, import_get.default)(playerInputs, "inputCount")
+		};
+		let conversionCount = 0;
+		let successfulConversionCount = 0;
+		const opponentIndices = settings.players.filter((opp) => {
+			if (opp.playerIndex === playerIndex) return false;
+			return !settings.isTeams || opp.teamId !== player.teamId;
+		}).map((opp) => opp.playerIndex);
+		let totalDamage = 0;
+		let killCount = 0;
+		originalConversions.filter((conversion) => conversion.playerIndex !== playerIndex).forEach((conversion) => {
+			conversionCount++;
+			if (conversion.didKill && conversion.lastHitBy === playerIndex) killCount += 1;
+			if (conversion.moves.length > 1 && conversion.moves[0].playerIndex === playerIndex) successfulConversionCount++;
+			conversion.moves.forEach((move) => {
+				if (move.playerIndex === playerIndex) totalDamage += move.damage;
+			});
+		});
+		return {
+			playerIndex,
+			inputCounts,
+			conversionCount,
+			totalDamage,
+			killCount,
+			successfulConversions: getRatio(successfulConversionCount, conversionCount),
+			inputsPerMinute: getRatio(inputCounts.total, gameMinutes),
+			digitalInputsPerMinute: getRatio(inputCounts.buttons, gameMinutes),
+			openingsPerKill: getRatio(conversionCount, killCount),
+			damagePerOpening: getRatio(totalDamage, conversionCount),
+			neutralWinRatio: getOpeningRatio(conversionsByPlayerByOpening, playerIndex, opponentIndices, "neutral-win"),
+			counterHitRatio: getOpeningRatio(conversionsByPlayerByOpening, playerIndex, opponentIndices, "counter-attack"),
+			beneficialTradeRatio: getBeneficialTradeRatio(conversionsByPlayerByOpening, playerIndex, opponentIndices)
+		};
+	});
+}
+function getRatio(count, total) {
+	return {
+		count,
+		total,
+		ratio: total ? count / total : void 0
+	};
+}
+function getOpeningRatio(conversionsByPlayerByOpening, playerIndex, opponentIndices, type) {
+	const openings = (0, import_get.default)(conversionsByPlayerByOpening, [playerIndex, type]) || [];
+	const opponentOpenings = (0, import_flatten.default)(opponentIndices.map((opponentIndex) => (0, import_get.default)(conversionsByPlayerByOpening, [opponentIndex, type]) || []));
+	return getRatio(openings.length, openings.length + opponentOpenings.length);
+}
+function getBeneficialTradeRatio(conversionsByPlayerByOpening, playerIndex, opponentIndices) {
+	const playerTrades = (0, import_get.default)(conversionsByPlayerByOpening, [playerIndex, "trade"]) || [];
+	const opponentTrades = (0, import_flatten.default)(opponentIndices.map((opponentIndex) => (0, import_get.default)(conversionsByPlayerByOpening, [opponentIndex, "trade"]) || []));
+	const benefitsPlayer = [];
+	(0, import_zip.default)(playerTrades, opponentTrades).forEach((conversionPair) => {
+		const playerConversion = (0, import_first.default)(conversionPair);
+		const opponentConversion = (0, import_last.default)(conversionPair);
+		if (playerConversion && opponentConversion) {
+			const playerDamage = playerConversion.currentPercent - playerConversion.startPercent;
+			const opponentDamage = opponentConversion.currentPercent - opponentConversion.startPercent;
+			if (playerConversion.didKill && !opponentConversion.didKill) benefitsPlayer.push(playerConversion);
+			else if (playerDamage > opponentDamage) benefitsPlayer.push(playerConversion);
+		}
+	});
+	return getRatio(benefitsPlayer.length, playerTrades.length);
+}
+const defaultOptions = { processOnTheFly: false };
+var Stats = class {
+	constructor(options) {
+		this.frames = {};
+		this.players = [];
+		this.allComputers = [];
+		this.options = Object.assign({}, defaultOptions, options);
+	}
+	/**
+	* Should reset the frames to their default values.
+	*/
+	setup(settings) {
+		this.frames = {};
+		this.players = settings.players.map((v) => v.playerIndex);
+		this.allComputers.forEach((comp) => comp.setup(settings));
+	}
+	register(...computer) {
+		this.allComputers.push(...computer);
+	}
+	process() {
+		if (this.players.length === 0) return;
+		let i = this.lastProcessedFrame != null ? this.lastProcessedFrame + 1 : Frames.FIRST;
+		while (this.frames[i]) {
+			const frame = this.frames[i];
+			if (!isCompletedFrame(this.players, frame)) return;
+			this.allComputers.forEach((comp) => comp.processFrame(frame, this.frames));
+			this.lastProcessedFrame = i;
+			i++;
+		}
+	}
+	addFrame(frame) {
+		this.frames[frame.frame] = frame;
+		if (this.options.processOnTheFly) this.process();
+	}
+};
+function isCompletedFrame(players, frame) {
+	if (!frame) return false;
+	for (const player of players) if (!(0, import_get.default)(frame, [
+		"players",
+		player,
+		"post"
+	])) return false;
+	return true;
+}
+var StockComputer = class {
+	constructor() {
+		this.state = /* @__PURE__ */ new Map();
+		this.playerPermutations = [];
+		this.stocks = [];
+	}
+	setup(settings) {
+		this.state = /* @__PURE__ */ new Map();
+		this.playerPermutations = getSinglesPlayerPermutationsFromSettings(settings);
+		this.stocks = [];
+		this.playerPermutations.forEach((indices) => {
+			this.state.set(indices, { stock: void 0 });
+		});
+	}
+	processFrame(frame, allFrames) {
+		this.playerPermutations.forEach((indices) => {
+			const state = this.state.get(indices);
+			if (state) handleStockCompute(allFrames, state, indices, frame, this.stocks);
+		});
+	}
+	fetch() {
+		return this.stocks;
+	}
+};
+function handleStockCompute(frames, state, indices, frame, stocks) {
+	var _a, _b;
+	const playerFrame = frame.players[indices.playerIndex].post;
+	const currentFrameNumber = playerFrame.frame;
+	const prevFrameNumber = currentFrameNumber - 1;
+	const prevPlayerFrame = frames[prevFrameNumber] ? frames[prevFrameNumber].players[indices.playerIndex].post : void 0;
+	if (!state.stock) {
+		if (isDead(playerFrame.actionStateId)) return;
+		state.stock = {
+			playerIndex: indices.playerIndex,
+			startFrame: currentFrameNumber,
+			endFrame: void 0,
+			startPercent: 0,
+			endPercent: void 0,
+			currentPercent: 0,
+			count: playerFrame.stocksRemaining,
+			deathAnimation: void 0
+		};
+		stocks.push(state.stock);
+	} else if (prevPlayerFrame && didLoseStock(playerFrame, prevPlayerFrame)) {
+		state.stock.endFrame = playerFrame.frame;
+		state.stock.endPercent = (_a = prevPlayerFrame.percent) !== null && _a !== void 0 ? _a : 0;
+		state.stock.deathAnimation = playerFrame.actionStateId;
+		state.stock = void 0;
+	} else state.stock.currentPercent = (_b = playerFrame.percent) !== null && _b !== void 0 ? _b : 0;
+}
+const TARGET_ITEM_TYPE_ID = 209;
+var TargetBreakComputer = class {
+	constructor() {
+		this.targetBreaks = [];
+		this.isTargetTestGame = false;
+	}
+	setup(settings) {
+		this.targetBreaks = [];
+		this.isTargetTestGame = settings.gameMode === GameMode.TARGET_TEST;
+	}
+	processFrame(frame, allFrames) {
+		if (!this.isTargetTestGame) return;
+		handleTargetBreak(allFrames, frame, this.targetBreaks);
+	}
+	fetch() {
+		return this.targetBreaks;
+	}
+};
+function handleTargetBreak(frames, frame, targetBreaks) {
+	var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+	const currentFrameNumber = frame.frame;
+	const prevFrameNumber = currentFrameNumber - 1;
+	if (currentFrameNumber === Frames.FIRST) ((_c = (_b = (_a = frames[Frames.FIRST]) === null || _a === void 0 ? void 0 : _a.items) === null || _b === void 0 ? void 0 : _b.filter((item) => item.typeId === TARGET_ITEM_TYPE_ID)) !== null && _c !== void 0 ? _c : []).forEach((target) => {
+		targetBreaks.push({
+			spawnId: target.spawnId,
+			frameDestroyed: void 0,
+			positionX: target.positionX,
+			positionY: target.positionY
+		});
+	});
+	const currentTargets = (_f = (_e = (_d = frames[currentFrameNumber]) === null || _d === void 0 ? void 0 : _d.items) === null || _e === void 0 ? void 0 : _e.filter((item) => item.typeId === TARGET_ITEM_TYPE_ID)) !== null && _f !== void 0 ? _f : [];
+	const previousTargets = (_j = (_h = (_g = frames[prevFrameNumber]) === null || _g === void 0 ? void 0 : _g.items) === null || _h === void 0 ? void 0 : _h.filter((item) => item.typeId === TARGET_ITEM_TYPE_ID)) !== null && _j !== void 0 ? _j : [];
+	const currentTargetIds = currentTargets.map((item) => item.spawnId).filter(exists);
+	previousTargets.map((item) => item.spawnId).filter(exists).filter((id) => !currentTargetIds.includes(id)).forEach((id) => {
+		const targetBreak = targetBreaks.find((targetBreak) => targetBreak.spawnId === id);
+		if (targetBreak) targetBreak.frameDestroyed = currentFrameNumber;
+	});
+}
+var RollbackCounter = class {
+	constructor() {
+		this.rollbackFrames = {};
+		this.rollbackFrameCount = 0;
+		this.lastFrameWasRollback = false;
+		this.currentRollbackLength = 0;
+		this.rollbackLengths = [];
+	}
+	checkIfRollbackFrame(currentFrame, playerIdx) {
+		if (this.rollbackPlayerIdx == null) this.rollbackPlayerIdx = playerIdx;
+		else if (this.rollbackPlayerIdx !== playerIdx) return;
+		if (currentFrame && currentFrame.players) {
+			if (this.rollbackFrames[currentFrame.frame]) this.rollbackFrames[currentFrame.frame].push(currentFrame);
+			else this.rollbackFrames[currentFrame.frame] = [currentFrame];
+			this.rollbackFrameCount++;
+			this.currentRollbackLength++;
+			this.lastFrameWasRollback = true;
+		} else if (this.lastFrameWasRollback) {
+			this.rollbackLengths.push(this.currentRollbackLength);
+			this.currentRollbackLength = 0;
+			this.lastFrameWasRollback = false;
+		}
+		return this.lastFrameWasRollback;
+	}
+	getFrames() {
+		return this.rollbackFrames;
+	}
+	getCount() {
+		return this.rollbackFrameCount;
+	}
+	getLengths() {
+		return this.rollbackLengths;
+	}
+};
+const ITEM_SETTINGS_BIT_COUNT = 40;
 var SlpParserEvent;
 (function(SlpParserEvent) {
 	SlpParserEvent["SETTINGS"] = "settings";
@@ -21169,7 +61929,797 @@ var SlpParserEvent;
 	SlpParserEvent["FINALIZED_FRAME"] = "finalized-frame";
 	SlpParserEvent["ROLLBACK_FRAME"] = "rollback-frame";
 })(SlpParserEvent || (SlpParserEvent = {}));
-new TextDecoder("utf-8");
+const defaultSlpParserOptions = { strict: false };
+var SlpParser = class extends TypedEventEmitter {
+	constructor(options) {
+		super();
+		this.frames = {};
+		this.rollbackCounter = new RollbackCounter();
+		this.settingsComplete = false;
+		this.lastFinalizedFrame = Frames.FIRST - 1;
+		this.options = Object.assign({}, defaultSlpParserOptions, options);
+	}
+	handleCommand(command, payload) {
+		switch (command) {
+			case Command$1.GAME_START:
+				this._handleGameStart(payload);
+				break;
+			case Command$1.FRAME_START:
+				this._handleFrameStart(payload);
+				break;
+			case Command$1.POST_FRAME_UPDATE:
+				this._handlePostFrameUpdate(payload);
+				this._handleFrameUpdate(command, payload);
+				break;
+			case Command$1.PRE_FRAME_UPDATE:
+				this._handleFrameUpdate(command, payload);
+				break;
+			case Command$1.ITEM_UPDATE:
+				this._handleItemUpdate(payload);
+				break;
+			case Command$1.FRAME_BOOKEND:
+				this._handleFrameBookend(payload);
+				break;
+			case Command$1.GAME_END:
+				this._handleGameEnd(payload);
+				break;
+			case Command$1.GECKO_LIST:
+				this._handleGeckoList(payload);
+				break;
+			case Command$1.FOD_PLATFORM:
+				this._handleStageEvent(payload);
+				break;
+			case Command$1.WHISPY:
+				this._handleStageEvent(payload);
+				break;
+			case Command$1.STADIUM_TRANSFORMATION:
+				this._handleStageEvent(payload);
+				break;
+		}
+	}
+	/**
+	* Resets the parser state to their default values.
+	*/
+	reset() {
+		this.frames = {};
+		this.settings = void 0;
+		this.gameEnd = void 0;
+		this.latestFrameIndex = void 0;
+		this.settingsComplete = false;
+		this.lastFinalizedFrame = Frames.FIRST - 1;
+	}
+	getLatestFrameNumber() {
+		var _a;
+		return (_a = this.latestFrameIndex) !== null && _a !== void 0 ? _a : Frames.FIRST - 1;
+	}
+	getPlayableFrameCount() {
+		if (this.latestFrameIndex == null) return 0;
+		return this.latestFrameIndex < Frames.FIRST_PLAYABLE ? 0 : this.latestFrameIndex - Frames.FIRST_PLAYABLE;
+	}
+	getLatestFrame() {
+		const allFrames = this.getFrames();
+		const frameIndex = this.latestFrameIndex != null ? this.latestFrameIndex : Frames.FIRST;
+		return (0, import_get.default)(allFrames, this.gameEnd ? frameIndex : frameIndex - 1) || void 0;
+	}
+	getSettings() {
+		return this.settingsComplete ? this.settings : void 0;
+	}
+	getItems() {
+		var _a, _b;
+		if (((_a = this.settings) === null || _a === void 0 ? void 0 : _a.itemSpawnBehavior) === ItemSpawnType.OFF) return;
+		const itemBitfield = (_b = this.settings) === null || _b === void 0 ? void 0 : _b.enabledItems;
+		if (!exists(itemBitfield)) return;
+		const enabledItems = [];
+		for (let i = 0; i < ITEM_SETTINGS_BIT_COUNT; i++) if (Math.floor(itemBitfield / 2 ** i) & 1) enabledItems.push(2 ** i);
+		return enabledItems;
+	}
+	getGameEnd() {
+		return this.gameEnd;
+	}
+	getFrames() {
+		return this.frames;
+	}
+	getRollbackFrames() {
+		return {
+			frames: this.rollbackCounter.getFrames(),
+			count: this.rollbackCounter.getCount(),
+			lengths: this.rollbackCounter.getLengths()
+		};
+	}
+	getFrame(num) {
+		return this.frames[num] || void 0;
+	}
+	getGeckoList() {
+		return this.geckoList;
+	}
+	_handleGeckoList(payload) {
+		this.geckoList = payload;
+	}
+	_handleGameEnd(payload) {
+		if (this.latestFrameIndex != null && this.latestFrameIndex !== this.lastFinalizedFrame) this._finalizeFrames(this.latestFrameIndex);
+		this.gameEnd = payload;
+		this.emit(SlpParserEvent.END, this.gameEnd);
+	}
+	_handleGameStart(payload) {
+		this.settings = payload;
+		const players = payload.players;
+		this.settings.players = players.filter((player) => player.type !== 3);
+		if (payload.slpVersion && import_semver.default.gte(payload.slpVersion, "1.6.0")) this._completeSettings();
+	}
+	_handleFrameStart(payload) {
+		const currentFrameNumber = payload.frame;
+		(0, import_set.default)(this.frames, [currentFrameNumber, "start"], payload);
+	}
+	_handlePostFrameUpdate(payload) {
+		if (this.settingsComplete) return;
+		if (payload.frame <= Frames.FIRST) {
+			const playerIndex = payload.playerIndex;
+			const playersByIndex = (0, import_keyBy.default)(this.settings.players, "playerIndex");
+			switch (payload.internalCharacterId) {
+				case 7:
+					playersByIndex[playerIndex].characterId = 19;
+					break;
+				case 19:
+					playersByIndex[playerIndex].characterId = 18;
+					break;
+			}
+		}
+		if (payload.frame > Frames.FIRST) this._completeSettings();
+	}
+	_handleFrameUpdate(command, payload) {
+		const location = command === Command$1.PRE_FRAME_UPDATE ? "pre" : "post";
+		const field = payload.isFollower ? "followers" : "players";
+		const currentFrameNumber = payload.frame;
+		this.latestFrameIndex = currentFrameNumber;
+		if (location === "pre" && !payload.isFollower) {
+			const currentFrame = this.frames[currentFrameNumber];
+			if (this.rollbackCounter.checkIfRollbackFrame(currentFrame, payload.playerIndex) && currentFrame) this.emit(SlpParserEvent.ROLLBACK_FRAME, currentFrame);
+		}
+		(0, import_set.default)(this.frames, [
+			currentFrameNumber,
+			field,
+			payload.playerIndex,
+			location
+		], payload);
+		(0, import_set.default)(this.frames, [currentFrameNumber, "frame"], currentFrameNumber);
+		const settings = this.getSettings();
+		if (settings && (!settings.slpVersion || import_semver.default.lte(settings.slpVersion, "2.2.0"))) {
+			const frame = this.frames[currentFrameNumber];
+			if (frame) this.emit(SlpParserEvent.FRAME, frame);
+			this._finalizeFrames(currentFrameNumber - 1);
+		} else (0, import_set.default)(this.frames, [currentFrameNumber, "isTransferComplete"], false);
+	}
+	_handleItemUpdate(payload) {
+		var _a, _b;
+		const currentFrameNumber = payload.frame;
+		const items = (_b = (_a = this.frames[currentFrameNumber]) === null || _a === void 0 ? void 0 : _a.items) !== null && _b !== void 0 ? _b : [];
+		items.push(payload);
+		(0, import_set.default)(this.frames, [currentFrameNumber, "items"], items);
+	}
+	_handleFrameBookend(payload) {
+		const latestFinalizedFrame = payload.latestFinalizedFrame;
+		const currentFrameNumber = payload.frame;
+		(0, import_set.default)(this.frames, [currentFrameNumber, "isTransferComplete"], true);
+		const frame = this.frames[currentFrameNumber];
+		if (frame) this.emit(SlpParserEvent.FRAME, frame);
+		if (this.settings.gameMode === GameMode.ONLINE && latestFinalizedFrame >= Frames.FIRST) {
+			if (this.options.strict && latestFinalizedFrame < currentFrameNumber - 7) throw new Error(`latestFinalizedFrame should be within 7 frames of ${currentFrameNumber}`);
+			this._finalizeFrames(latestFinalizedFrame);
+		} else this._finalizeFrames(currentFrameNumber - 7);
+	}
+	_handleStageEvent(payload) {
+		var _a, _b;
+		const currentFrameNumber = payload.frame;
+		const stageEvents = (_b = (_a = this.frames[currentFrameNumber]) === null || _a === void 0 ? void 0 : _a.stageEvents) !== null && _b !== void 0 ? _b : [];
+		stageEvents.push(payload);
+		(0, import_set.default)(this.frames, [currentFrameNumber, "stageEvents"], stageEvents);
+	}
+	/**
+	* Fires off the FINALIZED_FRAME event for frames up until a certain number
+	* @param num The frame to finalize until
+	*/
+	_finalizeFrames(num) {
+		while (this.lastFinalizedFrame < num) {
+			const frameToFinalize = this.lastFinalizedFrame + 1;
+			const frame = this.getFrame(frameToFinalize);
+			if (!frame) break;
+			if (this.options.strict) for (const player of this.settings.players) {
+				const playerFrameInfo = frame.players[player.playerIndex];
+				if (this.settings.players.length > 2 && !playerFrameInfo) continue;
+				const { pre, post } = playerFrameInfo;
+				if (!pre || !post) throw new Error(`Could not finalize frame ${frameToFinalize} of ${num}: missing ${pre ? "pre" : "post"}-frame update for player ${player.playerIndex}`);
+			}
+			this.emit(SlpParserEvent.FINALIZED_FRAME, frame);
+			this.lastFinalizedFrame = frameToFinalize;
+		}
+	}
+	_completeSettings() {
+		if (!this.settingsComplete) {
+			this.settingsComplete = true;
+			if (this.settings) this.emit(SlpParserEvent.SETTINGS, this.settings);
+		}
+	}
+};
+var r = class {
+	constructor(t = {}) {
+		this.t = t, this.g = new ("undefined" != typeof TextDecoder ? TextDecoder : {}.TextDecoder)();
+	}
+	decode(t) {
+		const r = new Uint8Array(t), e = new DataView(r.buffer);
+		return this.D = {
+			array: r,
+			view: e
+		}, this.S = 0, this.C();
+	}
+	C(t = this.m(false)) {
+		switch (t) {
+			case "Z": return null;
+			case "N": return;
+			case "T": return true;
+			case "F": return false;
+			case "i": return this.F((({ view: t }, r) => t.getInt8(r)), 1);
+			case "U": return this.F((({ view: t }, r) => t.getUint8(r)), 1);
+			case "I": return this.F((({ view: t }, r) => t.getInt16(r)), 2);
+			case "l": return this.F((({ view: t }, r) => t.getInt32(r)), 4);
+			case "L": return this.N(8, this.t.int64Handling, true);
+			case "d": return this.F((({ view: t }, r) => t.getFloat32(r)), 4);
+			case "D": return this.F((({ view: t }, r) => t.getFloat64(r)), 8);
+			case "H": return this.N(this.V(), this.t.highPrecisionNumberHandling, false);
+			case "C": return String.fromCharCode(this.C("i"));
+			case "S": return this.j(this.V());
+			case "[": return this.M();
+			case "{": return this.O();
+		}
+		throw Error("Unexpected type");
+	}
+	Z() {
+		let t, r;
+		switch (this.m(true)) {
+			case "$": if (this.q(), t = this.m(false), "#" !== this.m(true)) throw Error("Expected count marker");
+			case "#": this.q(), r = this.V();
+		}
+		return {
+			type: t,
+			count: r
+		};
+	}
+	M() {
+		const { type: t, count: r } = this.Z();
+		if (-1 !== "ZTF".indexOf(t)) return Array(r).fill(this.C(t));
+		if (this.t.useTypedArrays) switch (t) {
+			case "i": return this.B(r);
+			case "U": return this.L(r);
+			case "I": return Int16Array.from({ length: r }, (() => this.C(t)));
+			case "l": return Int32Array.from({ length: r }, (() => this.C(t)));
+			case "d": return Float32Array.from({ length: r }, (() => this.C(t)));
+			case "D": return Float64Array.from({ length: r }, (() => this.C(t)));
+		}
+		if (null != r) {
+			const e = Array(r);
+			for (let s = 0; s < r; s++) e[s] = this.C(t);
+			return e;
+		}
+		{
+			const t = [];
+			for (; "]" !== this.m(true);) t.push(this.C());
+			return this.q(), t;
+		}
+	}
+	O() {
+		const { type: t, count: r } = this.Z(), e = {};
+		if (null != r) for (let s = 0; s < r; s++) e[this.C("S")] = this.C(t);
+		else {
+			for (; "}" !== this.m(true);) e[this.C("S")] = this.C();
+			this.q();
+		}
+		return e;
+	}
+	V() {
+		const t = this.C();
+		if (Number.isInteger(t) && t >= 0) return t;
+		throw Error("Invalid length/count");
+	}
+	N(t, r, e) {
+		if ("function" == typeof r) return this.F(r, t);
+		switch (r) {
+			case "skip":
+				this.q(t);
+				return;
+			case "raw": return e ? this.L(t) : this.j(t);
+		}
+		throw Error("Unsuported type");
+	}
+	L(t) {
+		return this.F((({ array: r }, e) => new Uint8Array(r.buffer, e, t)), t);
+	}
+	B(t) {
+		return this.F((({ array: r }, e) => new Int8Array(r.buffer, e, t)), t);
+	}
+	j(t) {
+		return this.F((({ array: r }, e) => this.g.decode(new DataView(r.buffer, e, t))), t);
+	}
+	q(t = 1) {
+		this.R(t), this.S += t;
+	}
+	m(t) {
+		const { array: r, view: e } = this.D;
+		let s = "N";
+		for (; "N" === s && this.S < r.byteLength;) s = String.fromCharCode(e.getInt8(this.S++));
+		return t && this.S--, s;
+	}
+	F(t, r) {
+		this.R(r);
+		const e = t(this.D, this.S, r);
+		return this.S += r, e;
+	}
+	R(t) {
+		if (this.S + t > this.D.array.byteLength) throw Error("Unexpected EOF");
+	}
+};
+function s(t, e) {
+	return new r(e).decode(t);
+}
+function toHalfwidth(str) {
+	const convertChar = (charCode) => {
+		/**
+		* Standard full width encodings
+		* https://en.wikipedia.org/wiki/Halfwidth_and_Fullwidth_Forms_(Unicode_block)
+		*/
+		if (charCode > 65280 && charCode < 65375) return 32 + (charCode - 65280);
+		if (charCode === 12288) return 32;
+		/**
+		* Exceptions found in Melee/Japanese keyboards
+		*/
+		if (charCode === 8217) return 39;
+		if (charCode === 8221) return 34;
+		return charCode;
+	};
+	const ret = (0, import_map.default)(str, (char) => convertChar(char.charCodeAt(0)));
+	return String.fromCharCode(...ret);
+}
+const utf8Decoder = new TextDecoder("utf-8");
+function openSlpFile(ref) {
+	ref.open();
+	const rawDataPosition = getRawDataPosition$1(ref);
+	const rawDataLength = getRawDataLength(ref, rawDataPosition);
+	const metadataPosition = rawDataPosition + rawDataLength + 10;
+	return {
+		ref,
+		rawDataPosition,
+		rawDataLength,
+		metadataPosition,
+		metadataLength: getMetadataLength(ref, metadataPosition),
+		messageSizes: getMessageSizes$1(ref, rawDataPosition)
+	};
+}
+function getRawDataPosition$1(ref) {
+	const buffer = new Uint8Array(1);
+	ref.read(buffer, 0, buffer.length, 0);
+	if (buffer[0] === 54) return 0;
+	if (buffer[0] !== "{".charCodeAt(0)) return 0;
+	return 15;
+}
+function getRawDataLength(ref, position) {
+	const fileSize = ref.size();
+	if (position === 0) return fileSize;
+	const buffer = new Uint8Array(4);
+	ref.read(buffer, 0, buffer.length, position - 4);
+	const rawDataLen = buffer[0] << 24 | buffer[1] << 16 | buffer[2] << 8 | buffer[3];
+	if (rawDataLen > 0) return rawDataLen;
+	return fileSize - position;
+}
+function getMetadataLength(ref, position) {
+	return ref.size() - position - 1;
+}
+function getMessageSizes$1(ref, position) {
+	const messageSizes = {};
+	if (position === 0) {
+		messageSizes[54] = 320;
+		messageSizes[55] = 6;
+		messageSizes[56] = 70;
+		messageSizes[57] = 1;
+		return messageSizes;
+	}
+	const buffer = new Uint8Array(2);
+	ref.read(buffer, 0, buffer.length, position);
+	if (buffer[0] !== Command$1.MESSAGE_SIZES) return {};
+	const payloadLength = buffer[1];
+	messageSizes[53] = payloadLength;
+	const messageSizesBuffer = new Uint8Array(payloadLength - 1);
+	ref.read(messageSizesBuffer, 0, messageSizesBuffer.length, position + 2);
+	for (let i = 0; i < payloadLength - 1; i += 3) {
+		const command = messageSizesBuffer[i];
+		messageSizes[command] = messageSizesBuffer[i + 1] << 8 | messageSizesBuffer[i + 2];
+	}
+	return messageSizes;
+}
+function getEnabledItems(view) {
+	return [
+		1,
+		256,
+		65536,
+		16777216,
+		4294967296
+	].reduce((acc, byteOffset, index) => {
+		return acc + readUint8(view, 40 + index) * byteOffset;
+	}, 0);
+}
+function getGameInfoBlock(view) {
+	return {
+		gameBitfield1: readUint8(view, 5),
+		gameBitfield2: readUint8(view, 6),
+		gameBitfield3: readUint8(view, 7),
+		gameBitfield4: readUint8(view, 8),
+		bombRainEnabled: (readUint8(view, 11) & 255) > 0 ? true : false,
+		selfDestructScoreValue: readInt8(view, 17),
+		itemSpawnBitfield1: readUint8(view, 40),
+		itemSpawnBitfield2: readUint8(view, 41),
+		itemSpawnBitfield3: readUint8(view, 42),
+		itemSpawnBitfield4: readUint8(view, 43),
+		itemSpawnBitfield5: readUint8(view, 44),
+		damageRatio: readFloat(view, 53)
+	};
+}
+/**
+* Iterates through slp events and parses payloads
+*/
+function iterateEvents(slpFile, callback, startPos = void 0) {
+	var _a, _b, _c, _d;
+	const ref = slpFile.ref;
+	let readPosition = startPos != null && startPos > 0 ? startPos : slpFile.rawDataPosition;
+	const stopReadingAt = slpFile.rawDataPosition + slpFile.rawDataLength;
+	const commandPayloadBuffers = (0, import_mapValues.default)(slpFile.messageSizes, (size) => new Uint8Array(size + 1));
+	let splitMessageBuffer = new Uint8Array(0);
+	const commandByteBuffer = new Uint8Array(1);
+	while (readPosition < stopReadingAt) {
+		ref.read(commandByteBuffer, 0, 1, readPosition);
+		let commandByte = (_a = commandByteBuffer[0]) !== null && _a !== void 0 ? _a : 0;
+		let buffer = commandPayloadBuffers[commandByte];
+		if (buffer == null) return readPosition;
+		if (buffer.length > stopReadingAt - readPosition) return readPosition;
+		const advanceAmount = buffer.length;
+		ref.read(buffer, 0, buffer.length, readPosition);
+		if (commandByte === Command$1.SPLIT_MESSAGE) {
+			const view = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+			const size = (_b = readUint16(view, 513)) !== null && _b !== void 0 ? _b : 512;
+			const isLastMessage = readBool(view, 516);
+			const internalCommand = (_c = readUint8(view, 515)) !== null && _c !== void 0 ? _c : 0;
+			if (splitMessageBuffer.length === 0) {
+				splitMessageBuffer = new Uint8Array(1);
+				splitMessageBuffer[0] = internalCommand;
+			}
+			const appendBuf = buffer.subarray(1, 1 + size);
+			const mergedBuf = new Uint8Array(splitMessageBuffer.length + appendBuf.length);
+			mergedBuf.set(splitMessageBuffer);
+			mergedBuf.set(appendBuf, splitMessageBuffer.length);
+			splitMessageBuffer = mergedBuf;
+			if (isLastMessage) {
+				commandByte = (_d = splitMessageBuffer[0]) !== null && _d !== void 0 ? _d : 0;
+				buffer = splitMessageBuffer;
+				splitMessageBuffer = new Uint8Array(0);
+			}
+		}
+		const parsedPayload = parseMessage(commandByte, buffer);
+		if (callback(commandByte, parsedPayload, buffer)) break;
+		readPosition += advanceAmount;
+	}
+	return readPosition;
+}
+function parseMessage(command, payload) {
+	var _a, _b, _c;
+	const view = new DataView(payload.buffer, payload.byteOffset, payload.byteLength);
+	switch (command) {
+		case Command$1.GAME_START:
+			const getPlayerObject = (playerIndex) => {
+				const cfOffset = playerIndex * 8;
+				const dashback = readUint32(view, 321 + cfOffset);
+				const shieldDrop = readUint32(view, 325 + cfOffset);
+				let controllerFix = "None";
+				if (dashback !== shieldDrop) controllerFix = "Mixed";
+				else if (dashback === 1) controllerFix = "UCF";
+				else if (dashback === 2) controllerFix = "Dween";
+				const nametagLength = 16;
+				const nametagStart = 353 + playerIndex * nametagLength;
+				const nameTagString = decode(payload.subarray(nametagStart, nametagStart + nametagLength)).split("\0").shift();
+				const nametag = nameTagString ? toHalfwidth(nameTagString) : "";
+				const displayNameLength = 31;
+				const displayNameStart = 421 + playerIndex * displayNameLength;
+				const displayNameString = decode(payload.subarray(displayNameStart, displayNameStart + displayNameLength)).split("\0").shift();
+				const displayName = displayNameString ? toHalfwidth(displayNameString) : "";
+				const connectCodeLength = 10;
+				const connectCodeStart = 545 + playerIndex * connectCodeLength;
+				const connectCodeString = decode(payload.subarray(connectCodeStart, connectCodeStart + connectCodeLength)).split("\0").shift();
+				const connectCode = connectCodeString ? toHalfwidth(connectCodeString) : "";
+				const userIdLength = 29;
+				const userIdStart = 585 + playerIndex * userIdLength;
+				const userIdBuf = payload.subarray(userIdStart, userIdStart + userIdLength);
+				const userIdString = utf8Decoder.decode(userIdBuf).split("\0").shift();
+				const userId = userIdString !== null && userIdString !== void 0 ? userIdString : "";
+				const offset = playerIndex * 36;
+				return {
+					playerIndex,
+					port: playerIndex + 1,
+					characterId: readUint8(view, 101 + offset),
+					type: readUint8(view, 102 + offset),
+					startStocks: readUint8(view, 103 + offset),
+					characterColor: readUint8(view, 104 + offset),
+					teamShade: readUint8(view, 108 + offset),
+					handicap: readUint8(view, 109 + offset),
+					teamId: readUint8(view, 110 + offset),
+					staminaMode: Boolean(readUint8(view, 108 + playerIndex * 36, 1)),
+					silentCharacter: Boolean(readUint8(view, 108 + playerIndex * 36, 2)),
+					lowGravity: Boolean(readUint8(view, 108 + playerIndex * 36, 4)),
+					invisible: Boolean(readUint8(view, 108 + playerIndex * 36, 8)),
+					blackStockIcon: Boolean(readUint8(view, 108 + playerIndex * 36, 16)),
+					metal: Boolean(readUint8(view, 108 + playerIndex * 36, 32)),
+					startOnAngelPlatform: Boolean(readUint8(view, 108 + playerIndex * 36, 64)),
+					rumbleEnabled: Boolean(readUint8(view, 108 + playerIndex * 36, 128)),
+					cpuLevel: readUint8(view, 116 + offset),
+					offenseRatio: readFloat(view, 125 + offset),
+					defenseRatio: readFloat(view, 129 + offset),
+					modelScale: readFloat(view, 133 + offset),
+					controllerFix,
+					nametag,
+					displayName,
+					connectCode,
+					userId
+				};
+			};
+			const sessionIdBuf = payload.subarray(702, 753);
+			const sessionIdString = utf8Decoder.decode(sessionIdBuf).split("\0").shift();
+			const sessionId = sessionIdString !== null && sessionIdString !== void 0 ? sessionIdString : "";
+			return {
+				slpVersion: `${readUint8(view, 1)}.${readUint8(view, 2)}.${readUint8(view, 3)}`,
+				timerType: readUint8(view, 5, 3),
+				inGameMode: readUint8(view, 5, 224),
+				friendlyFireEnabled: !!readUint8(view, 6, 1),
+				isTeams: readBool(view, 13),
+				itemSpawnBehavior: readUint8(view, 16),
+				stageId: readUint16(view, 19),
+				startingTimerSeconds: readUint32(view, 21),
+				enabledItems: getEnabledItems(view),
+				players: [
+					0,
+					1,
+					2,
+					3
+				].map(getPlayerObject),
+				scene: readUint8(view, 419),
+				gameMode: readUint8(view, 420),
+				language: readUint8(view, 701),
+				gameInfoBlock: getGameInfoBlock(view),
+				randomSeed: readUint32(view, 317),
+				isPAL: readBool(view, 417),
+				isFrozenPS: readBool(view, 418),
+				matchInfo: {
+					sessionId,
+					gameNumber: readUint32(view, 753),
+					tiebreakerNumber: readUint32(view, 757),
+					/** remove in v8 */
+					matchId: sessionId
+				}
+			};
+		case Command$1.FRAME_START: return {
+			frame: readInt32(view, 1),
+			seed: readUint32(view, 5),
+			sceneFrameCounter: readUint32(view, 9)
+		};
+		case Command$1.PRE_FRAME_UPDATE: return {
+			frame: readInt32(view, 1),
+			playerIndex: readUint8(view, 5),
+			isFollower: readBool(view, 6),
+			seed: readUint32(view, 7),
+			actionStateId: readUint16(view, 11),
+			positionX: readFloat(view, 13),
+			positionY: readFloat(view, 17),
+			facingDirection: readFloat(view, 21),
+			joystickX: readFloat(view, 25),
+			joystickY: readFloat(view, 29),
+			cStickX: readFloat(view, 33),
+			cStickY: readFloat(view, 37),
+			trigger: readFloat(view, 41),
+			buttons: readUint32(view, 45),
+			physicalButtons: readUint16(view, 49),
+			physicalLTrigger: readFloat(view, 51),
+			physicalRTrigger: readFloat(view, 55),
+			rawJoystickX: readInt8(view, 59),
+			percent: readFloat(view, 60)
+		};
+		case Command$1.POST_FRAME_UPDATE:
+			const selfInducedSpeeds = {
+				airX: readFloat(view, 53),
+				y: readFloat(view, 57),
+				attackX: readFloat(view, 61),
+				attackY: readFloat(view, 65),
+				groundX: readFloat(view, 69)
+			};
+			return {
+				frame: readInt32(view, 1),
+				playerIndex: readUint8(view, 5),
+				isFollower: readBool(view, 6),
+				internalCharacterId: readUint8(view, 7),
+				actionStateId: readUint16(view, 8),
+				positionX: readFloat(view, 10),
+				positionY: readFloat(view, 14),
+				facingDirection: readFloat(view, 18),
+				percent: readFloat(view, 22),
+				shieldSize: readFloat(view, 26),
+				lastAttackLanded: readUint8(view, 30),
+				currentComboCount: readUint8(view, 31),
+				lastHitBy: readUint8(view, 32),
+				stocksRemaining: readUint8(view, 33),
+				actionStateCounter: readFloat(view, 34),
+				miscActionState: readFloat(view, 43),
+				isAirborne: readBool(view, 47),
+				lastGroundId: readUint16(view, 48),
+				jumpsRemaining: readUint8(view, 50),
+				lCancelStatus: readUint8(view, 51),
+				hurtboxCollisionState: readUint8(view, 52),
+				selfInducedSpeeds,
+				hitlagRemaining: readFloat(view, 73),
+				animationIndex: readUint32(view, 77),
+				instanceHitBy: readUint16(view, 81),
+				instanceId: readUint16(view, 83)
+			};
+		case Command$1.ITEM_UPDATE: return {
+			frame: readInt32(view, 1),
+			typeId: readUint16(view, 5),
+			state: readUint8(view, 7),
+			facingDirection: readFloat(view, 8),
+			velocityX: readFloat(view, 12),
+			velocityY: readFloat(view, 16),
+			positionX: readFloat(view, 20),
+			positionY: readFloat(view, 24),
+			damageTaken: readUint16(view, 28),
+			expirationTimer: readFloat(view, 30),
+			spawnId: readUint32(view, 34),
+			missileType: readUint8(view, 38),
+			turnipFace: readUint8(view, 39),
+			chargeShotLaunched: readUint8(view, 40),
+			chargePower: readUint8(view, 41),
+			owner: readInt8(view, 42),
+			instanceId: readUint16(view, 43)
+		};
+		case Command$1.FRAME_BOOKEND: return {
+			frame: readInt32(view, 1),
+			latestFinalizedFrame: readInt32(view, 5)
+		};
+		case Command$1.GAME_END:
+			const placements = [
+				0,
+				1,
+				2,
+				3
+			].map((playerIndex) => {
+				return {
+					playerIndex,
+					position: readInt8(view, 3 + playerIndex)
+				};
+			});
+			return {
+				gameEndMethod: readUint8(view, 1),
+				lrasInitiatorIndex: readInt8(view, 2),
+				placements
+			};
+		case Command$1.GECKO_LIST:
+			const codes = [];
+			let pos = 1;
+			while (pos < payload.length) {
+				const word1 = (_a = readUint32(view, pos)) !== null && _a !== void 0 ? _a : 0;
+				const codetype = word1 >> 24 & 254;
+				const address = (word1 & 33554431) + 2147483648;
+				let offset = 8;
+				if (codetype === 192 || codetype === 194) offset = 8 + ((_b = readUint32(view, pos + 4)) !== null && _b !== void 0 ? _b : 0) * 8;
+				else if (codetype === 6) offset = 8 + (((_c = readUint32(view, pos + 4)) !== null && _c !== void 0 ? _c : 0) + 7 & 4294967288);
+				else if (codetype === 8) offset = 16;
+				codes.push({
+					type: codetype,
+					address,
+					contents: payload.subarray(pos, pos + offset)
+				});
+				pos += offset;
+			}
+			return {
+				contents: payload.subarray(1),
+				codes
+			};
+		case Command$1.FOD_PLATFORM: return {
+			frame: readInt32(view, 1),
+			platform: readInt8(view, 5),
+			height: readFloat(view, 6)
+		};
+		case Command$1.WHISPY: return {
+			frame: readInt32(view, 1),
+			direction: readInt8(view, 5)
+		};
+		case Command$1.STADIUM_TRANSFORMATION: return {
+			frame: readInt32(view, 1),
+			event: readUint16(view, 5),
+			transformation: readUint16(view, 7)
+		};
+		default: return;
+	}
+}
+function canReadFromView(view, offset, length) {
+	const viewLength = view.byteLength;
+	return offset + length <= viewLength;
+}
+function readFloat(view, offset) {
+	if (!canReadFromView(view, offset, 4)) return;
+	return view.getFloat32(offset);
+}
+function readInt32(view, offset) {
+	if (!canReadFromView(view, offset, 4)) return;
+	return view.getInt32(offset);
+}
+function readInt8(view, offset) {
+	if (!canReadFromView(view, offset, 1)) return;
+	return view.getInt8(offset);
+}
+function readUint32(view, offset) {
+	if (!canReadFromView(view, offset, 4)) return;
+	return view.getUint32(offset);
+}
+function readUint16(view, offset) {
+	if (!canReadFromView(view, offset, 2)) return;
+	return view.getUint16(offset);
+}
+function readUint8(view, offset, bitmask = 255) {
+	if (!canReadFromView(view, offset, 1)) return;
+	return view.getUint8(offset) & bitmask;
+}
+function readBool(view, offset) {
+	if (!canReadFromView(view, offset, 1)) return;
+	return !!view.getUint8(offset);
+}
+function getMetadata(slpFile) {
+	if (slpFile.metadataLength <= 0) return;
+	const buffer = new Uint8Array(slpFile.metadataLength);
+	slpFile.ref.read(buffer, 0, buffer.length, slpFile.metadataPosition);
+	let metadata = void 0;
+	try {
+		metadata = s(buffer.buffer);
+	} catch (ex) {}
+	return metadata;
+}
+function getGameEnd(slpFile) {
+	const { ref, rawDataPosition, rawDataLength, messageSizes } = slpFile;
+	const gameEndPayloadSize = messageSizes[Command$1.GAME_END];
+	if (!exists(gameEndPayloadSize) || gameEndPayloadSize <= 0) return;
+	const gameEndSize = gameEndPayloadSize + 1;
+	const gameEndPosition = rawDataPosition + rawDataLength - gameEndSize;
+	const buffer = new Uint8Array(gameEndSize);
+	ref.read(buffer, 0, buffer.length, gameEndPosition);
+	if (buffer[0] !== Command$1.GAME_END) return;
+	const gameEndMessage = parseMessage(Command$1.GAME_END, buffer);
+	if (!gameEndMessage) return;
+	return gameEndMessage;
+}
+function extractFinalPostFrameUpdates(slpFile) {
+	const { ref, rawDataPosition, rawDataLength, messageSizes } = slpFile;
+	const postFramePayloadSize = messageSizes[Command$1.POST_FRAME_UPDATE];
+	const gameEndPayloadSize = messageSizes[Command$1.GAME_END];
+	const frameBookendPayloadSize = messageSizes[Command$1.FRAME_BOOKEND];
+	if (!exists(postFramePayloadSize)) return [];
+	const gameEndSize = gameEndPayloadSize ? gameEndPayloadSize + 1 : 0;
+	const postFrameSize = postFramePayloadSize + 1;
+	const frameBookendSize = frameBookendPayloadSize ? frameBookendPayloadSize + 1 : 0;
+	let frameNum = void 0;
+	let postFramePosition = rawDataPosition + rawDataLength - gameEndSize - frameBookendSize - postFrameSize;
+	const postFrameUpdates = [];
+	do {
+		const buffer = new Uint8Array(postFrameSize);
+		ref.read(buffer, 0, buffer.length, postFramePosition);
+		if (buffer[0] !== Command$1.POST_FRAME_UPDATE) break;
+		const postFrameMessage = parseMessage(Command$1.POST_FRAME_UPDATE, buffer);
+		if (!postFrameMessage) break;
+		if (frameNum == null) frameNum = postFrameMessage.frame;
+		else if (frameNum !== postFrameMessage.frame) break;
+		postFrameUpdates.unshift(postFrameMessage);
+		postFramePosition -= postFrameSize;
+	} while (postFramePosition >= rawDataPosition);
+	return postFrameUpdates;
+}
 var SlpStreamMode;
 (function(SlpStreamMode) {
 	SlpStreamMode["AUTO"] = "AUTO";
@@ -21181,6 +62731,284 @@ var SlpStreamEvent;
 	SlpStreamEvent["RAW"] = "slp-raw";
 	SlpStreamEvent["COMMAND"] = "slp-command";
 })(SlpStreamEvent || (SlpStreamEvent = {}));
+function getWinners(gameEnd, settings, finalPostFrameUpdates) {
+	var _a, _b;
+	const { placements, gameEndMethod, lrasInitiatorIndex } = gameEnd;
+	const { players, isTeams } = settings;
+	if (gameEndMethod === GameEndMethod.NO_CONTEST || gameEndMethod === GameEndMethod.UNRESOLVED) {
+		if (exists(lrasInitiatorIndex) && players.length === 2) {
+			const winnerIndex = (_a = players.find(({ playerIndex }) => playerIndex !== lrasInitiatorIndex)) === null || _a === void 0 ? void 0 : _a.playerIndex;
+			if (exists(winnerIndex)) return [{
+				playerIndex: winnerIndex,
+				position: 0
+			}];
+		}
+		return [];
+	}
+	if (gameEndMethod === GameEndMethod.TIME && players.length === 2) {
+		const nonFollowerUpdates = finalPostFrameUpdates.filter((pfu) => !pfu.isFollower);
+		if (nonFollowerUpdates.length !== players.length) return [];
+		const p1 = nonFollowerUpdates[0];
+		const p2 = nonFollowerUpdates[1];
+		if (p1.stocksRemaining > p2.stocksRemaining) return [{
+			playerIndex: p1.playerIndex,
+			position: 0
+		}];
+		else if (p2.stocksRemaining > p1.stocksRemaining) return [{
+			playerIndex: p2.playerIndex,
+			position: 0
+		}];
+		const p1Health = Math.trunc(p1.percent);
+		const p2Health = Math.trunc(p2.percent);
+		if (p1Health < p2Health) return [{
+			playerIndex: p1.playerIndex,
+			position: 0
+		}];
+		else if (p2Health < p1Health) return [{
+			playerIndex: p2.playerIndex,
+			position: 0
+		}];
+		return [];
+	}
+	const firstPosition = placements.find((placement) => placement.position === 0);
+	if (!firstPosition) return [];
+	const winningTeam = (_b = players.find(({ playerIndex }) => playerIndex === firstPosition.playerIndex)) === null || _b === void 0 ? void 0 : _b.teamId;
+	if (isTeams && exists(winningTeam)) return placements.filter((placement) => {
+		var _a;
+		return ((_a = players.find(({ playerIndex }) => playerIndex === placement.playerIndex)) === null || _a === void 0 ? void 0 : _a.teamId) === winningTeam;
+	});
+	return [firstPosition];
+}
+const SANDBAG_INTERNAL_ID = 32;
+const FEET_CONVERSION_FACTOR = .952462;
+const METERS_CONVERSION_FACTOR = 1.04167;
+function positionToHomeRunDistance(distance, units = "feet") {
+	let score = 0;
+	switch (units) {
+		case "feet":
+			score = 10 * Math.floor(distance - 70 * FEET_CONVERSION_FACTOR);
+			score = Math.fround(score);
+			score = Math.floor(score / 30.4788 * 10) / 10;
+			break;
+		case "meters":
+			score = 10 * Math.floor(distance - 70 * METERS_CONVERSION_FACTOR);
+			score = Math.fround(score);
+			score = Math.floor(score / 100 * 10) / 10;
+			break;
+		default: throw new Error(`Unsupported units: ${units}`);
+	}
+	score = Math.round(score * 10) / 10;
+	return Math.max(0, score);
+}
+function extractDistanceInfoFromFrame(settings, lastFrame) {
+	var _a;
+	const sandbagLastFrame = Object.values(lastFrame.players).filter(exists).find((playerFrame) => playerFrame.post.internalCharacterId === SANDBAG_INTERNAL_ID);
+	if (!sandbagLastFrame) return;
+	const units = settings.language === Language.JAPANESE ? "meters" : "feet";
+	return {
+		distance: positionToHomeRunDistance((_a = sandbagLastFrame.post.positionX) !== null && _a !== void 0 ? _a : 0, units),
+		units
+	};
+}
+/**
+* Slippi Game class that wraps a file
+*/
+var SlippiGameBase = class {
+	constructor(input, opts) {
+		this.input = input;
+		this.actionsComputer = new ActionsComputer();
+		this.conversionComputer = new ConversionComputer();
+		this.comboComputer = new ComboComputer();
+		this.stockComputer = new StockComputer();
+		this.inputComputer = new InputComputer();
+		this.targetBreakComputer = new TargetBreakComputer();
+		this.statsComputer = new Stats(opts);
+		this.statsComputer.register(this.actionsComputer, this.comboComputer, this.conversionComputer, this.inputComputer, this.stockComputer, this.targetBreakComputer);
+		this.parser = new SlpParser();
+		this.parser.on(SlpParserEvent.SETTINGS, (settings) => {
+			this.statsComputer.setup(settings);
+		});
+		this.parser.on(SlpParserEvent.FINALIZED_FRAME, (frame) => {
+			this.statsComputer.addFrame(frame);
+		});
+	}
+	_process(shouldStop = () => false, file) {
+		if (this.parser.getGameEnd() != null) return;
+		this.input.open();
+		const slpfile = file !== null && file !== void 0 ? file : openSlpFile(this.input);
+		this.readPosition = iterateEvents(slpfile, (command, payload) => {
+			if (!payload) return false;
+			this.parser.handleCommand(command, payload);
+			return shouldStop(command, payload);
+		}, this.readPosition);
+		if (!file) this.input.close();
+	}
+	/**
+	* Gets the game settings, these are the settings that describe the starting state of
+	* the game such as characters, stage, etc.
+	*/
+	getSettings() {
+		this._process(() => this.parser.getSettings() != null);
+		return this.parser.getSettings();
+	}
+	getItems() {
+		this._process();
+		return this.parser.getItems();
+	}
+	getLatestFrame() {
+		this._process();
+		return this.parser.getLatestFrame();
+	}
+	getGameEnd(options = {}) {
+		if (options === null || options === void 0 ? void 0 : options.skipProcessing) {
+			this.input.open();
+			const gameEnd = getGameEnd(openSlpFile(this.input));
+			this.input.close();
+			return gameEnd;
+		}
+		this._process();
+		return this.parser.getGameEnd();
+	}
+	getFrames() {
+		this._process();
+		return this.parser.getFrames();
+	}
+	getRollbackFrames() {
+		this._process();
+		return this.parser.getRollbackFrames();
+	}
+	getGeckoList() {
+		this._process(() => this.parser.getGeckoList() != null);
+		return this.parser.getGeckoList();
+	}
+	getStats() {
+		if (this.finalStats) return this.finalStats;
+		this._process();
+		const settings = this.parser.getSettings();
+		if (!settings) return;
+		this.statsComputer.process();
+		const inputs = this.inputComputer.fetch();
+		const stocks = this.stockComputer.fetch();
+		const conversions = this.conversionComputer.fetch();
+		const playableFrameCount = this.parser.getPlayableFrameCount();
+		const overall = generateOverallStats({
+			settings,
+			inputs,
+			conversions,
+			playableFrameCount
+		});
+		const gameComplete = this.parser.getGameEnd() != null;
+		const stats = {
+			lastFrame: this.parser.getLatestFrameNumber(),
+			playableFrameCount,
+			stocks,
+			conversions,
+			combos: this.comboComputer.fetch(),
+			actionCounts: this.actionsComputer.fetch(),
+			overall,
+			gameComplete
+		};
+		if (gameComplete) this.finalStats = stats;
+		return stats;
+	}
+	getStadiumStats() {
+		this._process();
+		const settings = this.parser.getSettings();
+		if (!settings) return;
+		const latestFrame = this.parser.getLatestFrame();
+		if (!(latestFrame === null || latestFrame === void 0 ? void 0 : latestFrame.players)) return;
+		this.statsComputer.process();
+		switch (settings.gameMode) {
+			case GameMode.TARGET_TEST: return {
+				type: "target-test",
+				targetBreaks: this.targetBreakComputer.fetch()
+			};
+			case GameMode.HOME_RUN_CONTEST:
+				const distanceInfo = extractDistanceInfoFromFrame(settings, latestFrame);
+				if (!distanceInfo) return;
+				return {
+					type: "home-run-contest",
+					distance: distanceInfo.distance,
+					units: distanceInfo.units
+				};
+			default: return;
+		}
+	}
+	getMetadata() {
+		if (this.metadata) return this.metadata;
+		this.input.open();
+		const slpfile = openSlpFile(this.input);
+		this.metadata = getMetadata(slpfile);
+		this.input.close();
+		return this.metadata;
+	}
+	getWinners() {
+		this.input.open();
+		const slpfile = openSlpFile(this.input);
+		const gameEnd = getGameEnd(slpfile);
+		this._process(() => this.parser.getSettings() != null, slpfile);
+		const settings = this.parser.getSettings();
+		if (!gameEnd || !settings) {
+			this.input.close();
+			return [];
+		}
+		let finalPostFrameUpdates = [];
+		if (gameEnd.gameEndMethod === GameEndMethod.TIME) finalPostFrameUpdates = extractFinalPostFrameUpdates(slpfile);
+		this.input.close();
+		return getWinners(gameEnd, settings, finalPostFrameUpdates);
+	}
+};
+function byteLength(data) {
+	if (data instanceof ArrayBuffer) return data.byteLength;
+	return data.byteLength;
+}
+function asUint8Array(data) {
+	if (data instanceof Uint8Array) return data;
+	if (data instanceof ArrayBuffer) return new Uint8Array(data);
+	return new Uint8Array(data.buffer, data.byteOffset, data.byteLength);
+}
+/**
+* Cross-platform copy, mirroring Buffer.copy's signature.
+* Returns the number of bytes copied.
+*/
+function bufferCopy(src, dst, targetStart = 0, sourceStart = 0, sourceEnd) {
+	const s = asUint8Array(src);
+	const d = asUint8Array(dst);
+	const sLen = s.length;
+	const ss = Math.max(0, Math.min(sourceStart, sLen));
+	const se = sourceEnd == null ? sLen : Math.max(ss, Math.min(sourceEnd, sLen));
+	const ts = Math.max(0, Math.min(targetStart, d.length));
+	const toCopy = Math.min(se - ss, d.length - ts);
+	if (toCopy <= 0) return 0;
+	d.set(s.subarray(ss, ss + toCopy), ts);
+	return toCopy;
+}
+/** Cross-platform test for Buffer, ArrayBuffer, or typed array */
+function isBufferLike(x) {
+	return x instanceof ArrayBuffer || ArrayBuffer.isView(x);
+}
+var SlpBufferInputRef = class {
+	constructor(buffer) {
+		this.buffer = buffer;
+	}
+	open() {}
+	size() {
+		return byteLength(this.buffer);
+	}
+	close() {}
+	read(targetBuffer, offset, length, position) {
+		if (position >= this.size()) return 0;
+		return bufferCopy(this.buffer, targetBuffer, offset, position, position + length);
+	}
+};
+var SlippiGameWeb = class extends SlippiGameBase {
+	constructor(input, opts) {
+		if (isBufferLike(input)) super(new SlpBufferInputRef(input), opts);
+		else if (typeof input === "string") throw new Error("Cannot create SlippiGame with a file path in the browser. If you're running node, import from '@slippi/slippi-js/node' instead.");
+		else throw new Error("Cannot create SlippiGame with input of that type");
+	}
+	getFilePath() {}
+};
 //#endregion
 //#region node_modules/mutative/dist/mutative.esm.mjs
 const Operation = {
@@ -22506,7 +64334,7 @@ var SlpGame = class {
 	}
 };
 function parseIntakeGame(b) {
-	const slpGame = new SlippiGameCons(b);
+	const slpGame = new SlippiGameWeb(b);
 	const slpGame_ = new SlpGame(slpGame);
 	const stats = slpGame.getStats();
 	const settings = slpGame.getSettings();
@@ -23644,7 +65472,6 @@ async function recordSlp(filename) {
 		...["--exec", UPATH(ssbmIsoPath)]
 	];
 	const { lastFrame } = SSBM.Slp.parseIntakeGame(await fs.readFile(slpFile));
-	console.log({ lastFrame });
 	const aviFile = UPATH(userDir, "Dump", "Frames", "framedump0.avi");
 	const wavFile = UPATH(userDir, "Dump", "Audio", "dspdump.wav");
 	const totalVideoFrames = await limitExecutionTime(1e3 * 60 * 1e3, () => execSlippi(slippiPlaybackBin, aviFile.rawPath, playbackArgs, lastFrame, async function() {
@@ -23670,7 +65497,6 @@ async function recordSlp(filename) {
 		let offFrame = false;
 		detectPrc.stderr.on("data", async (rawStderrLine) => {
 			if (offFrame) return;
-			console.log(rawStderrLine.toString("utf8"));
 			const stderrLine = rawStderrLine.toString("utf8");
 			try {
 				if (stderrLine.startsWith("[Parsed_blackdetect_0")) {
@@ -23687,7 +65513,6 @@ async function recordSlp(filename) {
 						}
 					}
 					offFrame ||= getFrameNumberIfBlackScreen();
-					console.log({ offFrame });
 					if (offFrame) {
 						tail.unpipe(detectPrc.stdin);
 						await tail.quit();
@@ -23701,7 +65526,6 @@ async function recordSlp(filename) {
 		try {
 			await detectPrc;
 		} catch (____e) {}
-		console.log({ offFrame });
 		return offFrame + 1;
 	}));
 	const outFile = UPATH(workDir, "output.avi");

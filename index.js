@@ -608,7 +608,6 @@ async function recordSlp(filename) {
     ...["--exec", UPATH(ssbmIsoPath)],
   ];
   const { lastFrame } = SSBM.Slp.parseIntakeGame(await fs.readFile(slpFile));
-  console.log({ lastFrame });
   const aviFile = UPATH(userDir, "Dump", "Frames", "framedump0.avi");
   const wavFile = UPATH(userDir, "Dump", "Audio", "dspdump.wav");
   const totalVideoFrames = await limitExecutionTime(1000 * 60 * 1000, () =>
@@ -646,7 +645,6 @@ async function recordSlp(filename) {
           if (offFrame) {
             return;
           }
-          console.log(rawStderrLine.toString("utf8"));
           const stderrLine = rawStderrLine.toString("utf8");
           try {
             if (stderrLine.startsWith("[Parsed_blackdetect_0")) {
@@ -671,7 +669,6 @@ async function recordSlp(filename) {
                 }
               }
               offFrame ||= getFrameNumberIfBlackScreen();
-              console.log({ offFrame });
               if (offFrame) {
                 tail.unpipe(detectPrc.stdin);
                 await tail.quit();
@@ -685,7 +682,6 @@ async function recordSlp(filename) {
         try {
           await detectPrc;
         } catch (____e) {}
-        console.log({ offFrame });
         return offFrame + 1;
       },
     ),
