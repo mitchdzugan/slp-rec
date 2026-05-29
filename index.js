@@ -607,7 +607,11 @@ async function recordSlp(filename) {
     ...["--slippi-input", UPATH(getRecordJsonPath(workDir))],
     ...["--exec", UPATH(ssbmIsoPath)],
   ];
-  const { lastFrame } = SSBM.Slp.parseIntakeGame(await fs.readFile(slpFile));
+  const {
+    game: {
+      props: { lastFrame },
+    },
+  } = SSBM.Slp.parseIntakeGame(await fs.readFile(slpFile));
   const aviFile = UPATH(userDir, "Dump", "Frames", "framedump0.avi");
   const wavFile = UPATH(userDir, "Dump", "Audio", "dspdump.wav");
   const totalVideoFrames = await limitExecutionTime(1000 * 60 * 1000, () =>
