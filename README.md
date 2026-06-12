@@ -1,3 +1,5 @@
+somewhat unstable until I clean up the interface a bit more. Feel free to DM on discord if you have issues setting up/using: user: dz92 | dicordId: 237821583614410764
+
 ### Install
 
   - ensure `ffmpeg` is installed
