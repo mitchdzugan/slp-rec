@@ -1,13 +1,10 @@
 {
   "name": "slp-rec",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.mjs",
   "license": "MIT",
   "type": "module",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "bin": "./index.js",
+  "bin": "./dist/index.mjs",
   "dependencies": {
     "@slippi/slippi-js": "^9.1.2",
     "env-paths": "^4.0.0"

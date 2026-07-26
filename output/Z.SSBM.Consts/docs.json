@@ -1,1 +1,0 @@
-{"comments":null,"declarations":[{"children":[],"comments":null,"info":{"declType":"value","type":{"annotation":[],"contents":[["Prim"],"Int"],"tag":"TypeConstructor"}},"kind":null,"sourceSpan":{"end":[7,17],"name":".spago/p/z/682a7533fe33794ebb9078104fee07ac978c0f2a/src/Z/SSBM/Consts.purs","start":[7,1]},"title":"frameStart"}],"name":"Z.SSBM.Consts","reExports":[]}
