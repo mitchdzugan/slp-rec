@@ -6,5 +6,6 @@ export default defineConfig([
     hash: false,
     fixedExtension: true,
     deps: { alwaysBundle: /.*/ },
+    exe: true,
   },
 ]);
