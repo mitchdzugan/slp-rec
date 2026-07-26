@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "bin": "./dist/index.mjs",
+  "scripts": { "build": "" },
   "dependencies": {
     "@slippi/slippi-js": "^9.1.2",
     "env-paths": "^4.0.0"
