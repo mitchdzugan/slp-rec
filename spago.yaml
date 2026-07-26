@@ -1,0 +1,11 @@
+package:
+  name: z
+  dependencies:
+    - z
+workspace:
+  packageSet:
+    registry: 77.13.1
+  extraPackages:
+    z:
+      git: https://github.com/mitchdzugan/Z.purs.git
+      ref: b9fb156131bdc0eb73642ab2d03c623b8d8c120a
