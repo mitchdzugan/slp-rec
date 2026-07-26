@@ -9,6 +9,7 @@
   },
   "bin": "./index.js",
   "dependencies": {
-    "ps-ws": "github:mitchdzugan/Z.purs"
+    "@slippi/slippi-js": "^9.1.2",
+    "env-paths": "^4.0.0"
   }
 }

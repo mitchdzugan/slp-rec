@@ -1,11 +1,14 @@
 package:
-  name: z
+  name: slp-rec
   dependencies:
     - z
 workspace:
   packageSet:
     registry: 77.13.1
   extraPackages:
+    barlow-lens:
+      git: https://github.com/sigma-andex/purescript-barlow-lens.git
+      ref: a5c00a84aff00d15d21d55a39accd59a4f78e1bb
     z:
       git: https://github.com/mitchdzugan/Z.purs.git
-      ref: b9fb156131bdc0eb73642ab2d03c623b8d8c120a
+      ref: 682a7533fe33794ebb9078104fee07ac978c0f2a

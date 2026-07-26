@@ -1,4 +1,4 @@
-module SlpRec where
+module Main where
 
 import Prelude
 import Z as Z
