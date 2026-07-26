@@ -13,3 +13,4 @@
 /.spec-results
 /target
 /.cache-path
+/output
