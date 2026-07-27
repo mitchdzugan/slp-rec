@@ -11,4 +11,4 @@ workspace:
       ref: a5c00a84aff00d15d21d55a39accd59a4f78e1bb
     z:
       git: https://github.com/mitchdzugan/Z.purs.git
-      ref: 682a7533fe33794ebb9078104fee07ac978c0f2a
+      ref: 0af375485b3ea3cf93f9d422f1a4bb988520add3

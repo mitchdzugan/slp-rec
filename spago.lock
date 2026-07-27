@@ -669,7 +669,7 @@
       },
       "z": {
         "git": "https://github.com/mitchdzugan/Z.purs.git",
-        "ref": "682a7533fe33794ebb9078104fee07ac978c0f2a"
+        "ref": "0af375485b3ea3cf93f9d422f1a4bb988520add3"
       }
     }
   },
@@ -1965,7 +1965,7 @@
     "z": {
       "type": "git",
       "url": "https://github.com/mitchdzugan/Z.purs.git",
-      "rev": "682a7533fe33794ebb9078104fee07ac978c0f2a",
+      "rev": "0af375485b3ea3cf93f9d422f1a4bb988520add3",
       "dependencies": [
         "aff",
         "aff-promise",

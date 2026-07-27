@@ -1,9 +1,8 @@
 module Main where
 
-import Prelude
-import Z as Z
+import Z.Prelude
 import Z.SSBM.Slp.Rec.Node.Impl as SlpRec
 import Z.Sys.Node.Module as Sys
 
-main ∷ Z.Effect Unit
+main ∷ Effect Unit
 main = Sys.xExecAndExitArgv SlpRec.run
