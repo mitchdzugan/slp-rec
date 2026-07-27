@@ -2,7 +2,6 @@
   description = "slp-rec cli";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-root.url = "github:srid/flake-root";
     tsdown.url = "github:mitchdzugan/nix-tsdown";
