@@ -17,8 +17,6 @@ Options
                                                 (default GAME_FRAME_START)      
   -t, --total-frames <frames>                   Total frames to record (default 
                                                 all remaining)                  
-  -q, --quality <qual>                          Quality preset to use for       
-                                                recording                       
   -o, --output <mp4>                            The output mp4 filename         
   -i, --iso <iso>                               The melee iso to use while      
                                                 recording                       
@@ -43,7 +41,9 @@ Example
     -p 1=4 -p 2=0 \
     -x $REPOS/melee-recording-textures/CURRENT \
     -I GFX.Settings.AspectRatio=6 \
-    -g Widescreen 16:9 \
+    -g "Widescreen 16:9" \
+    -g "Game Music OFF" \
+    -G "Show Player Names" \
     -s 900 \
     -t 180
   
@@ -53,6 +53,8 @@ Example
     - overwrite default textures with any found at "$REPOS/melee-recording-textures/CURRENT"
     - set the property Settings.AspectRatio to 6 (widescreen value) in GFX.ini
     - enable the "Widescreen 16:9" gecko code
+    - enable the "Game Music OFF" gecko code
+    - disable the "Show Player Names" gecko code
     - start the recording at 900 frames (15s) into the game
         !! 900 frames after the timer starts. you must supply negative frames if you want to record before "GO!"
     - record for a total of 180 frames from that point (3 seconds)
