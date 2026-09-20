@@ -65339,7 +65339,7 @@ function mkGeckoLn(g) {
 	return `$Optional: ${g}`;
 }
 function mkGeckoLns(gs) {
-	return gs.map(mkGeckoLn).join("\n");
+	return (gs || []).map(mkGeckoLn).join("\n");
 }
 function mkGameSettings(plusCodes, enabled, disabled) {
 	return `
@@ -65755,7 +65755,7 @@ async function recordSlp(filename) {
 	const cfgCode = await cfg_geckoCode();
 	const allEnabled = [...await cfg_geckoEnabled() || [], ...options.geckoEnable || []];
 	const allDisabled = [...await cfg_geckoDisabled() || [], ...options.geckoDisable || []];
-	const gsContent = mkGameSettings(await Promise.all(cfgCode.map((f) => fs.readFile(f, "utf8"))), allEnabled, allDisabled);
+	const gsContent = mkGameSettings(await Promise.all((cfgCode || []).map((f) => fs.readFile(f, "utf8"))), allEnabled, allDisabled);
 	await mkdirp(gsDir);
 	await fs.writeFile(gsFile, gsContent);
 	if (texturePath && await isDirectory(texturePath)) {

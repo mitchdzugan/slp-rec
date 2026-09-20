@@ -31,7 +31,7 @@ function mkGeckoLn(g) {
   return `$Optional: ${g}`;
 }
 function mkGeckoLns(gs) {
-  return gs.map(mkGeckoLn).join("\n");
+  return (gs || []).map(mkGeckoLn).join("\n");
 }
 function mkGameSettings(plusCodes, enabled, disabled) {
   return `
@@ -566,7 +566,7 @@ async function recordSlp(filename) {
   const cfgDisabled = await cfg_geckoDisabled();
   const allDisabled = [...(cfgDisabled || []), ...(options.geckoDisable || [])];
   const plusCodes_s = await Promise.all(
-    cfgCode.map((f) => fs.readFile(f, "utf8")),
+    (cfgCode || []).map((f) => fs.readFile(f, "utf8")),
   );
   const gsContent = mkGameSettings(plusCodes_s, allEnabled, allDisabled);
   await mkdirp(gsDir);
