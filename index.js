@@ -235,7 +235,8 @@ function getConfigJson() {
       };
       const userConfig = await fs
         .readFile(configPath, "utf8")
-        .then((s) => toml.parse(s));
+        .then((s) => toml.parse(s))
+        .catch(() => ({}));
 
       if (userConfig.geckoCode) {
         userConfig.geckoCode = userConfig.geckoCode.map((code) =>
