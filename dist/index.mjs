@@ -65131,7 +65131,7 @@ var userBaseInis_default = [
 				"FrameSkip": "0x00000000",
 				"Overclock": "1.00000000",
 				"OverclockEnable": "False",
-				"GFXBackend": "OGL",
+				"GFXBackend": "DX11",
 				"GPUDeterminismMode": "auto",
 				"PerfMapDir": "",
 				"EnableCustomRTC": "False",
@@ -65372,7 +65372,7 @@ async function slurpJson(...args) {
 }
 const paths = envPaths("slp-rec", { suffix: "" });
 const configPath = path.join(paths.config, "config.toml");
-const launcherSettingsPath = path.join(paths.config, "..", "Slippi Launcher", "Settings");
+const launcherSettingsPath = path.join(paths.config, "..", "..", "Slippi Launcher", "Settings");
 const optionDefinitions = [
 	{
 		name: "help",

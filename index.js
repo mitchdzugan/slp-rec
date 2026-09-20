@@ -76,6 +76,7 @@ const configPath = path.join(paths.config, "config.toml");
 const launcherSettingsPath = path.join(
   paths.config,
   "..",
+  "..",
   "Slippi Launcher",
   "Settings",
 );
