@@ -60,7 +60,6 @@ Example
     - record for a total of 180 frames from that point (3 seconds)
 ```
 
-
 ### Configuration
 
 Check [/.SAMPLE-CONFIG](https://github.com/mitchdzugan/slp-rec/tree/main/.SAMPLE-CONFIG) for example configuration. OS specific configuration path location can be found by running `slp-rec -h`
