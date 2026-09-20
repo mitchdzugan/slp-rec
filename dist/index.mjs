@@ -65513,7 +65513,7 @@ let _configPromise = null;
 function getConfigJson() {
 	if (!_configPromise) _configPromise = (async function() {
 		const launcherSettings = await slurpJson(launcherSettingsPath) || { settings: {} };
-		const userConfig = await fs.readFile(configPath, "utf8").then((s) => parse$1(s));
+		const userConfig = await fs.readFile(configPath, "utf8").then((s) => parse$1(s)).catch(() => ({}));
 		if (userConfig.geckoCode) userConfig.geckoCode = userConfig.geckoCode.map((code) => code.startsWith("/") ? code : path.join(path.dirname(configPath), code));
 		return {
 			ssbmIsoPath: launcherSettings.settings && launcherSettings.settings.isoPath,
