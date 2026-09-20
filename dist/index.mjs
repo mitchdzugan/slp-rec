@@ -65517,7 +65517,7 @@ function getConfigJson() {
 		if (userConfig.geckoCode) userConfig.geckoCode = userConfig.geckoCode.map((code) => code.startsWith("/") ? code : path.join(path.dirname(configPath), code));
 		return {
 			ssbmIsoPath: launcherSettings.settings && launcherSettings.settings.isoPath,
-			slippiPlaybackBin: "slippi-playback",
+			slippiPlaybackBin: path.join(paths.config, "..", "Slippi Launcher", "playback", "Slippi Dolphin.exe"),
 			ffmpegBin: "ffmpeg",
 			...userConfig || {},
 			...options.iso ? { ssbmIsoPath: options.iso } : {},

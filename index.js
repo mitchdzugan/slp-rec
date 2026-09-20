@@ -249,7 +249,13 @@ function getConfigJson() {
       const defaultConfig = {
         ssbmIsoPath:
           launcherSettings.settings && launcherSettings.settings.isoPath,
-        slippiPlaybackBin: "slippi-playback",
+        slippiPlaybackBin: path.join(
+          paths.config,
+          "..",
+          "Slippi Launcher",
+          "playback",
+          "Slippi Dolphin.exe",
+        ),
         ffmpegBin: "ffmpeg",
       };
 
