@@ -252,6 +252,7 @@ function getConfigJson() {
         slippiPlaybackBin: path.join(
           paths.config,
           "..",
+          "..",
           "Slippi Launcher",
           "playback",
           "Slippi Dolphin.exe",
